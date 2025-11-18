@@ -90,8 +90,8 @@ Reads in ASV counts, taxonomy, sample metadata, and the phylogenetic tree, build
 - **Figure**
   - `results/figures/Fig_2_DOTPLOT_z_by_stress_compact.tiff`
 - **Tables**
-  - `results/tables/Table_S7_Growth_all_sources_stressors_long.csv` *(was S8)*  
-  - `results/tables/Table_S8_Zscores_summary.csv` *(was S9 → now S8)*
+  - `results/tables/Table_S7_Growth_all_sources_stressors_long.csv` 
+  - `results/tables/Table_S8_Zscores_summary.csv`
 
 **Summary:**  
 
