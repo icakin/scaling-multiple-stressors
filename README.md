@@ -4,8 +4,8 @@ This repository contains the R scripts used in the manuscript:
 Carmichael H., Cakin I., Busi S.B., Read D., Yvon-Durocher G. “Scaling the impacts of multiple stressors from populations to ecosystems”.
 
 ## Contents
-- `analysis.R` — runs all analyses described in the manuscript, including diversity–biomass models, db-RDA, PERMANOVA, indicator species analysis, Shannon diversity, trait processing, and the Bayesian softmax (trait → composition) model with biomass prediction.  
-- (optional) `figures/`, `tables/`, `data/` — folders for outputs and input data.
+- `scripts/01_data_preprocessing.R`, `scripts/02_fig1_diversity_permanova.R`, `scripts/03_fig1_indicator_species.R`, `scripts/04_fig2_growth_zscores.R`, `scripts/05_fig3_bayes_od.R` — run all analyses described in the manuscript, including diversity–biomass models, db-RDA, PERMANOVA, indicator species analysis, Shannon diversity, trait processing, and the Bayesian softmax (trait → composition) model with biomass prediction.  
+- (optional) `figures/`, `tables/`, `data/`, `results/` — folders for outputs and input data.
 
 ## R version and packages
 - R ≥ 4.3  
@@ -19,7 +19,6 @@ Install packages, then run:
 # install.packages("renv")
 renv::init()
 renv::restore()
-source("analysis.R")
 ```
 
 ---
@@ -91,8 +90,8 @@ Reads in ASV counts, taxonomy, sample metadata, and the phylogenetic tree, build
 - **Figure**
   - `results/figures/Fig_2_DOTPLOT_z_by_stress_compact.tiff`
 - **Tables**
-  - `results/tables/Table_S7_Growth_all_sources_stressors_long.csv`
-  - `results/tables/Table_S8_Zscores_summary.csv`
+  - `results/tables/Table_S7_Growth_all_sources_stressors_long.csv` *(was S8)*  
+  - `results/tables/Table_S8_Zscores_summary.csv` *(was S9 → now S8)*
 
 **Summary:**  
 
@@ -117,7 +116,7 @@ Reads in ASV counts, taxonomy, sample metadata, and the phylogenetic tree, build
   - `results/figures/Fig_S2b.tiff`  
   - `results/figures/Fig_S2c.tiff`
 - **Tables**
-  - `results/tables/Table_S9_OD_metrics_by_stress.csv`
+  - `results/tables/Table_S9_OD_metrics_by_stress.csv`  
   - `results/tables/Table_S10_loo_elpd_by_stress.csv`
   - `results/tables/Table_S11_model_overall_metrics.csv`
   - `results/tables/Table_S12_js_by_stress.csv`
@@ -137,8 +136,12 @@ Reads in ASV counts, taxonomy, sample metadata, and the phylogenetic tree, build
 
 ## Running the pipeline
 
-From the project root in R:
+From the project root in R, run the scripts sequentially:
 
 ```r
-source("run_all.R")
+source("scripts/01_data_preprocessing.R")
+source("scripts/02_fig1_diversity_permanova.R")
+source("scripts/03_fig1_indicator_species.R")
+source("scripts/04_fig2_growth_zscores.R")
+source("scripts/05_fig3_bayes_od.R")
 ```
