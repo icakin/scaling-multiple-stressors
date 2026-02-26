@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# R / RStudio
+.Rhistory
+.RData
+.RDataTmp
+.Rproj.user/
+
+# optional: if you don't want local session files
+*.Rproj.user
+
+# caches / temp
+*.tmp

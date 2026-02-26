@@ -1,0 +1,4 @@
+Stat,Estimate,SE
+elpd_loo,2330.409,200.914
+p_loo,33.337,3.432
+looic,-4660.818,401.829
