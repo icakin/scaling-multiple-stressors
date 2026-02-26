@@ -1,0 +1,5 @@
+Model,RMSE,R2
+Bayes AWM (MI),0.099,0.882
+Observed AWM (oracle ceiling),0.105,0.865
+Equal-abundance × g,0.139,0.766
+Random × g,0.2,0.514

@@ -3,75 +3,19 @@
 
 # ---- Packages ----
 ensure_packages <- function() {
-  # CRAN packages
-  cran_pkgs <- c(
+  pkgs <- c(
     "magrittr","dplyr","tidyr","tibble","ggplot2","ggpubr","scales","ggrepel","patchwork",
-    "ape","vegan","stringr","picante","phangorn","microeco","reshape2",
-    "broom","car","effectsize","emmeans","readr","permute","ragg",
-    "rstan","loo","philentropy","cluster","nlme"
+    "ape","phyloseq","vegan","pairwiseAdonis","ggtree","stringr","picante","phangorn","microeco","reshape2",
+    "broom","car","effectsize","emmeans","readr","permute","indicspecies","ragg",
+    "rstan","loo","philentropy"
   )
-
-  # Bioconductor packages
-  bioc_pkgs <- c(
-    "phyloseq","ggtree","indicspecies"
-  )
-
-  # GitHub packages (name = repository)
-  github_pkgs <- c(
-    pairwiseAdonis = "pmartinezarbizu/pairwiseAdonis/pairwiseAdonis"
-  )
-
-  # Helper: install only missing packages with a given installer
-  install_if_missing <- function(pkgs, installer, label) {
-    missing <- pkgs[!vapply(pkgs, requireNamespace, logical(1L), quietly = TRUE)]
-    if (length(missing)) {
-      message("[ensure_packages] Installing missing ", label, " packages: ",
-              paste(missing, collapse = ", "))
-      installer(missing)
-    }
+  to_install <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
+  if (length(to_install)) install.packages(to_install)
+  if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")
+  if (!"pairwiseAdonis" %in% installed.packages()[,1]) {
+    devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
   }
-
-  # 1) CRAN packages
-  install_if_missing(
-    cran_pkgs,
-    installer = function(pkgs) install.packages(pkgs),
-    label = "CRAN"
-  )
-
-  # 2) Bioconductor packages
-  if (!requireNamespace("BiocManager", quietly = TRUE)) {
-    message("[ensure_packages] Installing BiocManager from CRAN")
-    install.packages("BiocManager")
-  }
-  install_if_missing(
-    bioc_pkgs,
-    installer = function(pkgs) BiocManager::install(pkgs, ask = FALSE),
-    label = "Bioconductor"
-  )
-
-  # 3) GitHub packages (pairwiseAdonis etc.)
-  if (!requireNamespace("remotes", quietly = TRUE)) {
-    message("[ensure_packages] Installing remotes from CRAN")
-    install.packages("remotes")
-  }
-  for (pkg in names(github_pkgs)) {
-    if (!requireNamespace(pkg, quietly = TRUE)) {
-      repo <- github_pkgs[[pkg]]
-      message("[ensure_packages] Installing GitHub package ", pkg, " from ", repo)
-      remotes::install_github(repo)
-    }
-  }
-
-  # 4) Attach all packages quietly
-  all_pkgs <- c(cran_pkgs, bioc_pkgs, names(github_pkgs))
-  invisible(lapply(
-    all_pkgs,
-    function(p) {
-      suppressPackageStartupMessages(
-        library(p, character.only = TRUE)
-      )
-    }
-  ))
+  invisible(lapply(pkgs, require, character.only = TRUE))
 }
 
 # ---- Paths ----

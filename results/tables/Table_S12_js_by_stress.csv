@@ -1,0 +1,9 @@
+Stress,RMSE,JS
+Control,0.121,0.071
+Sal,0.118,0.06
+SalTemp,0.13,0.107
+Temp,0.129,0.08
+pH,0.102,0.056
+pHSal,0.139,0.097
+pHSalTemp,0.123,0.095
+pHTemp,0.133,0.1

@@ -3,7 +3,7 @@
 #
 # Products:
 # - Fig 1d: Indicator taxa (Top 1 per stress condition) plotted by Genus
-# - Table S6: Full indicator species statistics for all ASVs × stress groups
+# - Table S7: Full indicator species statistics for all ASVs × stress groups
 #
 # Overview:
 # - Loads cleaned ASV abundance matrix, aligned metadata, and taxonomy table
@@ -27,7 +27,7 @@
 # 6) Plot Top N indicator genera by stress condition and save Fig 1d
 
 # ======================================================================
-#  Fig 1 (indicator species) -> Table S6, Fig 1d
+#  Fig 1 (indicator species) -> Table S7, Fig 1d
 source("scripts/utils_functions.R"); ensure_packages()
 
 ASV_t_clean        <- readRDS(P_RDS("ASV_matrix_clean.rds"))
@@ -71,10 +71,10 @@ all_isa_stats <- dplyr::bind_rows(panel_list) %>%
 
 topN_by_group <- all_isa_stats %>% dplyr::group_by(Group_short) %>% dplyr::slice_head(n = TopN) %>% dplyr::ungroup()
 
-# Save Table S6 (rounded to 3 decimals) and drop Group_pretty
+# Save Table S7 (rounded to 3 decimals) and drop Group_pretty
 all_isa_stats_out <- all_isa_stats %>% dplyr::select(-Group_pretty) %>%
   dplyr::mutate(dplyr::across(where(is.numeric), ~round(., 3)))
-readr::write_csv(all_isa_stats_out, P_TAB("Table_S6_ISA_stats_full.csv"))
+readr::write_csv(all_isa_stats_out, P_TAB("Table_S7_ISA_stats_full.csv"))
 
 # Plot
 rng   <- range(topN_by_group$stat, na.rm = TRUE)

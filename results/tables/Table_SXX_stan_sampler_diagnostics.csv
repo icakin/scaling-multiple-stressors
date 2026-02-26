@@ -1,0 +1,4 @@
+metric,value
+iterations_postwarmup,6000
+divergent_transitions,0
+max_treedepth_hits,0
