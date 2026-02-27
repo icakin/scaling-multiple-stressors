@@ -5,8 +5,8 @@
 # - Fig 1a: Shannon diversity (boxplots + significance)
 # - Fig 1b: db-RDA of community composition vs pH, salinity, temperature
 # - Fig 1c: PERMANOVA pairwise R² heatmap
-# - Table S4: Tukey post-hoc contrasts + effect sizes for Shannon diversity
-# - Table S5: Pairwise PERMANOVA on Bray–Curtis distances
+# - Table S5: Tukey post-hoc contrasts + effect sizes for Shannon diversity
+# - Table S6: Pairwise PERMANOVA on Bray–Curtis distances
 #
 # Overview:
 # - Loads preprocessed ASV abundance matrix and aligned metadata
@@ -30,7 +30,7 @@
 #    and save Fig 1a, Table S4, and Shannon_ANOVA_effectsizes.csv
 
 # ======================================================================
-# Fig 1 (diversity, PERMANOVA, dbRDA) -> Tables S4–S5, Fig 1a/b/c
+# Fig 1 (diversity, PERMANOVA, dbRDA) -> Tables S5–S6, Fig 1a/b/c
 source("scripts/utils_functions.R"); ensure_packages()
 
 ASV_t_clean        <- readRDS(P_RDS("ASV_matrix_clean.rds"))
@@ -68,7 +68,7 @@ dbRDA_plot_grad <- ggplot(site_scores_grad, aes(CAP1, CAP2, colour = Stress)) +
 ggsave(P_FIG("Fig_1b_dbRDA_gradients.tiff"), label_plot(dbRDA_plot_grad, "1b"),
        width = 18, height = 15, units = "cm", dpi = 600, device = ragg::agg_tiff, compression = "lzw")
 
-# --- PERMANOVA + pairwise heatmap (Fig 1c & Table S5) ---
+# --- PERMANOVA + pairwise heatmap (Fig 1c & Table S6) ---
 global_perm <- vegan::adonis2(Distances ~ Stress, data = env_option_A_clean, permutations = 999)
 cat("Global PERMANOVA: R² =", round(global_perm$R2[1], 2), ", p =", signif(global_perm$`Pr(>F)`[1], 3), "\n")
 
@@ -109,9 +109,9 @@ heatmap_plot <- ggplot(mat_long, aes(x = Group1, y = Group2, fill = R2)) +
 ggsave(P_FIG("Fig_1c_PERMANOVA_pairwise_heatmap.tiff"), label_plot(heatmap_plot, "1c"),
        width = 18, height = 15, units = "cm", dpi = 600, device = ragg::agg_tiff, compression = "lzw")
 
-readr::write_csv(pw %>% mutate(across(where(is.numeric), ~round(., 3))), P_TAB("Table_S5_PERMANOVA_pairwise.csv"))
+readr::write_csv(pw %>% mutate(across(where(is.numeric), ~round(., 3))), P_TAB("Table_S6_PERMANOVA_pairwise.csv"))
 
-# --- Shannon diversity (Fig 1a & Table S4 + Shannon_ANOVA) ---
+# --- Shannon diversity (Fig 1a & Table S5 + Shannon_ANOVA) ---
 if (!"Id" %in% names(env_option_A_clean)) { env_option_A_clean <- env_option_A_clean %>% tibble::rownames_to_column("Id") }
 
 grab_col <- function(df, candidates, default = NA_real_) { for (nm in candidates) if (nm %in% names(df)) return(df[[nm]]); rep(default, nrow(df)) }
@@ -194,7 +194,7 @@ S1b <- tuk_tbl %>% dplyr::mutate(
   g_high   = hedges_g + t_crit * SE_g
 ) %>% dplyr::select(contrast, estimate, SE, df, stat, p.adj, hedges_g, g_low, g_high) %>%
   dplyr::mutate(dplyr::across(where(is.numeric), ~round(., 3))) %>% dplyr::arrange(p.adj)
-readr::write_csv(S1b, P_TAB("Table_S4_Tukey_posthoc_effectsizes.csv"))
+readr::write_csv(S1b, P_TAB("Table_S5_Tukey_posthoc_effectsizes.csv"))
 
 tukey_pairs <- TukeyHSD(Shannon_anova, conf.level = 0.95)[[1]] %>% as.data.frame() %>% tibble::rownames_to_column("pairwise")
 names(tukey_pairs) <- make.names(names(tukey_pairs))

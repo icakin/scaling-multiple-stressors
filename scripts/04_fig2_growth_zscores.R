@@ -3,7 +3,7 @@
 #
 # Products:
 # - Fig 2: Compact dotplot of z-scored growth rates by taxon and stress
-# - Table S7: Long-form growth rate dataset (all sources × stressors)
+# - Table S8a: Long-form growth rate dataset (all sources × stressors)
 # - Table S8: Summary of z-scored growth (mean ± SE) per taxon × stress
 #
 # Overview:
@@ -25,13 +25,13 @@
 # Outline:
 # 1) Load and sanitise growth-fit CSVs for Temp, pH, and Salinity experiments
 # 2) Standardise core columns (taxon Id, growth rate g) and derive Stress
-# 3) Bind all sources into Growth_all_sources_stressors_long and save (Table S7 + RDS)
+# 3) Bind all sources into Growth_all_sources_stressors_long and save (Table S8a + RDS)
 # 4) Map taxon IDs to short labels (Genus abbreviations) for plotting
 # 5) Compute z-scores of growth within each Stress and summarise (Table S8 + RDS)
 # 6) Build compact dotplot (per-taxon z-scores + mean ± SE) and save Fig 2
 
 # ======================================================================
-#  Fig 2 (growth z-scores) -> Tables S7–S8, Fig 2
+#  Fig 2 (growth z-scores) -> Tables S8a–S8, Fig 2
 source("scripts/utils_functions.R"); ensure_packages()
 
 IN_TEMP <- P_IN("LogisticGrowth_AllOTUs_gompertz_Temp_zeros.csv")
@@ -95,7 +95,7 @@ Growth_all_sources_stressors_long <- dplyr::bind_rows(parts) %>%
   dplyr::filter(!is.na(g), g >= 0)
 
 Growth_all_sources_stressors_long_out <- Growth_all_sources_stressors_long %>% dplyr::mutate(dplyr::across(where(is.numeric), ~round(., 3)))
-readr::write_csv(Growth_all_sources_stressors_long_out, P_TAB("Table_S7_Growth_all_sources_stressors_long.csv"))
+readr::write_csv(Growth_all_sources_stressors_long_out, P_TAB("Table_S8a_Growth_all_sources_stressors_long.csv"))
 saveRDS(Growth_all_sources_stressors_long, P_RDS("Growth_all_sources_stressors_long.rds"))
 
 taxon_map <- tibble::tribble(
