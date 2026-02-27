@@ -26,3 +26,4 @@ manuscript/*_files/
 
 # ── Temp files ──
 *.tmp
+.mailmap
