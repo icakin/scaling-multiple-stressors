@@ -1,14 +1,28 @@
-# macOS
+# ── Prompts (internal working notes, not for distribution) ──
+prompts/
+
+# ── macOS ──
 .DS_Store
 
-# R / RStudio
+# ── R / RStudio ──
 .Rhistory
 .RData
 .RDataTmp
 .Rproj.user/
-
-# optional: if you don't want local session files
 *.Rproj.user
 
-# caches / temp
+# ── Quarto / LaTeX build artifacts ──
+manuscript/_output/
+manuscript/.quarto/
+manuscript/**/*.quarto_ipynb
+manuscript/*_files/
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# ── Temp files ──
 *.tmp

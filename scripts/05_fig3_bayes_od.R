@@ -421,34 +421,44 @@ generated quantities {
 # Ensure Stan file ends with a trailing newline
 writeLines(paste0(stan_dirichlet, "\n"), "softmax_dirichlet.stan")
 
-sm <- rstan::stan_model("softmax_dirichlet.stan")
+# --- RDS cache: skip refitting if cached fit exists ---
+fit_cache <- P_RDS("bayes_fit_partA.rds")
+if (file.exists(fit_cache)) {
+  message("[4a/6] Loading cached Stan fit from ", fit_cache)
+  fit <- readRDS(fit_cache)
+} else {
+  sm <- rstan::stan_model("softmax_dirichlet.stan")
 
-stan_data <- list(
-  N         = N,
-  K         = K,
-  J         = J,
-  S         = S,
-  start_idx = start_idx,
-  len       = len,
-  p_obs     = as.vector(p_obs),
-  g_z       = as.vector(g_z),
-  tax_of    = tax_of,
-  stress_id = stress_id,
-  Rdim      = Rdim,
-  rich_id   = rich_id,
-  use_taxon_biases = as.integer(USE_TAXON_BIASES)
-)
+  stan_data <- list(
+    N         = N,
+    K         = K,
+    J         = J,
+    S         = S,
+    start_idx = start_idx,
+    len       = len,
+    p_obs     = as.vector(p_obs),
+    g_z       = as.vector(g_z),
+    tax_of    = tax_of,
+    stress_id = stress_id,
+    Rdim      = Rdim,
+    rich_id   = rich_id,
+    use_taxon_biases = as.integer(USE_TAXON_BIASES)
+  )
 
-fit <- rstan::sampling(
-  sm,
-  data    = stan_data,
-  chains  = CHAINS,
-  iter    = ITER,
-  warmup  = WARMUP,
-  control = ADAPT,
-  seed    = 123,
-  cores   = 1   # run chains sequentially -> avoids SIGPIPE / PSOCK issues
-)
+  fit <- rstan::sampling(
+    sm,
+    data    = stan_data,
+    chains  = CHAINS,
+    iter    = ITER,
+    warmup  = WARMUP,
+    control = ADAPT,
+    seed    = 123,
+    cores   = 1   # run chains sequentially -> avoids SIGPIPE / PSOCK issues
+  )
+
+  saveRDS(fit, fit_cache)
+  message("[4a/6] Saved Stan fit to ", fit_cache)
+}
 
 # ---------------------- STAN DIAGNOSTICS (publication-ready) ----------
 message("[4b/6] Stan sampling diagnostics ...")
@@ -678,7 +688,7 @@ p_comp <- ggplot(comp_plot_df, aes(x = p_hat, y = p_obs, colour = Diversity)) +
 
 ggsave(
   P_FIG("Fig_S4.tiff"),
-  label_plot(p_comp, "S4"),
+  p_comp,
   width  = 175,
   height = 120,
   units  = "mm",
@@ -686,6 +696,8 @@ ggsave(
   device = ragg::agg_tiff,
   compression = "lzw"
 )
+ggsave(P_FIG("Fig_S4.png"), p_comp,
+       width = 175, height = 120, units = "mm", dpi = 300)
 
 # ========================= OD predictions ============================
 message("[5/6] Building OD predictors and figures ...")
@@ -780,7 +792,7 @@ p_obs <- ggplot(od_obs, aes(x = pred, y = OD, colour = Stress, shape = Diversity
 
 ggsave(
   P_FIG("Fig_S5a.tiff"),
-  label_plot(p_obs, "S5a"),
+  p_obs,
   width  = 170,
   height = 130,
   units  = "mm",
@@ -952,7 +964,7 @@ p_bayes <- ggplot(mi_summary, aes(pred_mean, OD, colour = Stress, shape = Divers
 
 ggsave(
   P_FIG("Fig_3b.tiff"),
-  label_plot(p_bayes, "3b"),
+  p_bayes,
   width  = 170,
   height = 130,
   units  = "mm",
@@ -1017,7 +1029,7 @@ p_eq <- ggplot(df2, aes(pred, OD, colour = Stress, shape = Diversity)) +
 
 ggsave(
   P_FIG("Fig_S5b.tiff"),
-  label_plot(p_eq, "S5b"),
+  p_eq,
   width  = 170,
   height = 130,
   units  = "mm",
@@ -1111,7 +1123,7 @@ p_rand <- ggplot(df3, aes(pred, OD, colour = Stress, shape = Diversity)) +
 
 ggsave(
   P_FIG("Fig_S5c.tiff"),
-  label_plot(p_rand, "S5c"),
+  p_rand,
   width  = 170,
   height = 130,
   units  = "mm",
@@ -1158,7 +1170,7 @@ FIG_comp_single <- ggplot(
 
 ggsave(
   P_FIG("Fig_3a.tiff"),
-  label_plot(FIG_comp_single, "3a"),
+  FIG_comp_single,
   width  = 170,
   height = 130,
   units  = "mm",
@@ -1279,6 +1291,43 @@ if (!is.null(loo_res)) {
 
 message("Saved: Fig_3a.tiff, Fig_3b.tiff, Fig_S4.tiff, Fig_S5a.tiff, Fig_S5b.tiff, Fig_S5c.tiff")
 message("Tables: S9–S13 written to '", normalizePath(DIR_TABLES), "'")
+
+# --- PNG copies of individual panels ---
+ggsave(P_FIG("Fig_3a.png"), FIG_comp_single,
+       width = 170, height = 130, units = "mm", dpi = 300)
+ggsave(P_FIG("Fig_3b.png"), p_bayes,
+       width = 170, height = 130, units = "mm", dpi = 300)
+ggsave(P_FIG("Fig_S5a.png"), p_obs,
+       width = 170, height = 130, units = "mm", dpi = 300)
+ggsave(P_FIG("Fig_S5b.png"), p_eq,
+       width = 170, height = 130, units = "mm", dpi = 300)
+ggsave(P_FIG("Fig_S5c.png"), p_rand,
+       width = 170, height = 130, units = "mm", dpi = 300)
+
+# --- Composite Fig 3 (patchwork) ---
+library(patchwork)
+fig3_composite <- FIG_comp_single + p_bayes +
+  plot_layout(ncol = 2) +
+  plot_annotation(tag_levels = "a") &
+  theme(plot.tag = element_text(size = 18, face = "bold", family = "Helvetica"))
+
+ggsave(P_FIG("Fig_3.tiff"), fig3_composite,
+       width = 340, height = 130, units = "mm", dpi = 600,
+       device = ragg::agg_tiff, compression = "lzw")
+ggsave(P_FIG("Fig_3.png"), fig3_composite,
+       width = 340, height = 130, units = "mm", dpi = 300)
+
+# --- Composite Fig S5 (patchwork) ---
+fig_s5_composite <- p_obs + p_eq + p_rand +
+  plot_layout(ncol = 3) +
+  plot_annotation(tag_levels = "a") &
+  theme(plot.tag = element_text(size = 18, face = "bold", family = "Helvetica"))
+
+ggsave(P_FIG("Fig_S5.tiff"), fig_s5_composite,
+       width = 510, height = 130, units = "mm", dpi = 600,
+       device = ragg::agg_tiff, compression = "lzw")
+ggsave(P_FIG("Fig_S5.png"), fig_s5_composite,
+       width = 510, height = 130, units = "mm", dpi = 300)
 
 
 # ------------------------------ PART B -------------------------------
@@ -1862,17 +1911,26 @@ for (k in seq_len(K_eff)) {
   test_obj  <- build_ragged(ord_full, test_ids,  taxa_levels_cv, stress_lvls_cv, rich_lvls_cv,
                             USE_RICHNESS_KAPPA_CV, use_taxon_biases_int)
   
-  fit_cv <- rstan::sampling(
-    sm_cv,
-    data    = train_obj$stan_data,
-    chains  = CHAINS_CV,
-    iter    = ITER_CV,
-    warmup  = WARMUP_CV,
-    control = ADAPT_CV,
-    seed    = 500 + k,
-    cores   = 1
-  )
-  
+  # --- RDS cache for CV fold ---
+  cv_fold_cache <- P_RDS(sprintf("bayes_cv_fold%d.rds", k))
+  if (file.exists(cv_fold_cache)) {
+    message("  Loading cached CV fold ", k, " from ", cv_fold_cache)
+    fit_cv <- readRDS(cv_fold_cache)
+  } else {
+    fit_cv <- rstan::sampling(
+      sm_cv,
+      data    = train_obj$stan_data,
+      chains  = CHAINS_CV,
+      iter    = ITER_CV,
+      warmup  = WARMUP_CV,
+      control = ADAPT_CV,
+      seed    = 500 + k,
+      cores   = 1
+    )
+    saveRDS(fit_cv, cv_fold_cache)
+    message("  Saved CV fold ", k, " to ", cv_fold_cache)
+  }
+
   draws_cv <- rstan::extract(fit_cv)
   nd <- dim(draws_cv$kappa)[1]
   
@@ -2083,7 +2141,7 @@ p_s3 <- ggplot(cv_comp_pred_df, aes(x = p_hat, y = p_obs, colour = factor(Divers
 
 ggsave(
   P_FIG("Fig_S6.tiff"),
-  label_plot(p_s3, "S6"),
+  p_s3,
   width  = 175,
   height = 120,
   units  = "mm",
@@ -2091,6 +2149,8 @@ ggsave(
   device = ragg::agg_tiff,
   compression = "lzw"
 )
+ggsave(P_FIG("Fig_S6.png"), p_s3,
+       width = 175, height = 120, units = "mm", dpi = 300)
 
 # ---- Fig S4: CV test OD predictions ----
 rmse_s4 <- sqrt(mean((cv_od_pred_df$OD - cv_od_pred_df$pred_OD)^2, na.rm = TRUE))
@@ -2114,7 +2174,7 @@ p_s4 <- ggplot(cv_od_pred_df, aes(x = pred_OD, y = OD, colour = Stress, shape = 
 
 ggsave(
   P_FIG("Fig_S7.tiff"),
-  label_plot(p_s4, "S7"),
+  p_s4,
   width  = 170,
   height = 130,
   units  = "mm",
@@ -2122,6 +2182,8 @@ ggsave(
   device = ragg::agg_tiff,
   compression = "lzw"
 )
+ggsave(P_FIG("Fig_S7.png"), p_s4,
+       width = 170, height = 130, units = "mm", dpi = 300)
 
 # ======================================================================
 # EXTRA: OD spread by fold (your diagnostic)

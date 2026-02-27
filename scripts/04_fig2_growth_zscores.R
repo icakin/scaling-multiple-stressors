@@ -140,5 +140,5 @@ DOTPLOT_z_by_stress_compact <- ggplot() +
         legend.position = "top", legend.direction = "horizontal", panel.spacing.x = unit(4, "pt"),
         panel.spacing.y = unit(4, "pt"), plot.margin = margin(6, 8, 6, 6))
 
-ggsave(P_FIG("Fig_2_DOTPLOT_z_by_stress_compact.tiff"), label_plot(DOTPLOT_z_by_stress_compact, "2"),
+ggsave(P_FIG("Fig_2_DOTPLOT_z_by_stress_compact.tiff"), DOTPLOT_z_by_stress_compact,
        width = 28, height = 16, units = "cm", dpi = 600, device = ragg::agg_tiff, compression = "lzw")

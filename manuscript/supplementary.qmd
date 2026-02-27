@@ -1,0 +1,750 @@
+---
+title: "Stress-specific growth rates predict microbial community assembly and biomass yield under concurrent environmental stressors --- Supplementary Material"
+bibliography: references.bib
+csl: nature-microbiology.csl
+format:
+  pdf:
+    documentclass: article
+    number-sections: false
+    geometry: margin=2.5cm
+    colorlinks: true
+    include-in-header:
+      file: header-supp.tex
+---
+
+**Table S1 | List of bacterial taxa used in the experiment.** Taxonomic assignment, isolate identification codes, and corresponding GenBank accession numbers for 16S rRNA gene sequences are shown.
+
+  ----------------------------------- ---------------- -----------------------
+  **Taxon**                           **Isolate ID**   **GenBank accession**
+
+  *Pedobacter* sp.              D11              PX560147
+
+  *Microbacterium* sp.          D14              PX560148
+
+  *Curtobacterium* sp.          D17              PX560149
+
+  *Yersinia* sp.                I2               PX560153
+
+  *Pseudomonas fluorescens*       I8               PX560157
+
+  *Chromobacterium* sp.         I9               PX560158
+
+  *Pseudomonas anguilliseptica*   I11              PX560150
+
+  *Serratia* sp.                I15              PX560151
+
+  *Aeromonas* sp.               I18              PX560152
+
+  *Chryseobacterium* sp.        I20              PX560154
+
+  *Erwinia* sp.                 I22              PX560155
+
+  *Janthinobacterium* sp.       I23              PX560156
+  ----------------------------------- ---------------- -----------------------
+
+{{< pagebreak >}}
+
+**Table S2 | Stressor treatment levels.** The combinations of different stressors used in the experiment and the corresponding levels of each.
+
+| Stressors | Temperature (°C) | Salinity (g NaCl/L) | pH |
+|:---|:---:|:---:|:---:|
+| Control | 20 | 0 | 7.2 |
+| pH | 20 | 0 | 5.5 |
+| Salinity | 20 | 20 | 7.2 |
+| Temperature | 38 | 0 | 7.2 |
+| pH x Salinity | 20 | 20 | 5.5 |
+| pH x Temperature | 38 | 0 | 5.5 |
+| Salinity x Temperature | 38 | 20 | 7.2 |
+| pH x Salinity x Temperature | 38 | 20 | 5.5 |
+
+{{< pagebreak >}}
+
+**Table S3 | Taxonomic composition of each community within the experiment.** The table shows the experimental design and communities were set up this way for each stressor treatment. Richness represents the number of taxa assembled within each community. Replicate identifies each of the different communities at each diversity (richness) level. Bacterial IDs gives the identification of each taxon assembled into each community (see Table S1 for further details of taxa). Volume describes the volume of media for each isolate added to each of the communities.
+
+| Richness | Replicate | Bacterial ID | Vol (µl) |
+|:---|:---:|:---|:---:|
+| Two | 1 | D14, I15 | 500 |
+| Two | 2 | D17, I9 | 500 |
+| Two | 3 | I8, I11 | 500 |
+| Two | 4 | I2, I18 | 500 |
+| Two | 5 | I20, I23 | 500 |
+| Two | 6 | I22, D11 | 500 |
+| Four | 1 | I20, I22, I23, D14 | 250 |
+| Four | 2 | I2, I9, I15, D17 | 250 |
+| Four | 3 | I8, I11, I18, D14 | 250 |
+| Four | 4 | I2, I8, I15, I23 | 250 |
+| Four | 5 | I9, I11, I20, D11 | 250 |
+| Four | 6 | I18, I22, D11, D17 | 250 |
+| Eight | 1 | I2, I9, I11, I20, I22, D11, D14, D17 | 125 |
+| Eight | 2 | I2, I8, I9, I18, I20, I22, D11, D17 | 125 |
+| Eight | 3 | I9, I11, I15, I18, I20, I23, D11, D14 | 125 |
+| Eight | 4 | I11, I18, I20, I22, I23, D11, D14, D17 | 125 |
+| Eight | 5 | I2, I8, I9, I15, I20, I23, D11, D17 | 125 |
+| Eight | 6 | I2, I9, I15, I18, I20, I22, D11, D17 | 125 |
+| Eight | 7 | I2, I8, I9, I15, I18, I20, I23, D14 | 125 |
+| Eight | 8 | I2, I8, I9, I11, I18, I20, I22, D14 | 125 |
+| Eight | 9 | I2, I8, I11, I15, I18, I20, I23, D14 | 125 |
+| Eight | 10 | I8, I11, I15, I20, I22, I23, D11, D17 | 125 |
+
+{{< pagebreak >}}
+
+**Table S4** **| Mapping dominant ASVs to isolate reference sequences.** ASVs were ranked by total read count across the 12-isolate community dataset, and the dominant ASVs (cumulative fraction ≤ 0.951) were mapped to isolate 16S reference sequences (PX560147--PX560158) using BLASTn. For each ASV, we report total reads, the cumulative fraction of reads captured up to that ASV (running sum), the best-matching isolate accession, and the percent identity of the alignment. This confirms that the most abundant ASVs correspond to the inoculated taxa. Multiple ASVs may map to the same isolate reference sequence due to sequencing error, within-isolate 16S variation, or closely related amplicon variants, and are retained here to document the dominant read structure.
+
+  ------------ ----------------- ------------------------- ----------------------- ----------------------
+  **ASV_ID**   **Total reads**   **Cumulative fraction**   **Isolate accession**   **Percent identity**
+
+  **ASV_1**    139207            0.091                     PX560154.1              **100**
+
+  **ASV_2**    133180            0.177                     PX560158.1              **100**
+
+  **ASV_3**    130131            0.262                     PX560151.1              **100**
+
+  **ASV_4**    130070            0.347                     PX560152.1              **100**
+
+  **ASV_5**    128195            0.431                     PX560155.1              **100**
+
+  **ASV_6**    125340            0.512                     PX560149.1              **100**
+
+  **ASV_7**    124174            0.593                     PX560150.1              **100**
+
+  **ASV_8**    123517            0.674                     PX560148.1              **100**
+
+  **ASV_9**    121479            0.753                     PX560147.1              **100**
+
+  **ASV_10**   105893            0.822                     PX560156.1              **100**
+
+  **ASV_11**   92281             0.882                     PX560153.1              **100**
+
+  **ASV_12**   60267             0.921                     PX560157.1              **100**
+
+  **ASV_13**   45729             0.951                     PX560157.1              **99.464**
+  ------------ ----------------- ------------------------- ----------------------- ----------------------
+
+{{< pagebreak >}}
+
+**Table S5 | Tukey post-hoc contrasts for Shannon diversity (H$'$) among stress regimes.** Each row compares the mean H′ of the first group minus the second (contrast). estimate = mean difference in H′ units (positive ⇒ first group \> second). SE = standard error of the difference; df = residual degrees of freedom from the one-way ANOVA (N=80, groups=8, df=72). stat = t-ratio for the contrast; p adj = Tukey HSD--adjusted p value across all pairwise tests. Hedges g = standardized effect size (Hedges' g) computed from the ANOVA pooled residual SD with the small-sample J correction; g low/g high = unadjusted 95% confidence interval for g. Positive g indicates higher diversity in the first group; negative g indicates higher diversity in the second. Significant contrasts at α = 0.05 are those with p adj \< 0.05.
+
+\footnotesize
+
+  ------------------------- -------------- -------- -------- ---------- ----------- -------------- ----------- ------------
+  **Contrast**              **Estimate**   **SE**   **df**   **Stat**   **p adj**   **Hedges g**   **g low**   **g high**
+
+  **Control - Temp**        0.916          0.116    72       7.913      0           3.502          2.62        4.384
+
+  **Control - pHTemp**      1.126          0.116    72       9.719      0           4.301          3.419       5.183
+
+  **Control - SalTemp**     0.745          0.116    72       6.429      0           2.845          1.963       3.727
+
+  **Control - pHSalTemp**   0.82           0.116    72       7.08       0           3.133          2.251       4.015
+
+  **pH - Temp**             0.698          0.116    72       6.026      0           2.667          1.784       3.549
+
+  **pH - pHTemp**           0.907          0.116    72       7.832      0           3.466          2.584       4.348
+
+  **pH - pHSalTemp**        0.601          0.116    72       5.193      0           2.298          1.416       3.18
+
+  **Sal - Temp**            0.778          0.116    72       6.718      0           2.973          2.091       3.855
+
+  **Sal - pHTemp**          0.987          0.116    72       8.525      0           3.773          2.89        4.655
+
+  **Sal - SalTemp**         0.606          0.116    72       5.235      0           2.317          1.434       3.199
+
+  **Sal - pHSalTemp**       0.682          0.116    72       5.885      0           2.604          1.722       3.487
+
+  **Temp - pHSal**          -0.694         0.116    72       -5.992     0           -2.652         -3.534      -1.77
+
+  **pHSal - pHTemp**        0.903          0.116    72       7.799      0           3.451          2.569       4.334
+
+  **pHSal - pHSalTemp**     0.598          0.116    72       5.159      0           2.283          1.401       3.165
+
+  **pH - SalTemp**          0.526          0.116    72       4.542      0.001       2.01           1.128       2.892
+
+  **pHSal - SalTemp**       0.522          0.116    72       4.509      0.001       1.995          1.113       2.878
+
+  **pHTemp - SalTemp**      -0.381         0.116    72       -3.29      0.032       -1.456         -2.338      -0.574
+
+  **pHTemp - pHSalTemp**    -0.306         0.116    72       -2.64      0.159       -1.168         -2.05       -0.286
+
+  **Control - pHSal**       0.222          0.116    72       1.92       0.542       0.85           -0.032      1.732
+
+  **Control - pH**          0.219          0.116    72       1.887      0.564       0.835          -0.047      1.717
+
+  **Temp - pHTemp**         0.209          0.116    72       1.807      0.618       0.799          -0.083      1.682
+
+  **Temp - SalTemp**        -0.172         0.116    72       -1.484     0.814       -0.657         -1.539      0.226
+
+  **Control - Sal**         0.138          0.116    72       1.195      0.931       0.529          -0.354      1.411
+
+  **Temp - pHSalTemp**      -0.096         0.116    72       -0.833     0.991       -0.369         -1.251      0.514
+
+  **Sal - pHSal**           0.084          0.116    72       0.726      0.996       0.321          -0.561      1.203
+
+  **pH - Sal**              -0.08          0.116    72       -0.693     0.997       -0.306         -1.189      0.576
+
+  **SalTemp - pHSalTemp**   0.075          0.116    72       0.651      0.998       0.288          -0.594      1.17
+
+  **pH - pHSal**            0.004          0.116    72       0.033      1           0.015          -0.867      0.897
+  ------------------------- -------------- -------- -------- ---------- ----------- -------------- ----------- ------------
+
+\normalsize
+
+{{< pagebreak >}}
+
+**Table S6 | Pairwise PERMANOVA for community composition across stress regimes.** Columns: pairs (contrast; duplicated as Group1/Group2), Df (model d.f.), Sums Of Sqs, F Model (pseudo-F), R² (variance explained), p value (permutation p), p adjusted (multiple-comparison--corrected P), sig (significance code). Tests were run on the study's dissimilarity metric with the permutation scheme described in Methods. Contrasts with p adjusted \< 0.05 are significant.
+
+\footnotesize
+
+  -------------------------- -------- ----------------- ------------- ---------- ------------- ---------------- ------------- -------------
+  **Pairs**                  **Df**   **Sums Of Sqs**   **F Model**   **R^2^**   **p value**   **p adjusted**   **Group 1**   **Group 2**
+
+  **Control vs Temp**        1        1.1               15.829        0.468      0.001         0.028            Control       Temp
+
+  **Control vs pH**          1        0.296             5.335         0.229      0.006         0.168            Control       pH
+
+  **Control vs pHTemp**      1        1.326             11.184        0.383      0.002         0.056            Control       pHTemp
+
+  **Control vs Sal**         1        0.433             10.364        0.365      0.001         0.028            Control       Sal
+
+  **Control vs SalTemp**     1        0.926             13.463        0.428      0.001         0.028            Control       SalTemp
+
+  **Control vs pHSal**       1        0.402             5.441         0.232      0.001         0.028            Control       pHSal
+
+  **Control vs pHSalTemp**   1        0.852             13.301        0.425      0.001         0.028            Control       pHSalTemp
+
+  **Temp vs pH**             1        0.493             5.415         0.231      0.01          0.28             Temp          pH
+
+  **Temp vs pHTemp**         1        0.011             0.069         0.004      0.913         1                Temp          pHTemp
+
+  **Temp vs Sal**            1        1.703             22.033        0.55       0.001         0.028            Temp          Sal
+
+  **Temp vs SalTemp**        1        0.021             0.205         0.011      0.676         1                Temp          SalTemp
+
+  **Temp vs pHSal**          1        1.477             13.506        0.429      0.001         0.028            Temp          pHSal
+
+  **Temp vs pHSalTemp**      1        0.021             0.21          0.012      0.673         1                Temp          pHSalTemp
+
+  **pH vs pHTemp**           1        0.623             4.445         0.198      0.02          0.56             pH            pHTemp
+
+  **pH vs Sal**              1        0.94              14.831        0.452      0.001         0.028            pH            Sal
+
+  **pH vs SalTemp**          1        0.419             4.642         0.205      0.02          0.56             pH            SalTemp
+
+  **pH vs pHSal**            1        0.734             7.686         0.299      0.001         0.028            pH            pHSal
+
+  **pH vs pHSalTemp**        1        0.363             4.246         0.191      0.022         0.616            pH            pHSalTemp
+
+  **pHTemp vs Sal**          1        1.869             14.79         0.451      0.001         0.028            pHTemp        Sal
+
+  **pHTemp vs SalTemp**      1        0.073             0.477         0.026      0.54          1                pHTemp        SalTemp
+
+  **pHTemp vs pHSal**        1        1.568             9.893         0.355      0.001         0.028            pHTemp        pHSal
+
+  **pHTemp vs pHSalTemp**    1        0.036             0.24          0.013      0.745         1                pHTemp        pHSalTemp
+
+  **Sal vs SalTemp**         1        1.437             18.778        0.511      0.001         0.028            Sal           SalTemp
+
+  **Sal vs pHSal**           1        0.058             0.716         0.038      0.467         1                Sal           pHSal
+
+  **Sal vs pHSalTemp**       1        1.544             21.496        0.544      0.001         0.028            Sal           pHSalTemp
+
+  **SalTemp vs pHSal**       1        1.274             11.727        0.394      0.001         0.028            SalTemp       pHSal
+
+  **SalTemp vs pHSalTemp**   1        0.03              0.309         0.017      0.623         1                SalTemp       pHSalTemp
+
+  **pHSal vs pHSalTemp**     1        1.325             12.754        0.415      0.001         0.028            pHSal         pHSalTemp
+  -------------------------- -------- ----------------- ------------- ---------- ------------- ---------------- ------------- -------------
+
+\normalsize
+
+```{=latex}
+\begin{landscape}
+\textbf{Table S7 \textbar{} Indicator taxa by stress regime (IndVal.g).} Columns: ASV, stat = group-equalised indicator value (IndVal g, 0--1; higher = more specific and frequent to the indicated regime), taxonomic ranks (Phylum \ldots{} Genus), and the assigned regime. Taxa shown meet the significance criterion from permutation tests (FDR-adjusted; see Methods).
+
+\vspace{0.5em}
+\scriptsize
+\begin{tabular}{llllllll}
+\hline
+\textbf{ASV} & \textbf{Stat} & \textbf{Phylum} & \textbf{Class} & \textbf{Order} & \textbf{Family} & \textbf{Genus} & \textbf{Regime} \\
+\hline
+ASV\_7 & 0.886 & Proteobacteria & Gammaproteobacteria & Burkholderiales & Oxalobacteraceae & \textit{Janthinobacterium} & Control \\
+ASV\_8 & 0.855 & Bacteroidota & Bacteroidia & Sphingobacteriales & Sphingobacteriaceae & \textit{Pedobacter} & Control \\
+ASV\_4 & 0.802 & Proteobacteria & Gammaproteobacteria & Aeromonadales & Aeromonadaceae & \textit{Aeromonas} & Control \\
+ASV\_12 & 0.771 & Proteobacteria & Gammaproteobacteria & Pseudomonadales & Pseudomonadaceae & \textit{Pseudomonas.A} & Control \\
+ASV\_3 & 0.751 & Proteobacteria & Gammaproteobacteria & Enterobacterales & Yersiniaceae & \textit{Serratia} & Control \\
+ASV\_6 & 0.743 & Proteobacteria & Gammaproteobacteria & Enterobacterales & Yersiniaceae & \textit{Yersinia} & Control \\
+ASV\_2 & 0.734 & Bacteroidota & Bacteroidia & Flavobacteriales & Weeksellaceae & \textit{Chryseobacterium} & Control \\
+ASV\_5 & 0.719 & Proteobacteria & Gammaproteobacteria & Enterobacterales & Erwiniaceae & \textit{Erwinia} & Control \\
+ASV\_13 & 0.644 & Actinobacteriota & Actinobacteria & Micrococcales & Microbacteriaceae & \textit{Curtobacterium} & Control \\
+\hline
+ASV\_7 & 0.932 & Proteobacteria & Gammaproteobacteria & Burkholderiales & Oxalobacteraceae & \textit{Janthinobacterium} & pH \\
+ASV\_5 & 0.835 & Proteobacteria & Gammaproteobacteria & Enterobacterales & Erwiniaceae & \textit{Erwinia} & pH \\
+ASV\_8 & 0.816 & Bacteroidota & Bacteroidia & Sphingobacteriales & Sphingobacteriaceae & \textit{Pedobacter} & pH \\
+ASV\_6 & 0.811 & Proteobacteria & Gammaproteobacteria & Enterobacterales & Yersiniaceae & \textit{Yersinia} & pH \\
+\hline
+ASV\_4 & 0.89 & Proteobacteria & Gammaproteobacteria & Aeromonadales & Aeromonadaceae & \textit{Aeromonas} & Sal \\
+ASV\_3 & 0.871 & Proteobacteria & Gammaproteobacteria & Enterobacterales & Yersiniaceae & \textit{Serratia} & Sal \\
+ASV\_12 & 0.841 & Proteobacteria & Gammaproteobacteria & Pseudomonadales & Pseudomonadaceae & \textit{Pseudomonas.A} & Sal \\
+ASV\_8 & 0.819 & Bacteroidota & Bacteroidia & Sphingobacteriales & Sphingobacteriaceae & \textit{Pedobacter} & Sal \\
+ASV\_6 & 0.819 & Proteobacteria & Gammaproteobacteria & Enterobacterales & Yersiniaceae & \textit{Yersinia} & Sal \\
+ASV\_10 & 0.787 & Proteobacteria & Gammaproteobacteria & Pseudomonadales & Pseudomonadaceae & \textit{Pseudomonas.F} & Sal \\
+ASV\_5 & 0.738 & Proteobacteria & Gammaproteobacteria & Enterobacterales & Erwiniaceae & \textit{Erwinia} & Sal \\
+ASV\_13 & 0.724 & Actinobacteriota & Actinobacteria & Micrococcales & Microbacteriaceae & \textit{Curtobacterium} & Sal \\
+\hline
+ASV\_11 & 0.812 & Actinobacteriota & Actinobacteria & Micrococcales & Microbacteriaceae & \textit{Microbacterium} & Temp \\
+ASV\_1 & 0.802 & Proteobacteria & Gammaproteobacteria & Burkholderiales & Chromobacteriaceae & \textit{Chromobacterium} & Temp \\
+ASV\_2 & 0.737 & Bacteroidota & Bacteroidia & Flavobacteriales & Weeksellaceae & \textit{Chryseobacterium} & Temp \\
+\hline
+ASV\_5 & 0.907 & Proteobacteria & Gammaproteobacteria & Enterobacterales & Erwiniaceae & \textit{Erwinia} & pHSal \\
+ASV\_13 & 0.872 & Actinobacteriota & Actinobacteria & Micrococcales & Microbacteriaceae & \textit{Curtobacterium} & pHSal \\
+ASV\_3 & 0.864 & Proteobacteria & Gammaproteobacteria & Enterobacterales & Yersiniaceae & \textit{Serratia} & pHSal \\
+ASV\_4 & 0.859 & Proteobacteria & Gammaproteobacteria & Aeromonadales & Aeromonadaceae & \textit{Aeromonas} & pHSal \\
+ASV\_12 & 0.846 & Proteobacteria & Gammaproteobacteria & Pseudomonadales & Pseudomonadaceae & \textit{Pseudomonas.A} & pHSal \\
+ASV\_6 & 0.83 & Proteobacteria & Gammaproteobacteria & Enterobacterales & Yersiniaceae & \textit{Yersinia} & pHSal \\
+ASV\_8 & 0.729 & Bacteroidota & Bacteroidia & Sphingobacteriales & Sphingobacteriaceae & \textit{Pedobacter} & pHSal \\
+\hline
+ASV\_10 & 0.803 & Proteobacteria & Gammaproteobacteria & Pseudomonadales & Pseudomonadaceae & \textit{Pseudomonas.F} & pHTemp \\
+ASV\_1 & 0.803 & Proteobacteria & Gammaproteobacteria & Burkholderiales & Chromobacteriaceae & \textit{Chromobacterium} & pHTemp \\
+ASV\_2 & 0.732 & Bacteroidota & Bacteroidia & Flavobacteriales & Weeksellaceae & \textit{Chryseobacterium} & pHTemp \\
+ASV\_12 & 0.688 & Proteobacteria & Gammaproteobacteria & Pseudomonadales & Pseudomonadaceae & \textit{Pseudomonas.A} & pHTemp \\
+ASV\_13 & 0.517 & Actinobacteriota & Actinobacteria & Micrococcales & Microbacteriaceae & \textit{Curtobacterium} & pHTemp \\
+\hline
+ASV\_10 & 0.843 & Proteobacteria & Gammaproteobacteria & Pseudomonadales & Pseudomonadaceae & \textit{Pseudomonas.F} & SalTemp \\
+ASV\_11 & 0.803 & Actinobacteriota & Actinobacteria & Micrococcales & Microbacteriaceae & \textit{Microbacterium} & SalTemp \\
+ASV\_1 & 0.795 & Proteobacteria & Gammaproteobacteria & Burkholderiales & Chromobacteriaceae & \textit{Chromobacterium} & SalTemp \\
+ASV\_2 & 0.713 & Bacteroidota & Bacteroidia & Flavobacteriales & Weeksellaceae & \textit{Chryseobacterium} & SalTemp \\
+\hline
+ASV\_11 & 0.797 & Actinobacteriota & Actinobacteria & Micrococcales & Microbacteriaceae & \textit{Microbacterium} & pHSalTemp \\
+ASV\_1 & 0.783 & Proteobacteria & Gammaproteobacteria & Burkholderiales & Chromobacteriaceae & \textit{Chromobacterium} & pHSalTemp \\
+ASV\_2 & 0.754 & Bacteroidota & Bacteroidia & Flavobacteriales & Weeksellaceae & \textit{Chryseobacterium} & pHSalTemp \\
+\hline
+\end{tabular}
+\normalsize
+\end{landscape}
+```
+
+{{< pagebreak >}}
+
+**Table S8 | Standardised growth (z-scores) by stress and taxon.**
+Summary of within-regime standardised growth for each taxon. Columns: stress (treatment), id lab (abbreviated taxon label), mu (mean z-score across replicates), and se (standard error). Z-scoring was performed within each stress treatment from replicate values $(z = (g_{i} - {\overset{ˉ}{g}}_{\text{stress}})/{sd}_{\text{stress}}))$.
+
+  --------------- ------------ -------- --------
+  **Stress**      **Id lab**   **μ**    **se**
+
+  **Control**     Aer.         0.153    0.459
+
+  **Control**     Chr.         0.568    0.07
+
+  **Control**     Chry.        0.775    0.28
+
+  **Control**     Cur.         -0.699   0.133
+
+  **Control**     Erw.         1.316    0.197
+
+  **Control**     Jan.         0.58     0.324
+
+  **Control**     Mic.         -1.635   0.096
+
+  **Control**     Ped.         -0.919   0.275
+
+  **Control**     Pse.A.       -0.953   0.119
+
+  **Control**     Pse.F.       0.753    0.123
+
+  **Control**     Ser.         0.351    0.155
+
+  **Control**     Yer.         -0.071   0.292
+
+  **Temp**        Aer.         -0.621   0.343
+
+  **Temp**        Chr.         2.337    0.203
+
+  **Temp**        Chry.        1.152    0.109
+
+  **Temp**        Cur.         -0.117   0.062
+
+  **Temp**        Erw.         -1.179   0
+
+  **Temp**        Jan.         -1.094   0.052
+
+  **Temp**        Mic.         0.255    0.021
+
+  **Temp**        Ped.         -0.01    0.104
+
+  **Temp**        Pse.A.       -0.21    0.009
+
+  **Temp**        Pse.F.       0.139    0.067
+
+  **Temp**        Ser.         0.08     0.072
+
+  **Temp**        Yer.         -1.018   0.075
+
+  **pH**          Aer.         -1.595   0.17
+
+  **pH**          Chr.         1.026    0.065
+
+  **pH**          Chry.        0.887    0.021
+
+  **pH**          Cur.         -0.315   0.153
+
+  **pH**          Erw.         0.875    0.121
+
+  **pH**          Jan.         0.788    0.028
+
+  **pH**          Mic.         -1.323   0.13
+
+  **pH**          Ped.         -0.107   0.081
+
+  **pH**          Pse.A.       -1.631   0.029
+
+  **pH**          Pse.F.       0.91     0.06
+
+  **pH**          Ser.         0.392    0.073
+
+  **pH**          Yer.         0.094    0.067
+
+  **Sal**         Aer.         1.204    0.224
+
+  **Sal**         Chr.         0.005    0.111
+
+  **Sal**         Chry.        0.092    0.035
+
+  **Sal**         Cur.         -0.585   0.064
+
+  **Sal**         Erw.         1.316    0.08
+
+  **Sal**         Jan.         -1.026   0.139
+
+  **Sal**         Mic.         -1.697   0.037
+
+  **Sal**         Ped.         -0.528   0.167
+
+  **Sal**         Pse.A.       -0.129   0.038
+
+  **Sal**         Pse.F.       -0.448   0.1
+
+  **Sal**         Ser.         1.529    0.039
+
+  **Sal**         Yer.         1.144    0.113
+
+  **pHTemp**      Aer.         -0.802   0
+
+  **pHTemp**      Chr.         2.491    0.093
+
+  **pHTemp**      Chry.        1.048    0.047
+
+  **pHTemp**      Cur.         0.192    0.085
+
+  **pHTemp**      Erw.         -0.802   0
+
+  **pHTemp**      Jan.         -0.613   0.081
+
+  **pHTemp**      Mic.         -0.687   0.116
+
+  **pHTemp**      Ped.         -0.001   0.042
+
+  **pHTemp**      Pse.A.       0.548    0.319
+
+  **pHTemp**      Pse.F.       -0.76    0.042
+
+  **pHTemp**      Ser.         0.051    0.047
+
+  **pHTemp**      Yer.         -0.802   0
+
+  **SalTemp**     Aer.         1.827    0.743
+
+  **SalTemp**     Chr.         1.456    0.167
+
+  **SalTemp**     Chry.        0.146    0.093
+
+  **SalTemp**     Cur.         -0.417   0.082
+
+  **SalTemp**     Erw.         0.315    0.196
+
+  **SalTemp**     Jan.         -1.177   0
+
+  **SalTemp**     Mic.         -0.77    0.063
+
+  **SalTemp**     Ped.         -1.177   0
+
+  **SalTemp**     Pse.A.       -0.306   0.047
+
+  **SalTemp**     Pse.F.       -0.388   0.115
+
+  **SalTemp**     Ser.         0.595    0.104
+
+  **SalTemp**     Yer.         0.071    0.094
+
+  **pHSal**       Aer.         -0.059   0.179
+
+  **pHSal**       Chr.         -0.116   0.041
+
+  **pHSal**       Chry.        0.407    0.061
+
+  **pHSal**       Cur.         0.163    0.035
+
+  **pHSal**       Erw.         2.004    0.07
+
+  **pHSal**       Jan.         -0.746   0.091
+
+  **pHSal**       Mic.         -1.813   0.08
+
+  **pHSal**       Ped.         -0.871   0.078
+
+  **pHSal**       Pse.A.       -0.537   0.083
+
+  **pHSal**       Pse.F.       -0.281   0.045
+
+  **pHSal**       Ser.         1.202    0.177
+
+  **pHSal**       Yer.         0.583    0.118
+
+  **pHSalTemp**   Aer.         -1.02    0
+
+  **pHSalTemp**   Chr.         2.187    0.122
+
+  **pHSalTemp**   Chry.        0.509    0.119
+
+  **pHSalTemp**   Cur.         0.095    0.077
+
+  **pHSalTemp**   Erw.         0.686    0.121
+
+  **pHSalTemp**   Jan.         -1.02    0
+
+  **pHSalTemp**   Mic.         -0.981   0.039
+
+  **pHSalTemp**   Ped.         -0.841   0.115
+
+  **pHSalTemp**   Pse.A.       -0.069   0.065
+
+  **pHSalTemp**   Pse.F.       0.113    0.05
+
+  **pHSalTemp**   Ser.         0.996    0.098
+
+  **pHSalTemp**   Yer.         -1.011   0.009
+  --------------- ------------ -------- --------
+
+{{< pagebreak >}}
+
+**Table S9 | Per-regime predictive accuracy of the trait-to-composition model.** Stress lists the stressor regimes (Control, pH = 5.5, Sal = 20 g NaCl L$^{-1}$, Temp = 38 °C, and their combinations). n is the number of taxon-by-community observations within each regime used for scoring. RMSE is the root-mean-square error between observed and posterior-mean predicted relative abundances. R$^2$ is the within-regime coefficient of determination computed from observed versus predicted relative abundances. Higher R$^2$ and lower RMSE indicate better fit.
+
+  --------------- ------- ---------- ----------
+  **Stress**      **n**   **RMSE**   **R^2^**
+
+  **Temp**        116     0.134      0.831
+
+  **pH**          116     0.103      0.83
+
+  **pHTemp**      116     0.142      0.819
+
+  **pHSalTemp**   106     0.13       0.813
+
+  **SalTemp**     116     0.148      0.77
+
+  **Sal**         116     0.126      0.767
+
+  **Control**     116     0.122      0.75
+
+  **pHSal**       112     0.151      0.691
+  --------------- ------- ---------- ----------
+
+{{< pagebreak >}}
+
+**Table S10** **| Out-of-sample predictive support by stress regime (PSIS-LOO).** Columns: elpd loo is the summed expected log predictive density from Pareto-smoothed importance sampling leave-one-out cross-validation for the trait-to-composition model. Higher values indicate better out-of-sample predictive accuracy. n is the number of communities contributing to each regime. Because n differs slightly across regimes, comparisons are most meaningful on an elpd per observation basis (elpd loo / n).
+
+  --------------- -------------- -------
+  **Stress**      **Elpd loo**   **n**
+
+  **pHTemp**      506.989        22
+
+  **Temp**        384.069        22
+
+  **SalTemp**     292.67         22
+
+  **pHSalTemp**   285.959        19
+
+  **Control**     239.213        22
+
+  **Sal**         223.548        22
+
+  **pH**          215.36         22
+
+  **pHSal**       182.6          21
+  --------------- -------------- -------
+
+{{< pagebreak >}}
+
+**Table S11 | Biomass prediction performance across models.** Columns: RMSE and R$^2$ from regressing predicted vs observed OD$_{600}$. Models: Bayes AWM (MI) = trait-based softmax composition with posterior multiple-imputation of abundance-weighted mean growth; Observed AWM (oracle ceiling) = AWM computed from observed compositions; Equal-abundance $\times$ g = uniform taxon weights; Random community $\times$ g = Dirichlet (1) weights per community. Lower RMSE and higher R$^2$ indicate better fit.
+
+  ----------------------------------- ---------- ----------
+  **Model**                           **RMSE**   **R^2^**
+
+  **Bayes AWM (MI)**                  0.099      0.881
+
+  **Observed AWM (oracle ceiling)**   0.105      0.865
+
+  **Equal-abundance × g**            0.139      0.766
+
+  **Random × g**                     0.2        0.516
+  ----------------------------------- ---------- ----------
+
+{{< pagebreak >}}
+
+**Table S12 | Composition performance by stress regime.** Mean RMSE (predicted vs observed relative abundance) and mean JS (Jensen--Shannon divergence) computed across samples within each stress. Values use posterior-mean predictions (with 90% CI shown in Fig. S4). Lower numbers indicate better agreement.
+
+  --------------- ---------- --------
+  **Stress**      **RMSE**   **JS**
+
+  **Control**     0.121      0.071
+
+  **Sal**         0.119      0.06
+
+  **SalTemp**     0.129      0.106
+
+  **Temp**        0.129      0.08
+
+  **pH**          0.102      0.056
+
+  **pHSal**       0.139      0.097
+
+  **pHSalTemp**   0.122      0.093
+
+  **pHTemp**      0.133      0.1
+  --------------- ---------- --------
+
+{{< pagebreak >}}
+
+**Table S13** **| Leave-one-out (LOO) cross-validation for the Bayesian softmax model.** Columns: elpd loo (expected log predictive density; higher is better), p loo (effective number of parameters), and looic (= −2 × elpd loo; lower is better). SE gives the standard error of each estimate. Model comparisons should be made using Δelpd loo ± SE (prefer the model with substantially larger elpd loo).
+
+  -------------- -------------- ----------
+  **Stat**       **Estimate**   **SE**
+
+  **elpd loo**   2330.409       200.914
+
+  **p loo**      33.337         3.432
+
+  **looic**      -4660.818      401.829
+  -------------- -------------- ----------
+
+{{< pagebreak >}}
+
+**Table S14** **| Posterior summaries and MCMC convergence diagnostics for the Bayesian softmax (Dirichlet--multinomial) trait$\rightarrow$composition model.** Reported are posterior mean, standard deviation (SD), and 5th/50th/95th percentiles (Q05/Q50/Q95) for key global parameters governing the trait--composition relationship and dispersion ($\mu_\kappa$, $\sigma_\kappa$, $\sigma_\delta$, $\mu_\varphi$, $\sigma_\varphi$). Sampling efficiency and convergence are summarised by the effective sample size (n eff) and Gelman--Rubin statistic ($\hat{R}$) computed across chains; $\hat{R}$ values close to 1 indicate good mixing and convergence.
+
+  ---------------------- ---------- -------- --------- ----------- --------- ----------- -----------
+  **Parameter**          **Mean**   **SD**   **Q05**   **Q50**     **Q95**   **n eff**   **Rhat**
+
+  $\mu_\kappa$           0.760      0.059    0.665     **0.760**   0.854     3591.041    **1.000**
+
+  $\sigma_\kappa$        0.109      0.067    0.019     **0.099**   0.227     2162.124    **1.002**
+
+  $\sigma_\delta$        1.281      0.268    0.911     **1.251**   1.766     1153.888    **1.007**
+
+  $\mu_\varphi$          2.046      0.179    1.774     **2.038**   2.350     2305.567    **1.001**
+
+  $\sigma_\varphi$       0.438      0.167    0.238     **0.408**   0.751     2421.398    **1.001**
+  ---------------------- ---------- -------- --------- ----------- --------- ----------- -----------
+
+{{< pagebreak >}}
+
+**Table S15 | Fold-wise performance in blocked five-fold cross-validation of trait-based composition and biomass predictions.** Summary metrics for each cross-validation fold when holding out entire community identities (Com Id). For each fold, we report the number of held-out communities (N samples), out-of-sample composition accuracy (Comp RMSE and Jensen--Shannon divergence, Comp JS) comparing predicted versus observed relative abundances, and out-of-sample biomass accuracy (OD RMSE and OD R$^2$) for OD$_{600}$ predictions derived from the full pipeline (composition $\rightarrow$ abundance-weighted mean growth $\rightarrow$ OD). N test OD gives the number of test communities with available OD$_{600}$ measurements used to compute OD metrics.
+
+\footnotesize
+
+  ---------- --------------- --------------- ------------- ------------- ------------- ---------------
+  **Fold**   **N samples**   **Comp RMSE**   **Comp JS**   **OD RMSE**   **OD R^2^**   **N test OD**
+
+  **1**      40              0.107           0.104         **0.066**     0.929         40
+
+  **2**      39              0.147           0.076         **0.143**     0.767         39
+
+  **3**      29              0.140           0.092         **0.105**     0.871         29
+
+  **4**      32              0.182           0.089         **0.111**     0.851         31
+
+  **5**      32              0.078           0.081         **0.160**     0.494         32
+  ---------- --------------- --------------- ------------- ------------- ------------- ---------------
+
+\normalsize
+
+{{< pagebreak >}}
+
+**Table S16** **| Out-of-sample composition prediction accuracy by stress regime.** Composition model performance summarised across stress treatments using blocked five-fold cross-validation (blocking by community identity, Com Id). For each stress regime, n is the number of held-out communities contributing to the summary, and RMSE and Jensen--Shannon divergence (JS) quantify the discrepancy between predicted and observed relative abundance vectors (lower values indicate better agreement).
+
+  ------------------- ----------------- ----------------- -----------------
+  **Stress**          **n**             **RMSE**          **JS**
+
+  **Control**         22                0.126             0.079
+
+  **Sal**             22                0.122             0.066
+
+  **SalTemp**         22                0.133             0.107
+
+  **Temp**            22                0.136             0.088
+
+  **pH**              22                0.110             0.062
+
+  **pHTemp**          22                0.141             0.108
+
+  **pHSal**           21                0.148             0.104
+
+  **pHSalTemp**       19                0.128             0.099
+  ------------------- ----------------- ----------------- -----------------
+
+{{< pagebreak >}}
+
+**Table S17 | Distribution of observed community biomass (OD$_{600}$) in the held-out set for each cross-validation fold.** For the blocked five-fold cross-validation (blocking by community identity, Com Id), this table summarises the range and spread of observed OD$_{600}$ values in the test communities of each fold (n). Columns report the minimum, 25th percentile (q25), median, 75th percentile (q75), maximum, and standard deviation (sd) of OD$_{600}$. These summaries contextualise fold-to-fold variation in out-of-sample OD prediction performance by showing differences in the OD range represented in each held-out fold.
+
+  ---------- -------- ------------ ------------ ------------ ------------ ------------ -----------
+  **fold**   **n**    **OD min**   **OD q25**   **OD med**   **OD q75**   **OD max**   **OD sd**
+
+  **1**      40       0.087        0.382        **0.694**    0.792        1            **0.252**
+
+  **2**      40       0.040        0.183        **0.513**    0.682        1            **0.301**
+
+  **3**      32       0.040        0.183        **0.617**    0.684        1            **0.302**
+
+  **4**      32       0.040        0.400        **0.619**    0.825        1            **0.291**
+
+  **5**      32       0.362        0.571        **0.727**    0.860        1            **0.228**
+  ---------- -------- ------------ ------------ ------------ ------------ ------------ -----------
+
+{{< pagebreak >}}
+
+**Table S18 | Overall out-of-sample performance of the trait-based composition $\rightarrow$ biomass prediction pipeline.** Summary statistics from blocked five-fold cross-validation in which entire community identities were held out (Block type: Com Id; K = 5). Values report the mean and standard deviation (SD) across folds for composition prediction error (Comp RMSE and Jensen--Shannon divergence, Comp JS) and biomass prediction error (OD RMSE and OD R$^2$) computed on held-out communities.
+
+\scriptsize
+
+  ---------------- ------- -------------------- ------------------ ------------------ ---------------- ------------------ ---------------- ------------------ ----------------
+  **Block type**   **K**   **Comp RMSE mean**   **Comp RMSE sd**   **Comp JS mean**   **Comp JS sd**   **OD RMSE mean**   **OD RMSE sd**   **OD R^2^ mean**   **OD R^2^ sd**
+
+  Com Id           5       0.131                0.040              0.089              0.011            0.117              0.036            0.783              0.172
+  ---------------- ------- -------------------- ------------------ ------------------ ---------------- ------------------ ---------------- ------------------ ----------------
+
+\normalsize
+
+{{< pagebreak >}}
+
+![**Monoculture temperature performance curves used to define temperature stress levels.** Growth curves (log$_{10}$(OD) vs time) for each taxon under four stressor regimes across the temperature gradient (15--47 °C). Points show observed OD measurements and lines show the best-fitting growth model selected by AICc for each individual curve. These gradient assays were used to define the "control" and "stress" levels used in the main 2 $\times$ 2 $\times$ 2 factorial experiment (Table S2).](../results/figures/Fig_S1.png){fig-pos="H"}
+
+{{< pagebreak >}}
+
+![**Monoculture salinity performance curves used to define salinity stress levels.** Growth curves (log$_{10}$(OD) vs time) for each taxon measured under two pH conditions across the salinity gradient (NaCl 0--35 g L$^{-1}$). Points show observed OD measurements and lines show the best-fitting growth model selected by AICc. These gradient assays were used to define the "control" and "stress" salinity levels used in the main factorial experiment (Table S2).](../results/figures/Fig_S2.png){fig-pos="H"}
+
+{{< pagebreak >}}
+
+![**Monoculture pH performance curves used to define pH stress levels.** Growth curves (log$_{10}$(OD) vs time) for each taxon grown at two temperatures (20 and 38 °C) across the pH gradient (pH 4.0--11.0). Points show observed OD measurements and lines show the best-fitting growth model selected by AICc. These gradient assays were used to define the "control" and "stress" pH levels used in the main factorial experiment (Table S2).](../results/figures/Fig_S3.png){fig-pos="H"}
+
+{{< pagebreak >}}
+
+![**Per-stress composition fits.** Predicted versus observed relative abundances for each stress regime (panels); points are communities coloured by richness (2, 4, 8). The dashed line is 1:1. Predictions are posterior means (x-axis; 90% credible intervals were used in Fig. 3 and model summaries). Panel annotations report the mean RMSE and Jensen--Shannon divergence (JS) for that stress. Numerical summaries corresponding to these panels are provided in Table S12.](../results/figures/Fig_S4.png){fig-pos="H"}
+
+{{< pagebreak >}}
+
+![**Biomass predictions across baseline models.** Scatter of observed OD$_{600}$ versus predicted OD$_{600}$; dashed line = 1:1; points coloured by stress regime. (**a**) Observed AWM ("oracle") --- community predictions using abundance-weighted mean growth computed from observed compositions (RMSE and R$^2$ shown in panel). (**b**) Equal-abundance $\times$ g --- predictions using uniform taxon weights within each community. (**c**) Random community $\times$ g --- predictions using Dirichlet(1) random weights per community. Lower RMSE and higher R$^2$ indicate better fit. Numerical summaries are in Table S11.](../results/figures/Fig_S5.png){fig-pos="H"}
+
+{{< pagebreak >}}
+
+![**Out-of-sample (blocked CV) performance of the trait $\rightarrow$ composition model across stress regimes.** Observed relative abundances (y-axis) versus predicted relative abundances from the Bayesian softmax model (x-axis; posterior mean) for held-out communities in blocked five-fold cross-validation (blocking by community identity, Com Id). Panels show stress treatments. Points are coloured by richness (2-, 4-, or 8-taxon communities). The dashed line indicates the 1:1 relationship. In each panel, RMSE and Jensen--Shannon divergence (JS) summarise prediction error for that stress regime across the test folds.](../results/figures/Fig_S6.png){fig-pos="H"}
+
+{{< pagebreak >}}
+
+![**Out-of-sample (blocked CV) prediction of community biomass (OD$_{600}$) from the trait $\rightarrow$ composition $\rightarrow$ biomass pipeline.** Observed OD$_{600}$ at 48 h (y-axis) versus predicted OD$_{600}$ for held-out communities (x-axis) in blocked five-fold cross-validation (blocking by community identity, Com Id). Predictions were generated by (i) fitting the trait-based Bayesian softmax model on training communities to predict composition, (ii) converting predicted compositions to abundance-weighted mean growth (AWM), and (iii) mapping AWM to OD$_{600}$ using an OD regression fitted on the training data only. Colours indicate stress regime and point shapes indicate richness (2, 4, or 8 taxa). The dashed line is the 1:1 relationship. Overall test-set performance across folds is shown (RMSE = 0.12; R$^2$ = 0.82).](../results/figures/Fig_S7.png){fig-pos="H"}

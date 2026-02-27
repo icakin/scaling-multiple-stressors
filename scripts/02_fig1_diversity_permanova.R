@@ -65,7 +65,7 @@ dbRDA_plot_grad <- ggplot(site_scores_grad, aes(CAP1, CAP2, colour = Stress)) +
         legend.title = element_text(size = 16, face = "bold"), legend.text = element_text(size = 14),
         legend.position = "right")
 
-ggsave(P_FIG("Fig_1b_dbRDA_gradients.tiff"), label_plot(dbRDA_plot_grad, "1b"),
+ggsave(P_FIG("Fig_1b_dbRDA_gradients.tiff"), dbRDA_plot_grad,
        width = 18, height = 15, units = "cm", dpi = 600, device = ragg::agg_tiff, compression = "lzw")
 
 # --- PERMANOVA + pairwise heatmap (Fig 1c & Table S6) ---
@@ -106,7 +106,7 @@ heatmap_plot <- ggplot(mat_long, aes(x = Group1, y = Group2, fill = R2)) +
         legend.title = element_text(size = 16, face = "bold"),
         legend.text = element_text(size = 14))
 
-ggsave(P_FIG("Fig_1c_PERMANOVA_pairwise_heatmap.tiff"), label_plot(heatmap_plot, "1c"),
+ggsave(P_FIG("Fig_1c_PERMANOVA_pairwise_heatmap.tiff"), heatmap_plot,
        width = 18, height = 15, units = "cm", dpi = 600, device = ragg::agg_tiff, compression = "lzw")
 
 readr::write_csv(pw %>% mutate(across(where(is.numeric), ~round(., 3))), P_TAB("Table_S6_PERMANOVA_pairwise.csv"))
@@ -137,10 +137,9 @@ names(tukey_df) <- make.names(names(tukey_df))
 plot_shandiv_box <- ggplot(div_df, aes(x = Stress_pretty, y = shan_div, fill = Stress_pretty)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1.2, outlier.alpha = 0.6) +
   scale_fill_manual(values = pal_pretty, limits = pretty_levels) +
-  scale_x_discrete(labels = scales::label_wrap(12)) +
   labs(x = NULL, y = "Shannon diversity (H′)") +
   theme_classic(base_family = "Helvetica") +
-  theme(axis.text.x  = element_text(angle = 50, hjust = 1, vjust = 1, size = 14),
+  theme(axis.text.x  = element_text(angle = 45, hjust = 1, vjust = 1, size = 14),
         axis.text.y  = element_text(size = 14),
         axis.title.y = element_text(size = 16),
         legend.position = "none",
@@ -216,5 +215,17 @@ if (nrow(sig_df) > 0) {
                                y.position = "y.position", tip.length = 0.01, bracket.size = 0.3, size = 3) +
     expand_limits(y = max(sig_df$y.position) + step)
 }
-ggsave(P_FIG("Fig_1a_Shannon_diversity_boxplot_with_signif.tiff"), label_plot(plot_shandiv_box_sig, "1a"),
+ggsave(P_FIG("Fig_1a_Shannon_diversity_boxplot_with_signif.tiff"), plot_shandiv_box_sig,
        width = 18, height = 15, units = "cm", dpi = 600, device = ragg::agg_tiff, compression = "lzw")
+
+# --- Save ggplot objects and PNG copies for composite figure assembly ---
+saveRDS(plot_shandiv_box_sig, P_RDS("fig1a_plot.rds"))
+saveRDS(dbRDA_plot_grad,      P_RDS("fig1b_plot.rds"))
+saveRDS(heatmap_plot,         P_RDS("fig1c_plot.rds"))
+
+ggsave(P_FIG("Fig_1a_Shannon_diversity_boxplot_with_signif.png"), plot_shandiv_box_sig,
+       width = 18, height = 15, units = "cm", dpi = 300)
+ggsave(P_FIG("Fig_1b_dbRDA_gradients.png"), dbRDA_plot_grad,
+       width = 18, height = 15, units = "cm", dpi = 300)
+ggsave(P_FIG("Fig_1c_PERMANOVA_pairwise_heatmap.png"), heatmap_plot,
+       width = 18, height = 15, units = "cm", dpi = 300)

@@ -88,15 +88,32 @@ p_isa <- ggplot(topN_by_group, aes(x = Group_pretty, y = Genus)) +
   scale_colour_gradientn(colours = col_vec, limits  = rng, breaks  = brks, labels  = labf, name = "Indicator value") +
   guides(colour = guide_colourbar(title.position = "top", title.hjust = 0.5, label.position = "bottom",
                                   barwidth = unit(80, "pt"), barheight = unit(6, "pt"), ticks.colour = "grey20")) +
-  scale_x_discrete(labels = scales::label_wrap(14)) +
-  labs(x = "Stress condition", y = "Indicator taxon (Genus)") +
+  labs(x = NULL, y = "Indicator taxon (Genus)") +
   theme_classic(base_family = "Helvetica", base_size = 14) +
   theme(legend.position   = "top", legend.background = element_rect(fill = "white", colour = NA),
         legend.key        = element_rect(fill = "white", colour = NA), legend.title = element_text(size = 14, face = "bold"),
         legend.text       = element_text(size = 12), axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 14),
-        axis.text.y       = element_text(size = 14, face = "italic"), axis.title.x = element_text(size = 16),
+        axis.text.y       = element_text(size = 14, face = "italic"),
         axis.title.y      = element_text(size = 16), axis.line = element_line(linewidth = 0.4),
         axis.ticks.length = unit(3, "pt"), plot.margin = margin(8, 12, 8, 8))
 
-ggsave(P_FIG("Fig_1d_ISA_Top1_1vsRest_singlepanel.tiff"), label_plot(p_isa, "1d"),
+ggsave(P_FIG("Fig_1d_ISA_Top1_1vsRest_singlepanel.tiff"), p_isa,
        width = 18, height = 15, units = "cm", dpi = 600, device = ragg::agg_tiff, compression = "lzw")
+ggsave(P_FIG("Fig_1d_ISA_Top1_1vsRest_singlepanel.png"), p_isa,
+       width = 18, height = 15, units = "cm", dpi = 300)
+
+# --- Composite Fig 1 (patchwork) ---
+library(patchwork)
+p1a <- readRDS(P_RDS("fig1a_plot.rds"))
+p1b <- readRDS(P_RDS("fig1b_plot.rds"))
+p1c <- readRDS(P_RDS("fig1c_plot.rds"))
+
+fig1_composite <- (p1a | p1b) / (p1c | p_isa) +
+  plot_annotation(tag_levels = "a") &
+  theme(plot.tag = element_text(size = 18, face = "bold", family = "Helvetica"))
+
+ggsave(P_FIG("Fig_1.tiff"), fig1_composite,
+       width = 36, height = 30, units = "cm", dpi = 600,
+       device = ragg::agg_tiff, compression = "lzw")
+ggsave(P_FIG("Fig_1.png"), fig1_composite,
+       width = 36, height = 30, units = "cm", dpi = 300)

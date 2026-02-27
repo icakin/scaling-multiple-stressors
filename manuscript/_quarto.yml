@@ -1,0 +1,20 @@
+project:
+  type: manuscript
+  output-dir: _output
+
+manuscript:
+  article: manuscript.qmd
+  notebooks:
+    - notebook: supplementary.qmd
+      title: "Supplementary Material"
+
+format:
+  pdf:
+    documentclass: article
+    number-sections: true
+    colorlinks: true
+    geometry: margin=2.5cm
+  docx: default
+
+bibliography: references.bib
+csl: nature-microbiology.csl

@@ -1,0 +1,39 @@
+\usepackage{lineno}
+\linenumbers
+\usepackage{float}
+\usepackage{caption}
+\DeclareCaptionLabelSeparator{bar}{\textbf{\enspace\textbar\enspace}}
+\captionsetup[figure]{labelsep=bar, labelfont=bf}
+
+% --- Custom title block ---
+% Quarto overrides \author{} and \figurename after \begin{document},
+% so we redefine \@maketitle to render our own author/affiliation block
+% and fix \figurename at the point \maketitle is called.
+\makeatletter
+\renewcommand{\@maketitle}{%
+  \gdef\figurename{Fig.}%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+    {\LARGE \@title \par}%
+    \vskip 1.5em%
+    {\normalsize
+    Hebe Carmichael\textsuperscript{1,*},
+    Ilgaz Cakin\textsuperscript{2,*},
+    Susheel Bhanu Busi\textsuperscript{3},
+    Daniel Read\textsuperscript{3} \&
+    Gabriel Yvon-Durocher\textsuperscript{2,4,\dag}\par}%
+    \vskip 0.8em%
+    {\small\itshape
+    \textsuperscript{1}Environment and Sustainability Institute, University of Exeter, Penryn TR10 9FE, UK\\
+    \textsuperscript{2}Living Systems Institute, University of Exeter, Stocker Road, Exeter EX4 4QD, UK\\
+    \textsuperscript{3}UK Centre for Ecology and Hydrology (UKCEH), Wallingford, Oxfordshire OX10 8BB, UK\\
+    \textsuperscript{4}Department of Geography, Faculty of Environment, Science and Economy, University of Exeter, Exeter, UK\par}%
+    \vskip 0.5em%
+    {\footnotesize *These authors contributed equally.\\
+    \dag Corresponding author: g.yvon-durocher@exeter.ac.uk; ORCID: 0000-0002-1749-3417\par}%
+  \end{center}%
+  \par
+  \vskip 1.5em}
+\makeatother
