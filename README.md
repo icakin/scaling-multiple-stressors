@@ -1,15 +1,15 @@
-# Stress-specific growth rates predict microbial community assembly and biomass yield under concurrent environmental stressors
+# Monoculture growth rates predict community assembly and abundance under multiple environmental stressors
 
 This repository contains all code, data, and manuscript source files for:
 
 **Carmichael H.\*, Cakin I.\*, Busi S.B., Read D. & Yvon-Durocher G.**
-*Stress-specific growth rates predict microbial community assembly and biomass yield under concurrent environmental stressors.*
+*Monoculture growth rates predict community assembly and abundance under multiple environmental stressors.*
 
 \* These authors contributed equally.
 
 ## Overview
 
-We show that stress-specific monoculture growth rates predict how synthetic bacterial communities assemble and how much biomass they produce under factorial combinations of temperature, pH and salinity. A Bayesian softmax model maps taxon-level growth rates to relative abundances across stress regimes, and an abundance-weighted mean growth metric links predicted composition to endpoint biomass yield (OD at 600 nm). The analysis pipeline runs from raw amplicon-sequencing and growth-curve data through to publication-ready figures and a typeset manuscript.
+We show that stress-specific monoculture growth rates predict how synthetic bacterial communities assemble and their total abundance under factorial combinations of temperature, pH and salinity. A Bayesian softmax model maps taxon-level growth rates to relative abundances across stress regimes, and an abundance-weighted mean growth metric links predicted composition to endpoint community abundance (optical density at 600 nm). Cross-validation shows that composition prediction generalises both to unseen communities and to entirely unmeasured stress regimes, whereas absolute abundance requires the focal regime in the calibration data. The analysis pipeline runs from raw amplicon-sequencing and growth-curve data through to publication-ready figures and a typeset manuscript, and includes a full set of reviewer-response analyses (scripts 08-11; Tables S19-S25).
 
 ## Repository structure
 
@@ -27,7 +27,7 @@ scaling-multiple-stressors/
 |   |-- manuscript.qmd             # Main text
 |   |-- supplementary.qmd          # Supplementary material
 |   |-- references.bib             # Bibliography
-|   |-- nature-microbiology.csl    # Citation style
+|   |-- ecology-letters.csl        # Citation style
 |   |-- header.tex                 # LaTeX preamble (main)
 |   |-- header-supp.tex            # LaTeX preamble (supplementary)
 |   |-- _quarto.yml                # Quarto project configuration
@@ -168,12 +168,41 @@ Defines parametric growth-curve functions (Baranyi, Gompertz, Buchanan, logistic
 
 Reads per-taxon OD time-series from `data/Cut_OD_data/`, fits all candidate growth models via `nls.multstart`, selects the best model per curve by AICc, and exports fitted parameters and diagnostic plots (Figs. S1-S3). Results feed into the growth-rate CSV files in `data/` used by the main pipeline.
 
+### Reviewer-response analysis scripts (08-11)
+
+Added while revising the manuscript after peer review; not called by `run_all.R`. All source `scripts/utils_bayes_prep.R`, a shared helper that mirrors the data preparation of script 05 so results are directly comparable.
+
+#### Script 08 -- Biomass-model decomposition
+
+**File:** `scripts/08_biomass_decomposition.R`. Quantifies the marginal contribution of the growth trait to the abundance (OD) regression by comparing the fixed-effects-only null model, the additive trait model, and the full model as fitted, with 90% intervals propagated across posterior draws. Requires the cached fit from script 05 Part A; no Stan refits.
+
+**Outputs:** `Table_S19_biomass_model_decomposition.csv`, `Table_S19b_trait_term_tests.csv`
+
+#### Script 09 -- Leave-one-stress-out cross-validation
+
+**File:** `scripts/09_loso_cv.R`. Holds out each of the eight stress regimes in turn, refits the composition model on the remaining seven, and evaluates composition and abundance prediction on the held-out regime (8 Stan fits, cached as `bayes_losocv_fold_<stress>.rds`).
+
+**Outputs:** `Table_S20_losocv_by_stress.csv`, `Table_S21_losocv_summary.csv`, `Fig_S8_losocv`
+
+#### Script 10 -- Trait sensitivity suite
+
+**File:** `scripts/10_trait_sensitivity.R`. Refits Gompertz curves and model-free log-linear slopes to the raw monoculture time series, compares growth-rate estimation methods, and reruns the full pipeline substituting lag time, carrying capacity, or log-linear growth rate for the pipeline growth rate (3 Stan fits, cached).
+
+**Outputs:** `Table_S22_trait_comparison.csv`, `Table_S23_growthrate_method_comparison.csv`, `Table_S24_raw_growth_rates.csv` (raw growth rates per taxon x regime), `Fig_S9_loglinear_vs_gompertz`, `trait_refit_curves.rds`
+
+#### Script 11 -- Winner-takes-all baseline
+
+**File:** `scripts/11_winner_takes_all.R`. Benchmarks the assumption that the community member with the highest growth rate dominates completely; no Stan fitting.
+
+**Outputs:** `Table_S25_winner_takes_all.csv`
+
 ## Stan models
 
-Two Stan files in the project root implement the Dirichlet-softmax composition model:
+Three Stan files in the project root implement the Dirichlet-softmax composition model:
 
 - **`softmax_dirichlet.stan`** -- Full model with `generated quantities` block that computes per-observation log-likelihoods for LOO-CV via the `loo` package.
 - **`softmax_dirichlet_blockedcv.stan`** -- Identical model structure but without `generated quantities`, used during blocked cross-validation (where LOO is not needed and omitting it speeds up sampling).
+- **`softmax_dirichlet_refit.stan`** -- The same model written in the current Stan array syntax (required by rstan >= 2.33 / Stan >= 2.33), generated and used by the reviewer-response scripts 09-10. Scripts 01-05 still embed the older syntax and need rstan < 2.33, or the same syntax update, to recompile from scratch; their cached fits are unaffected.
 
 Both models parameterise relative abundance as:
 
@@ -189,9 +218,9 @@ where `g_z[j]` is the z-scored growth rate of taxon j under the focal stress reg
 The manuscript is a [Quarto manuscript project](https://quarto.org/docs/manuscripts/) in `manuscript/`. It consists of two documents:
 
 - **`manuscript.qmd`** -- Main text (title, abstract, introduction, methods, results, discussion, conclusions)
-- **`supplementary.qmd`** -- Supplementary material (additional figures, tables S1-S18, supplementary methods)
+- **`supplementary.qmd`** -- Supplementary material (additional figures, tables S1-S25, supplementary methods)
 
-Both documents share `references.bib` (BibTeX bibliography) and `nature-microbiology.csl` (Nature Microbiology citation style). Custom LaTeX preambles (`header.tex`, `header-supp.tex`) handle author affiliations, figure caption formatting ("**Fig. N |** Title"), line numbering, and supplementary figure numbering (S-prefix).
+Both documents share `references.bib` (BibTeX bibliography) and a CSL citation style file (currently `ecology-letters.csl`; swap for the target journal's style at submission). Custom LaTeX preambles (`header.tex`, `header-supp.tex`) handle author affiliations, figure caption formatting ("**Fig. N |** Title"), line numbering, and supplementary figure numbering (S-prefix).
 
 ### Rendering the manuscript
 
