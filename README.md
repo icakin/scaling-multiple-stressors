@@ -196,6 +196,24 @@ Added while revising the manuscript after peer review; not called by `run_all.R`
 
 **Outputs:** `Table_S25_winner_takes_all.csv`
 
+#### Script 12 -- Composition-model ablation
+
+**File:** `scripts/12_composition_ablation.R`. Refits the composition model as full / growth-only / biases-only variants under blocked community-identity CV, scoring held-out communities by weighted R2, RMSE, JS, dominant-taxon accuracy and held-out log predictive density (15 Stan fits, cached).
+
+**Outputs:** `Table_S26_composition_ablation.csv`
+
+#### Script 13 -- Leave-one-taxon-out validation
+
+**File:** `scripts/13_leave_one_taxon_out.R`. For each taxon, fits the model without any community containing it and predicts those communities, testing transfer to never-calibrated taxa (12 Stan fits, cached).
+
+**Outputs:** `Table_S27_leave_one_taxon_out.csv`
+
+#### Script 14 -- Singles-to-combinations prediction
+
+**File:** `scripts/14_singles_to_combos.R`. Fits the model on control and single-stressor regimes only and predicts the four combination regimes (1 Stan fit, cached).
+
+**Outputs:** `Table_S28_singles_to_combos.csv`
+
 ## Stan models
 
 Three Stan files in the project root implement the Dirichlet-softmax composition model:

@@ -1,0 +1,6 @@
+Stress,n,comp_RMSE,comp_JS,dom_accuracy,comp_wR2_pooled,OD_R2_pooled,OD_RMSE_pooled
+SalTemp,22,0.148,0.13,0.818,NA,NA,NA
+pHSal,21,0.117,0.077,0.762,NA,NA,NA
+pHSalTemp,19,0.148,0.114,0.737,NA,NA,NA
+pHTemp,22,0.149,0.122,0.909,NA,NA,NA
+POOLED (all combos),84,0.14,0.111,0.81,0.166,-0.51,0.357

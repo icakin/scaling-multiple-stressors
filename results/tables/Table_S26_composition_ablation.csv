@@ -1,0 +1,4 @@
+variant,comp_wR2_oof,comp_wRMSE_oof,RMSE_mean,JS_mean,dom_accuracy,lpd_total,lpd_mean,n_test
+full,0.389,0.231,0.13,0.088,0.802,2302.9,13.389,172
+growth_only,-0.065,0.306,0.178,0.168,0.674,2122.4,12.34,172
+biases_only,-0.291,0.336,0.191,0.16,0.622,2170.7,12.62,172

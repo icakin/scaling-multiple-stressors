@@ -799,6 +799,48 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
+**Table S26 | Composition-model ablation under blocked cross-validation.** The Dirichlet--softmax composition model was refitted in three variants under the same five-fold community-identity cross-validation as Tables S15--S18: the full model (growth + taxon bias terms), growth only (bias terms removed), and biases only (growth input set to zero, so prediction rests on taxon identity alone). Metrics are computed on held-out communities only: pooled out-of-fold abundance-weighted R$^2$ and RMSE, mean per-sample RMSE and Jensen--Shannon divergence, dominant-taxon accuracy (fraction of communities whose most abundant taxon is correctly identified), and mean held-out log predictive density (lpd; higher is better). Neither component predicts alone; growth rates and taxon identity are jointly required, and growth's marginal contribution over identity alone is decisive.
+
+| **Variant** | **wR^2^ (oof)** | **wRMSE (oof)** | **RMSE** | **JS** | **Dominant-taxon acc.** | **lpd (mean)** |
+| --- | --- | --- | --- | --- | --- | --- |
+| Full model | 0.389 | 0.231 | 0.130 | 0.088 | 0.802 | 13.39 |
+| Growth only | −0.065 | 0.306 | 0.178 | 0.168 | 0.674 | 12.34 |
+| Taxon biases only | −0.291 | 0.336 | 0.191 | 0.160 | 0.622 | 12.62 |
+
+{{< pagebreak >}}
+
+**Table S27 | Leave-one-taxon-out validation.** For each taxon in turn, the composition model was fitted only on communities not containing that taxon (its bias term $\delta_{j}$ is then informed solely by its shrinkage prior) and used to predict the communities containing it. Focal columns describe the held-out taxon's own predicted versus observed relative abundances across those communities (RMSE, mean bias, Spearman rank correlation); "others RMSE" is prediction error for the co-occurring, calibrated taxa in the same communities. Taxon codes as in Table S1. Predicted abundances of never-calibrated taxa track observations for all twelve taxa (pooled Spearman $\rho$ = 0.72), with a modest positive bias reflecting the bias term's shrinkage to zero.
+
+| **Taxon** | **n train com.** | **n test samples** | **Focal RMSE** | **Focal bias** | **Focal Spearman** | **Others RMSE** |
+| --- | --- | --- | --- | --- | --- | --- |
+| D11 | 12 | 78 | 0.142 | 0.119 | 0.643 | 0.138 |
+| D14 | 13 | 72 | 0.164 | 0.126 | 0.742 | 0.145 |
+| D17 | 13 | 70 | 0.181 | 0.164 | 0.506 | 0.154 |
+| I11 | 13 | 71 | 0.232 | 0.183 | 0.623 | 0.152 |
+| I15 | 13 | 71 | 0.195 | −0.021 | 0.872 | 0.124 |
+| I18 | 12 | 78 | 0.250 | 0.165 | 0.746 | 0.141 |
+| I2 | 12 | 79 | 0.153 | 0.095 | 0.768 | 0.139 |
+| I20 | 9 | 104 | 0.202 | −0.055 | 0.603 | 0.114 |
+| I22 | 13 | 70 | 0.305 | 0.252 | 0.880 | 0.148 |
+| I23 | 13 | 71 | 0.174 | 0.141 | 0.603 | 0.155 |
+| I8 | 13 | 70 | 0.253 | 0.206 | 0.715 | 0.151 |
+| I9 | 12 | 80 | 0.323 | −0.251 | 0.891 | 0.110 |
+| Pooled | -- | 914 | 0.221 | 0.085 | 0.717 | -- |
+
+{{< pagebreak >}}
+
+**Table S28 | Prediction of combined-stressor communities from single-stressor calibration.** The composition model was fitted on the Control, pH, Sal and Temp regimes only; the four combination regimes were predicted with their stress-specific slopes shrunk to the hierarchical mean (no combination-regime community data enter the fit; monoculture growth rates measured under the combination regimes are used as trait inputs). The OD regression was fitted on the single-stressor regimes without stress terms (OD ~ AWM + richness). Composition prediction is close to the blocked-CV benchmark (pooled RMSE 0.140 vs 0.131), whereas absolute abundance does not transfer (negative R$^2$), matching the leave-one-stress-out boundary (Tables S20--S21).
+
+| **Held-out regime** | **n** | **Comp RMSE** | **Comp JS** | **Dominant-taxon acc.** |
+| --- | --- | --- | --- | --- |
+| pHSal | 21 | 0.117 | 0.077 | 0.762 |
+| pHTemp | 22 | 0.149 | 0.122 | 0.909 |
+| SalTemp | 22 | 0.148 | 0.130 | 0.818 |
+| pHSalTemp | 19 | 0.148 | 0.114 | 0.737 |
+| Pooled (wR$^2$ = 0.166; OD R$^2$ = −0.51) | 84 | 0.140 | 0.111 | 0.810 |
+
+{{< pagebreak >}}
+
 ![**Monoculture temperature performance curves used to define temperature stress levels.** Growth curves (log$_{10}$(OD) vs time) for each taxon under four stressor regimes across the temperature gradient (15--47 °C). Points show observed OD measurements and lines show the best-fitting growth model selected by AICc for each individual curve. These gradient assays were used to define the "control" and "stress" levels used in the main 2 $\times$ 2 $\times$ 2 factorial experiment (Table S2).](../results/figures/Fig_S1.png){fig-pos="H"}
 
 {{< pagebreak >}}
