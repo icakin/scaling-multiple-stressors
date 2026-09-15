@@ -332,6 +332,13 @@ build_ragged <- function(ord_df, sample_ids_keep,
   )
 }
 
+# Jensen-Shannon divergence (log2 units, matching philentropy::JSD default)
+jsd_local <- function(p, q) {
+  m <- 0.5 * (p + q)
+  kl <- function(a, b) { ok <- a > 0; sum(a[ok] * log2(a[ok] / b[ok])) }
+  0.5 * kl(p, m) + 0.5 * kl(q, m)
+}
+
 softmax_vec <- function(x) {
   ex <- exp(x - max(x))
   ex / sum(ex)
