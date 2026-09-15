@@ -46,18 +46,7 @@ format:
 
 {{< pagebreak >}}
 
-**Table S2 | Stressor treatment levels.** The combinations of different stressors used in the experiment and the corresponding levels of each.
-
-| Stressors | Temperature (°C) | Salinity (g NaCl/L) | pH |
-|:---|:---:|:---:|:---:|
-| Control | 20 | 0 | 7.2 |
-| pH | 20 | 0 | 5.5 |
-| Salinity | 20 | 20 | 7.2 |
-| Temperature | 38 | 0 | 7.2 |
-| pH x Salinity | 20 | 20 | 5.5 |
-| pH x Temperature | 38 | 0 | 5.5 |
-| Salinity x Temperature | 38 | 20 | 7.2 |
-| pH x Salinity x Temperature | 38 | 20 | 5.5 |
+**Table S2.** The stressor treatment levels formerly presented here appear in the main text as Table 1; supplementary numbering is otherwise unchanged.
 
 {{< pagebreak >}}
 

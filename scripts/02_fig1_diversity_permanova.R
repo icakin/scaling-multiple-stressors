@@ -135,7 +135,9 @@ tukey_df <- TukeyHSD(Shannon_anova, conf.level = 0.95)[[1]] %>% as.data.frame() 
 names(tukey_df) <- make.names(names(tukey_df))
 
 plot_shandiv_box <- ggplot(div_df, aes(x = Stress_pretty, y = shan_div, fill = Stress_pretty)) +
-  geom_boxplot(outlier.shape = 21, outlier.size = 1.2, outlier.alpha = 0.6) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.18, height = 0, size = 1.1, alpha = 0.45,
+              colour = "grey25", shape = 16, show.legend = FALSE) +
   scale_fill_manual(values = pal_pretty, limits = pretty_levels) +
   labs(x = NULL, y = "Shannon diversity (H′)") +
   theme_classic(base_family = "Helvetica") +
