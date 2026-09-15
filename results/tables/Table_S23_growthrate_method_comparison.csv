@@ -1,0 +1,4 @@
+comparison,pearson_r,spearman_rho,n_Id_x_Stress
+log-linear vs pipeline Gompertz,0.951,0.941,96
+log-linear vs Gompertz refit,0.71,0.892,89
+Gompertz refit vs pipeline Gompertz,0.749,0.879,89

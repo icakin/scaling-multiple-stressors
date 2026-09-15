@@ -739,6 +739,69 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
+**Table S20 | Leave-one-stress-out (LOSO) cross-validation by held-out regime.** Each of the eight stress regimes was held out in turn; the Dirichlet--softmax composition model was fitted to the other seven regimes and predictions made for the held-out regime. Comp RMSE and Comp JS: composition prediction error (root-mean-square error and Jensen--Shannon divergence, mean across held-out communities). OD RMSE and OD R$^2$: biomass prediction error from an OD regression fitted on the training regimes without stress terms (OD ~ AWM + richness), evaluated within the held-out regime. n test is the number of held-out community samples (n test OD with OD measurements). Composition transfers to unseen regimes with accuracy comparable to the blocked community-identity CV (Table S18), whereas absolute yield does not extrapolate (negative within-regime R$^2$ indicates predictions worse than the regime mean), because regime-specific shifts in the AWM-to-yield mapping cannot be estimated for an unseen regime.
+
+| **Held-out stress** | **n test** | **Comp RMSE** | **Comp JS** | **n test OD** | **OD RMSE** | **OD R^2^** |
+| --- | --- | --- | --- | --- | --- | --- |
+| Control | 22 | 0.126 | 0.076 | 22 | 0.308 | −5.853 |
+| pH | 22 | 0.119 | 0.068 | 22 | 0.367 | −4.339 |
+| pHSal | 21 | 0.148 | 0.107 | 21 | 0.174 | −2.806 |
+| pHSalTemp | 19 | 0.134 | 0.102 | 19 | 0.376 | −3.108 |
+| pHTemp | 22 | 0.143 | 0.114 | 22 | 0.313 | 0.405 |
+| Sal | 22 | 0.138 | 0.073 | 22 | 0.150 | −1.762 |
+| SalTemp | 22 | 0.139 | 0.118 | 22 | 0.433 | −10.344 |
+| Temp | 22 | 0.137 | 0.088 | 21 | 0.226 | 0.480 |
+
+{{< pagebreak >}}
+
+**Table S21 | Overall LOSO cross-validation summary.** Mean and standard deviation across the eight held-out stress regimes of Table S20.
+
+| **Block type** | **K** | **Comp RMSE mean** | **Comp RMSE sd** | **Comp JS mean** | **Comp JS sd** | **OD RMSE mean** | **OD RMSE sd** | **OD R^2^ mean** | **OD R^2^ sd** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Stress (LOSO) | 8 | 0.136 | 0.009 | 0.093 | 0.020 | 0.293 | 0.101 | −3.416 | 3.541 |
+
+{{< pagebreak >}}
+
+**Table S22 | Predictive performance of alternative monoculture traits.** The full composition-to-biomass pipeline (softmax composition model, then posterior-MI OD regression with the full formula) was refitted with each trait in place of the Gompertz growth rate: a model-free log-linear growth-rate estimate, the lag time, and the carrying capacity (log$_{10}$ $n_{max}$) from Gompertz refits to the same monoculture time series, each standardised within stress regimes. comp wR$^2$/wRMSE: abundance-weighted composition accuracy; OD R$^2$/RMSE: biomass prediction accuracy. n samples is smaller for lag and carrying capacity because refits fail on flat (no-growth) curves, leaving some taxon $\times$ regime combinations, and hence some communities, without complete trait values.
+
+| **Trait** | **n samples** | **comp wR^2^** | **comp wRMSE** | **OD R^2^** | **OD RMSE** |
+| --- | --- | --- | --- | --- | --- |
+| Growth rate (Gompertz, pipeline) | 172 | 0.437 | 0.222 | 0.882 | 0.099 |
+| Growth rate (log-linear) | 172 | 0.299 | 0.248 | 0.893 | 0.094 |
+| Lag time | 123 | 0.078 | 0.285 | 0.769 | 0.119 |
+| Carrying capacity (log$_{10}$ $n_{max}$) | 123 | 0.105 | 0.281 | 0.554 | 0.165 |
+
+{{< pagebreak >}}
+
+**Table S23 | Agreement between growth-rate estimation methods.** Pearson and Spearman correlations between mean growth-rate estimates per taxon $\times$ stress regime: the Gompertz estimates used in the pipeline, fresh Gompertz refits to the raw time series, and model-free log-linear estimates (steepest rolling-window slope of log$_{10}$ OD). n differs among comparisons because refits fail on flat (no-growth) curves. Within-regime rank agreement between log-linear and pipeline estimates (the quantity the composition model uses) ranged from Spearman $\rho$ = 0.78 (Temp) to 0.97 (pHSalTemp); per-regime values are in results/tables/Table_S23b of the code repository.
+
+| **Comparison** | **Pearson r** | **Spearman ρ** | **n (taxon × regime)** |
+| --- | --- | --- | --- |
+| Log-linear vs pipeline Gompertz | 0.951 | 0.941 | 96 |
+| Log-linear vs Gompertz refit | 0.710 | 0.892 | 89 |
+| Gompertz refit vs pipeline Gompertz | 0.749 | 0.879 | 89 |
+
+{{< pagebreak >}}
+
+**Table S24 | Raw monoculture growth-rate estimates by taxon and stress regime.** Mean Gompertz exponential growth rates (h$^{-1}$; per-replicate estimates averaged per taxon $\times$ regime, converted from the per-minute model estimates) for the eight factorial stressor regimes. These are the raw values underlying the within-stress z-scores of Table S8 and Fig. 2, and the $g^{raw}$ values used in the abundance-weighted mean growth (Eq. 5). The full per-replicate data are in results/tables/Table_S24_raw_growth_rates.csv of the code repository.
+
+| **Id** | **Control** | **pH** | **Sal** | **Temp** | **pHSal** | **pHTemp** | **SalTemp** | **pHSalTemp** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| D11 | 0.118 | 0.118 | 0.095 | 0.100 | 0.057 | 0.147 | 0.000 | 0.012 |
+| D14 | 0.091 | 0.053 | 0.017 | 0.160 | 0.010 | 0.024 | 0.047 | 0.005 |
+| D17 | 0.118 | 0.111 | 0.085 | 0.118 | 0.110 | 0.135 | 0.058 | 0.072 |
+| I11 | 0.110 | 0.044 | 0.108 | 0.101 | 0.068 | 0.102 | 0.112 | 0.058 |
+| I15 | 0.149 | 0.135 | 0.197 | 0.088 | 0.156 | 0.073 | 0.199 | 0.194 |
+| I18 | 0.160 | 0.042 | 0.198 | 0.037 | 0.081 | 0.000 | 0.323 | 0.009 |
+| I2 | 0.133 | 0.117 | 0.171 | 0.011 | 0.130 | 0.000 | 0.149 | 0.011 |
+| I20 | 0.163 | 0.160 | 0.123 | 0.252 | 0.120 | 0.237 | 0.164 | 0.135 |
+| I22 | 0.202 | 0.156 | 0.182 | 0.000 | 0.189 | 0.000 | 0.183 | 0.153 |
+| I23 | 0.153 | 0.165 | 0.066 | 0.006 | 0.065 | 0.014 | 0.000 | 0.000 |
+| I8 | 0.165 | 0.154 | 0.084 | 0.092 | 0.089 | 0.003 | 0.077 | 0.107 |
+| I9 | 0.160 | 0.172 | 0.114 | 0.376 | 0.096 | 0.397 | 0.293 | 0.309 |
+
+{{< pagebreak >}}
+
 ![**Monoculture temperature performance curves used to define temperature stress levels.** Growth curves (log$_{10}$(OD) vs time) for each taxon under four stressor regimes across the temperature gradient (15--47 °C). Points show observed OD measurements and lines show the best-fitting growth model selected by AICc for each individual curve. These gradient assays were used to define the "control" and "stress" levels used in the main 2 $\times$ 2 $\times$ 2 factorial experiment (Table S2).](../results/figures/Fig_S1.png){fig-pos="H"}
 
 {{< pagebreak >}}
@@ -764,6 +827,14 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 {{< pagebreak >}}
 
 ![**Out-of-sample (blocked CV) prediction of community biomass (OD$_{600}$) from the trait $\rightarrow$ composition $\rightarrow$ biomass pipeline.** Observed OD$_{600}$ at 48 h (y-axis) versus predicted OD$_{600}$ for held-out communities (x-axis) in blocked five-fold cross-validation (blocking by community identity, Com Id). Predictions were generated by (i) fitting the trait-based Bayesian softmax model on training communities to predict composition, (ii) converting predicted compositions to abundance-weighted mean growth (AWM), and (iii) mapping AWM to OD$_{600}$ using an OD regression fitted on the training data only. Colours indicate stress regime and point shapes indicate richness (2, 4, or 8 taxa). The dashed line is the 1:1 relationship. Overall test-set performance across folds is shown (RMSE = 0.12; R$^2$ = 0.82).](../results/figures/Fig_S7.png){fig-pos="H"}
+
+{{< pagebreak >}}
+
+![**Leave-one-stress-out prediction of community biomass.** Observed versus predicted OD$_{600}$ for communities in each held-out stress regime, predicted by a pipeline trained entirely on the other seven regimes, with an OD regression containing no stress terms (OD ~ AWM + richness). Colours denote the held-out regime; shapes denote richness; the dashed line is the 1:1 relationship. The systematic regime-specific offsets show that absolute yield does not extrapolate to unmeasured regimes, in contrast to composition prediction, which transfers with essentially undiminished accuracy (Table S20).](../results/figures/Fig_S8_losocv.png){fig-pos="H"}
+
+{{< pagebreak >}}
+
+![**Log-linear versus Gompertz growth-rate estimates.** Mean growth rate per taxon $\times$ stress regime estimated by model-free log-linear fits (steepest rolling-window slope of log$_{10}$ OD over the exponential phase) against the Gompertz estimates used in the pipeline. Colours denote stress regime; the dashed line is the 1:1 relationship. Overall Pearson r = 0.95 and Spearman $\rho$ = 0.94 (Table S23).](../results/figures/Fig_S9_loglinear_vs_gompertz.png){fig-pos="H"}
 
 {{< pagebreak >}}
 

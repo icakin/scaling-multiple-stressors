@@ -433,14 +433,14 @@ data {
   int<lower=1> K;
   int<lower=1> J;
   int<lower=1> S;
-  int<lower=1> start_idx[N];
-  int<lower=1> len[N];
+  array[N] int<lower=1> start_idx;
+  array[N] int<lower=1> len;
   vector[J] p_obs;
   vector[J] g_z;
-  int<lower=1, upper=K> tax_of[J];
-  int<lower=1, upper=S> stress_id[N];
+  array[J] int<lower=1, upper=K> tax_of;
+  array[N] int<lower=1, upper=S> stress_id;
   int<lower=1> Rdim;
-  int<lower=1, upper=Rdim> rich_id[N];
+  array[N] int<lower=1, upper=Rdim> rich_id;
   int<lower=0, upper=1> use_taxon_biases;
 }
 parameters {

@@ -35,6 +35,9 @@
 # ======================================================================
 
 source("scripts/utils_bayes_prep.R")
+for (p in c("philentropy","ggplot2","ragg")) {
+  if (!requireNamespace(p, quietly = TRUE)) install.packages(p, repos = "https://cloud.r-project.org")
+}
 suppressPackageStartupMessages({ library(ggplot2); library(ragg) })
 
 # ---------------------- Options --------------------------------------
