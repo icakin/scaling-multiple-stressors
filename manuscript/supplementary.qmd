@@ -1,5 +1,5 @@
 ---
-title: "A single trait predicts community assembly and ecosystem function under multiple environmental stressors --- Supplementary Material"
+title: "Monoculture growth rates predict community assembly and biomass under multiple environmental stressors --- Supplementary Material"
 bibliography: references.bib
 csl: ecology-letters.csl
 format:
