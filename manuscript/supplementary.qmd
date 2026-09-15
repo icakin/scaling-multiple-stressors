@@ -802,6 +802,14 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
+**Table S25 | Winner-takes-all baseline.** Predictions obtained by assuming that, in every community, the member with the highest monoculture growth rate under the focal stress regime dominates completely (relative abundance 1; ties split evenly). Composition metrics are abundance-weighted R$^2$ and RMSE (as in Fig. 3a) plus per-sample means; "winner correct" is the fraction of communities in which the presumptive winner is indeed the observed dominant taxon. Biomass metrics use the same in-sample regression as the other baselines (OD ~ AWM $\times$ Stress + Diversity; Table S11), with the winner's growth rate as the AWM. The baseline fails for composition but approaches the full model for biomass, confirming that graded composition prediction is where the Bayesian model adds value, while yield is carried largely by the dominant, fastest-growing members.
+
+| **Model** | **comp wR^2^** | **comp wRMSE** | **Winner correct** | **OD R^2^** | **OD RMSE** |
+| --- | --- | --- | --- | --- | --- |
+| Winner-takes-all | −0.927 | 0.411 | 0.674 | 0.865 | 0.105 |
+
+{{< pagebreak >}}
+
 ![**Monoculture temperature performance curves used to define temperature stress levels.** Growth curves (log$_{10}$(OD) vs time) for each taxon under four stressor regimes across the temperature gradient (15--47 °C). Points show observed OD measurements and lines show the best-fitting growth model selected by AICc for each individual curve. These gradient assays were used to define the "control" and "stress" levels used in the main 2 $\times$ 2 $\times$ 2 factorial experiment (Table S2).](../results/figures/Fig_S1.png){fig-pos="H"}
 
 {{< pagebreak >}}

@@ -1,0 +1,2 @@
+model,comp_wR2,comp_wRMSE,comp_RMSE_mean,comp_JS_mean,winner_correct,OD_R2,OD_RMSE,n_samples,n_OD
+Winner-takes-all (highest growth rate dominates),-0.927,0.411,0.245,0.323,0.674,0.865,0.105,172,171
