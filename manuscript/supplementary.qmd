@@ -1,5 +1,5 @@
 ---
-title: "Monoculture growth rates predict community assembly and biomass under multiple environmental stressors --- Supplementary Material"
+title: "Monoculture growth rates predict community assembly and abundance under multiple environmental stressors --- Supplementary Material"
 bibliography: references.bib
 csl: ecology-letters.csl
 format:
@@ -564,7 +564,7 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-**Table S11 | Biomass prediction performance across models.** Columns: RMSE and R$^2$ from regressing predicted vs observed OD$_{600}$. Models: Bayes AWM (MI) = trait-based softmax composition with posterior multiple-imputation of abundance-weighted mean growth; Observed AWM (oracle ceiling) = AWM computed from observed compositions; Equal-abundance $\times$ g = uniform taxon weights; Random community $\times$ g = Dirichlet (1) weights per community. Lower RMSE and higher R$^2$ indicate better fit.
+**Table S11 | Abundance (OD$_{600}$) prediction performance across models.** Columns: RMSE and R$^2$ from regressing predicted vs observed OD$_{600}$. Models: Bayes AWM (MI) = trait-based softmax composition with posterior multiple-imputation of abundance-weighted mean growth; Observed AWM (oracle ceiling) = AWM computed from observed compositions; Equal-abundance $\times$ g = uniform taxon weights; Random community $\times$ g = Dirichlet (1) weights per community. Lower RMSE and higher R$^2$ indicate better fit.
 
   ----------------------------------- ---------- ----------
   **Model**                           **RMSE**   **R^2^**
@@ -636,7 +636,7 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-**Table S15 | Fold-wise performance in blocked five-fold cross-validation of trait-based composition and biomass predictions.** Summary metrics for each cross-validation fold when holding out entire community identities (Com Id). For each fold, we report the number of held-out communities (N samples), out-of-sample composition accuracy (Comp RMSE and Jensen--Shannon divergence, Comp JS) comparing predicted versus observed relative abundances, and out-of-sample biomass accuracy (OD RMSE and OD R$^2$) for OD$_{600}$ predictions derived from the full pipeline (composition $\rightarrow$ abundance-weighted mean growth $\rightarrow$ OD). N test OD gives the number of test communities with available OD$_{600}$ measurements used to compute OD metrics.
+**Table S15 | Fold-wise performance in blocked five-fold cross-validation of trait-based composition and abundance predictions.** Summary metrics for each cross-validation fold when holding out entire community identities (Com Id). For each fold, we report the number of held-out communities (N samples), out-of-sample composition accuracy (Comp RMSE and Jensen--Shannon divergence, Comp JS) comparing predicted versus observed relative abundances, and out-of-sample abundance accuracy (OD RMSE and OD R$^2$) for OD$_{600}$ predictions derived from the full pipeline (composition $\rightarrow$ abundance-weighted mean growth $\rightarrow$ OD). N test OD gives the number of test communities with available OD$_{600}$ measurements used to compute OD metrics.
 
 \footnotesize
 
@@ -682,7 +682,7 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-**Table S17 | Distribution of observed community biomass (OD$_{600}$) in the held-out set for each cross-validation fold.** For the blocked five-fold cross-validation (blocking by community identity, Com Id), this table summarises the range and spread of observed OD$_{600}$ values in the test communities of each fold (n). Columns report the minimum, 25th percentile (q25), median, 75th percentile (q75), maximum, and standard deviation (sd) of OD$_{600}$. These summaries contextualise fold-to-fold variation in out-of-sample OD prediction performance by showing differences in the OD range represented in each held-out fold.
+**Table S17 | Distribution of observed community abundance (OD$_{600}$) in the held-out set for each cross-validation fold.** For the blocked five-fold cross-validation (blocking by community identity, Com Id), this table summarises the range and spread of observed OD$_{600}$ values in the test communities of each fold (n). Columns report the minimum, 25th percentile (q25), median, 75th percentile (q75), maximum, and standard deviation (sd) of OD$_{600}$. These summaries contextualise fold-to-fold variation in out-of-sample OD prediction performance by showing differences in the OD range represented in each held-out fold.
 
   ---------- -------- ------------ ------------ ------------ ------------ ------------ -----------
   **fold**   **n**    **OD min**   **OD q25**   **OD med**   **OD q75**   **OD max**   **OD sd**
@@ -700,7 +700,7 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-**Table S18 | Overall out-of-sample performance of the trait-based composition $\rightarrow$ biomass prediction pipeline.** Summary statistics from blocked five-fold cross-validation in which entire community identities were held out (Block type: Com Id; K = 5). Values report the mean and standard deviation (SD) across folds for composition prediction error (Comp RMSE and Jensen--Shannon divergence, Comp JS) and biomass prediction error (OD RMSE and OD R$^2$) computed on held-out communities.
+**Table S18 | Overall out-of-sample performance of the trait-based composition $\rightarrow$ abundance prediction pipeline.** Summary statistics from blocked five-fold cross-validation in which entire community identities were held out (Block type: Com Id; K = 5). Values report the mean and standard deviation (SD) across folds for composition prediction error (Comp RMSE and Jensen--Shannon divergence, Comp JS) and abundance prediction error (OD RMSE and OD R$^2$) computed on held-out communities.
 
 \scriptsize
 
@@ -714,10 +714,10 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-**Table S19 | Decomposition of the biomass model: marginal contribution of the growth trait.** Models for community biomass (OD$_{600}$) compared by R$^2$, RMSE, and number of parameters. Null = fixed-effects-only model containing the stress (8 levels) and richness (3 levels) categorical terms but no trait term. Additive = the null model plus the abundance-weighted mean growth (AWM) term as a single additional parameter (Eq. 6, additive specification). Full = the model as fitted, with stress-specific AWM slopes. Adding the trait term yields a partial R$^2$ over the null of 0.68 (additive term) and 0.76 (full set of trait terms); the joint test of the trait terms in the full model gives F(8,153) = 61.9, *P* < 10$^{-43}$, and the AWM coefficient in the additive model is positive with t = 18.5. Values in brackets are 90% intervals (5th--95th percentiles) across 400 posterior draws of the composition model, propagated through the multiple-imputation refitting of the OD regression (scripts/08_biomass_decomposition.R). Note that the equal-abundance baseline (Table S11; R$^2$ = 0.766) is not a trait-free benchmark: it discards the composition weighting but retains the monoculture growth rates. Read as a ladder: no trait, R$^2$ = 0.50; trait without composition information, 0.77; trait with trait-predicted composition, 0.88.
+**Table S19 | Decomposition of the abundance model: marginal contribution of the growth trait.** Models for community abundance (OD$_{600}$) compared by R$^2$, RMSE, and number of parameters. Null = fixed-effects-only model containing the stress (8 levels) and richness (3 levels) categorical terms but no trait term. Additive = the null model plus the abundance-weighted mean growth (AWM) term as a single additional parameter (Eq. 6, additive specification). Full = the model as fitted, with stress-specific AWM slopes. Adding the trait term yields a partial R$^2$ over the null of 0.68 (additive term) and 0.76 (full set of trait terms); the joint test of the trait terms in the full model gives F(8,153) = 61.9, *P* < 10$^{-43}$, and the AWM coefficient in the additive model is positive with t = 18.5. Values in brackets are 90% intervals (5th--95th percentiles) across 400 posterior draws of the composition model, propagated through the multiple-imputation refitting of the OD regression (scripts/08_biomass_decomposition.R). Note that the equal-abundance baseline (Table S11; R$^2$ = 0.766) is not a trait-free benchmark: it discards the composition weighting but retains the monoculture growth rates. Read as a ladder: no trait, R$^2$ = 0.50; trait without composition information, 0.77; trait with trait-predicted composition, 0.88.
 
   -------------------------------------------- ------------------------ ------------------------- ----------------
-  **Model for community biomass (OD$_{600}$)**   **R^2^ [90% CI]**        **RMSE [90% CI]**         **Parameters**
+  **Model for community abundance (OD$_{600}$)**   **R^2^ [90% CI]**        **RMSE [90% CI]**         **Parameters**
 
   **Null (stress + richness only)**              0.50                     0.204                     10
 
@@ -728,7 +728,7 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-**Table S20 | Leave-one-stress-out (LOSO) cross-validation by held-out regime.** Each of the eight stress regimes was held out in turn; the Dirichlet--softmax composition model was fitted to the other seven regimes and predictions made for the held-out regime. Comp RMSE and Comp JS: composition prediction error (root-mean-square error and Jensen--Shannon divergence, mean across held-out communities). OD RMSE and OD R$^2$: biomass prediction error from an OD regression fitted on the training regimes without stress terms (OD ~ AWM + richness), evaluated within the held-out regime. n test is the number of held-out community samples (n test OD with OD measurements). Composition transfers to unseen regimes with accuracy comparable to the blocked community-identity CV (Table S18), whereas absolute yield does not extrapolate (negative within-regime R$^2$ indicates predictions worse than the regime mean), because regime-specific shifts in the AWM-to-yield mapping cannot be estimated for an unseen regime.
+**Table S20 | Leave-one-stress-out (LOSO) cross-validation by held-out regime.** Each of the eight stress regimes was held out in turn; the Dirichlet--softmax composition model was fitted to the other seven regimes and predictions made for the held-out regime. Comp RMSE and Comp JS: composition prediction error (root-mean-square error and Jensen--Shannon divergence, mean across held-out communities). OD RMSE and OD R$^2$: abundance prediction error from an OD regression fitted on the training regimes without stress terms (OD ~ AWM + richness), evaluated within the held-out regime. n test is the number of held-out community samples (n test OD with OD measurements). Composition transfers to unseen regimes with accuracy comparable to the blocked community-identity CV (Table S18), whereas absolute abundance does not extrapolate (negative within-regime R$^2$ indicates predictions worse than the regime mean), because regime-specific shifts in the AWM-to-abundance mapping cannot be estimated for an unseen regime.
 
 | **Held-out stress** | **n test** | **Comp RMSE** | **Comp JS** | **n test OD** | **OD RMSE** | **OD R^2^** |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -751,7 +751,7 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-**Table S22 | Predictive performance of alternative monoculture traits.** The full composition-to-biomass pipeline (softmax composition model, then posterior-MI OD regression with the full formula) was refitted with each trait in place of the Gompertz growth rate: a model-free log-linear growth-rate estimate, the lag time, and the carrying capacity (log$_{10}$ $n_{max}$) from Gompertz refits to the same monoculture time series, each standardised within stress regimes. comp wR$^2$/wRMSE: abundance-weighted composition accuracy; OD R$^2$/RMSE: biomass prediction accuracy. n samples is smaller for lag and carrying capacity because refits fail on flat (no-growth) curves, leaving some taxon $\times$ regime combinations, and hence some communities, without complete trait values.
+**Table S22 | Predictive performance of alternative monoculture traits.** The full composition-to-abundance pipeline (softmax composition model, then posterior-MI OD regression with the full formula) was refitted with each trait in place of the Gompertz growth rate: a model-free log-linear growth-rate estimate, the lag time, and the carrying capacity (log$_{10}$ $n_{max}$) from Gompertz refits to the same monoculture time series, each standardised within stress regimes. comp wR$^2$/wRMSE: abundance-weighted composition accuracy; OD R$^2$/RMSE: abundance prediction accuracy. n samples is smaller for lag and carrying capacity because refits fail on flat (no-growth) curves, leaving some taxon $\times$ regime combinations, and hence some communities, without complete trait values.
 
 | **Trait** | **n samples** | **comp wR^2^** | **comp wRMSE** | **OD R^2^** | **OD RMSE** |
 | --- | --- | --- | --- | --- | --- |
@@ -791,7 +791,7 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-**Table S25 | Winner-takes-all baseline.** Predictions obtained by assuming that, in every community, the member with the highest monoculture growth rate under the focal stress regime dominates completely (relative abundance 1; ties split evenly). Composition metrics are abundance-weighted R$^2$ and RMSE (as in Fig. 3a) plus per-sample means; "winner correct" is the fraction of communities in which the presumptive winner is indeed the observed dominant taxon. Biomass metrics use the same in-sample regression as the other baselines (OD ~ AWM $\times$ Stress + Diversity; Table S11), with the winner's growth rate as the AWM. The baseline fails for composition but approaches the full model for biomass, confirming that graded composition prediction is where the Bayesian model adds value, while yield is carried largely by the dominant, fastest-growing members.
+**Table S25 | Winner-takes-all baseline.** Predictions obtained by assuming that, in every community, the member with the highest monoculture growth rate under the focal stress regime dominates completely (relative abundance 1; ties split evenly). Composition metrics are abundance-weighted R$^2$ and RMSE (as in Fig. 3a) plus per-sample means; "winner correct" is the fraction of communities in which the presumptive winner is indeed the observed dominant taxon. Abundance metrics use the same in-sample regression as the other baselines (OD ~ AWM $\times$ Stress + Diversity; Table S11), with the winner's growth rate as the AWM. The baseline fails for composition but approaches the full model for abundance, confirming that graded composition prediction is where the Bayesian model adds value, while abundance is carried largely by the dominant, fastest-growing members.
 
 | **Model** | **comp wR^2^** | **comp wRMSE** | **Winner correct** | **OD R^2^** | **OD RMSE** |
 | --- | --- | --- | --- | --- | --- |
@@ -815,7 +815,7 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-![**Biomass predictions across baseline models.** Scatter of observed OD$_{600}$ versus predicted OD$_{600}$; dashed line = 1:1; points coloured by stress regime. (**a**) Observed AWM ("oracle") --- community predictions using abundance-weighted mean growth computed from observed compositions (RMSE and R$^2$ shown in panel). (**b**) Equal-abundance $\times$ g --- predictions using uniform taxon weights within each community. (**c**) Random community $\times$ g --- predictions using Dirichlet(1) random weights per community. Lower RMSE and higher R$^2$ indicate better fit. Numerical summaries are in Table S11.](../results/figures/Fig_S5.png){fig-pos="H"}
+![**Abundance (OD$_{600}$) predictions across baseline models.** Scatter of observed OD$_{600}$ versus predicted OD$_{600}$; dashed line = 1:1; points coloured by stress regime. (**a**) Observed AWM ("oracle") --- community predictions using abundance-weighted mean growth computed from observed compositions (RMSE and R$^2$ shown in panel). (**b**) Equal-abundance $\times$ g --- predictions using uniform taxon weights within each community. (**c**) Random community $\times$ g --- predictions using Dirichlet(1) random weights per community. Lower RMSE and higher R$^2$ indicate better fit. Numerical summaries are in Table S11.](../results/figures/Fig_S5.png){fig-pos="H"}
 
 {{< pagebreak >}}
 
@@ -823,11 +823,11 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-![**Out-of-sample (blocked CV) prediction of community biomass (OD$_{600}$) from the trait $\rightarrow$ composition $\rightarrow$ biomass pipeline.** Observed OD$_{600}$ at 48 h (y-axis) versus predicted OD$_{600}$ for held-out communities (x-axis) in blocked five-fold cross-validation (blocking by community identity, Com Id). Predictions were generated by (i) fitting the trait-based Bayesian softmax model on training communities to predict composition, (ii) converting predicted compositions to abundance-weighted mean growth (AWM), and (iii) mapping AWM to OD$_{600}$ using an OD regression fitted on the training data only. Colours indicate stress regime and point shapes indicate richness (2, 4, or 8 taxa). The dashed line is the 1:1 relationship. Overall test-set performance across folds is shown (RMSE = 0.12; R$^2$ = 0.82).](../results/figures/Fig_S7.png){fig-pos="H"}
+![**Out-of-sample (blocked CV) prediction of community abundance (OD$_{600}$) from the trait $\rightarrow$ composition $\rightarrow$ abundance pipeline.** Observed OD$_{600}$ at 48 h (y-axis) versus predicted OD$_{600}$ for held-out communities (x-axis) in blocked five-fold cross-validation (blocking by community identity, Com Id). Predictions were generated by (i) fitting the trait-based Bayesian softmax model on training communities to predict composition, (ii) converting predicted compositions to abundance-weighted mean growth (AWM), and (iii) mapping AWM to OD$_{600}$ using an OD regression fitted on the training data only. Colours indicate stress regime and point shapes indicate richness (2, 4, or 8 taxa). The dashed line is the 1:1 relationship. Overall test-set performance across folds is shown (RMSE = 0.12; R$^2$ = 0.82).](../results/figures/Fig_S7.png){fig-pos="H"}
 
 {{< pagebreak >}}
 
-![**Leave-one-stress-out prediction of community biomass.** Observed versus predicted OD$_{600}$ for communities in each held-out stress regime, predicted by a pipeline trained entirely on the other seven regimes, with an OD regression containing no stress terms (OD ~ AWM + richness). Colours denote the held-out regime; shapes denote richness; the dashed line is the 1:1 relationship. The systematic regime-specific offsets show that absolute yield does not extrapolate to unmeasured regimes, in contrast to composition prediction, which transfers with essentially undiminished accuracy (Table S20).](../results/figures/Fig_S8_losocv.png){fig-pos="H"}
+![**Leave-one-stress-out prediction of community abundance.** Observed versus predicted OD$_{600}$ for communities in each held-out stress regime, predicted by a pipeline trained entirely on the other seven regimes, with an OD regression containing no stress terms (OD ~ AWM + richness). Colours denote the held-out regime; shapes denote richness; the dashed line is the 1:1 relationship. The systematic regime-specific offsets show that absolute abundance does not extrapolate to unmeasured regimes, in contrast to composition prediction, which transfers with essentially undiminished accuracy (Table S20).](../results/figures/Fig_S8_losocv.png){fig-pos="H"}
 
 {{< pagebreak >}}
 
@@ -841,4 +841,4 @@ The Bayesian softmax (Dirichlet--multinomial) model was fitted using Hamiltonian
 
 Convergence was assessed by requiring all monitored parameters to satisfy $\hat{R} \leq 1.01$, have adequate bulk and tail effective sample sizes (n_eff), and produce no divergent transitions after warm-up. If any of these diagnostics indicated poor mixing, we increased `adapt_delta` toward 1.0 or extended the number of iterations and refit the model until all criteria were met. Posterior summaries and convergence diagnostics for key global parameters are reported in Table S14.
 
-To ensure full reproducibility, we fixed random seeds for each chain and cached compiled Stan models so that rerunning the pipeline produces identical posterior draws. For computational efficiency in downstream analyses (composition summaries, abundance-weighted mean growth calculations, and biomass predictions), we used a reproducible subsample of 400 posterior draws, which provided stable point estimates and credible intervals while reducing computation time for the multiple-imputation OD regression and cross-validation procedures.
+To ensure full reproducibility, we fixed random seeds for each chain and cached compiled Stan models so that rerunning the pipeline produces identical posterior draws. For computational efficiency in downstream analyses (composition summaries, abundance-weighted mean growth calculations, and abundance predictions), we used a reproducible subsample of 400 posterior draws, which provided stable point estimates and credible intervals while reducing computation time for the multiple-imputation OD regression and cross-validation procedures.
