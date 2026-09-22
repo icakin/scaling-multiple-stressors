@@ -1,4 +1,4 @@
 Model,R2,R2_lwr90,R2_upr90,RMSE,RMSE_lwr90,RMSE_upr90,Parameters,n
 Null (stress + richness only),0.496,NA,NA,0.204,NA,NA,10,171
-Additive trait term (Eq. 6),0.84,0.834,0.844,0.115,0.114,0.117,11,171
-Full model as fitted,0.881,0.878,0.883,0.099,0.098,0.1,18,171
+Additive trait term (Eq. 6),0.843,0.836,0.848,0.114,0.112,0.116,11,171
+Full model as fitted,0.882,0.879,0.884,0.099,0.098,0.1,18,171

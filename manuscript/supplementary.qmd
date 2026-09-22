@@ -523,19 +523,19 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
   **Temp**        116     0.134      0.831
 
-  **pH**          116     0.103      0.83
+  **pH**          116     0.102      0.83
 
   **pHTemp**      116     0.142      0.819
 
-  **pHSalTemp**   106     0.13       0.813
+  **pHSalTemp**   106     0.131      0.811
 
-  **SalTemp**     116     0.148      0.77
+  **Sal**         116     0.126      0.768
 
-  **Sal**         116     0.126      0.767
+  **SalTemp**     116     0.149      0.767
 
-  **Control**     116     0.122      0.75
+  **Control**     116     0.122      0.751
 
-  **pHSal**       112     0.151      0.691
+  **pHSal**       112     0.151      0.692
   --------------- ------- ---------- ----------
 
 {{< pagebreak >}}
@@ -587,9 +587,9 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
   **Control**     0.121      0.071
 
-  **Sal**         0.119      0.06
+  **Sal**         0.118      0.06
 
-  **SalTemp**     0.129      0.106
+  **SalTemp**     0.13       0.107
 
   **Temp**        0.129      0.08
 
@@ -597,7 +597,7 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
   **pHSal**       0.139      0.097
 
-  **pHSalTemp**   0.122      0.093
+  **pHSalTemp**   0.123      0.095
 
   **pHTemp**      0.133      0.1
   --------------- ---------- --------
@@ -687,15 +687,15 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
   ---------- -------- ------------ ------------ ------------ ------------ ------------ -----------
   **fold**   **n**    **OD min**   **OD q25**   **OD med**   **OD q75**   **OD max**   **OD sd**
 
-  **1**      40       0.087        0.382        **0.694**    0.792        1            **0.252**
+  **1**      40       0.087        0.382        **0.694**    0.792        0.995        **0.252**
 
-  **2**      40       0.040        0.183        **0.513**    0.682        1            **0.301**
+  **2**      40       0.040        0.183        **0.513**    0.682        1.032        **0.301**
 
-  **3**      32       0.040        0.183        **0.617**    0.684        1            **0.302**
+  **3**      32       0.040        0.183        **0.617**    0.684        1.005        **0.302**
 
-  **4**      32       0.040        0.400        **0.619**    0.825        1            **0.291**
+  **4**      32       0.040        0.400        **0.619**    0.825        1.087        **0.291**
 
-  **5**      32       0.362        0.571        **0.727**    0.860        1            **0.228**
+  **5**      32       0.362        0.571        **0.727**    0.860        1.265        **0.228**
   ---------- -------- ------------ ------------ ------------ ------------ ------------ -----------
 
 {{< pagebreak >}}
@@ -714,16 +714,16 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-**Table S19 | Decomposition of the abundance model: marginal contribution of the growth trait.** Models for community abundance (OD$_{600}$) compared by R$^2$, RMSE, and number of parameters. Null = fixed-effects-only model containing the stress (8 levels) and richness (3 levels) categorical terms but no trait term. Additive = the null model plus the abundance-weighted mean growth (AWM) term as a single additional parameter (Eq. 6, additive specification). Full = the model as fitted, with stress-specific AWM slopes. Adding the trait term yields a partial R$^2$ over the null of 0.68 (additive term) and 0.76 (full set of trait terms); the joint test of the trait terms in the full model gives F(8,153) = 61.9, *P* < 10$^{-43}$, and the AWM coefficient in the additive model is positive with t = 18.5. Values in brackets are 90% intervals (5th--95th percentiles) across 400 posterior draws of the composition model, propagated through the multiple-imputation refitting of the OD regression (scripts/08_biomass_decomposition.R). Note that the equal-abundance baseline (Table S11; R$^2$ = 0.766) is not a trait-free benchmark: it discards the composition weighting but retains the monoculture growth rates. Read as a ladder: no trait, R$^2$ = 0.50; trait without composition information, 0.77; trait with trait-predicted composition, 0.88.
+**Table S19 | Decomposition of the abundance model: marginal contribution of the growth trait.** Models for community abundance (OD$_{600}$) compared by R$^2$, RMSE, and number of parameters. Null = fixed-effects-only model containing the stress (8 levels) and richness (3 levels) categorical terms but no trait term. Additive = the null model plus the abundance-weighted mean growth (AWM) term as a single additional parameter (Eq. 6, additive specification). Full = the model as fitted, with stress-specific AWM slopes. Adding the trait term yields a partial R$^2$ over the null of 0.69 (additive term) and 0.76 (full set of trait terms); the joint test of the trait terms in the full model gives F(8,153) = 62.2, *P* < 10$^{-43}$, and the AWM coefficient in the additive model is positive with t = 18.8. Values in brackets are 90% intervals (5th--95th percentiles) across 400 posterior draws of the composition model, propagated through the multiple-imputation refitting of the OD regression (scripts/08_biomass_decomposition.R). Note that the equal-abundance baseline (Table S11; R$^2$ = 0.766) is not a trait-free benchmark: it discards the composition weighting but retains the monoculture growth rates. Read as a ladder: no trait, R$^2$ = 0.50; trait without composition information, 0.77; trait with trait-predicted composition, 0.88.
 
   -------------------------------------------- ------------------------ ------------------------- ----------------
   **Model for community abundance (OD$_{600}$)**   **R^2^ [90% CI]**        **RMSE [90% CI]**         **Parameters**
 
-  **Null (stress + richness only)**              0.50                     0.204                     10
+  **Null (stress + richness only)**              0.496                    0.204                     10
 
-  **Additive trait term (Eq. 6)**                0.84 [0.83, 0.84]       0.115 [0.114, 0.117]      11
+  **Additive trait term (Eq. 6)**                0.843 [0.836, 0.848]    0.114 [0.112, 0.116]      11
 
-  **Full model as fitted**                       0.88 [0.88, 0.88]       0.099 [0.098, 0.100]      18
+  **Full model as fitted**                       0.882 [0.879, 0.884]    0.099 [0.098, 0.100]      18
   -------------------------------------------- ------------------------ ------------------------- ----------------
 
 {{< pagebreak >}}
