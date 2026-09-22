@@ -772,7 +772,7 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-**Table S24 | Raw monoculture growth-rate estimates by taxon and stress regime.** Mean Gompertz exponential growth rates (h$^{-1}$; per-replicate estimates averaged per taxon $\times$ regime, converted from the per-minute model estimates) for the eight factorial stressor regimes. These are the raw values underlying the within-stress z-scores of Table S8 and Fig. 2, and the $g^{raw}$ values used in the abundance-weighted mean growth (Eq. 5). The full per-replicate data are in results/tables/Table_S24_raw_growth_rates.csv of the code repository.
+**Table S24 | Raw monoculture growth-rate estimates by taxon and stress regime.** Mean Gompertz exponential growth rates (h$^{-1}$; per-replicate estimates averaged per taxon $\times$ regime, converted from the per-minute model estimates) for the eight factorial stressor regimes. These are the raw values underlying the within-stress z-scores of Table S8 and Fig. 3, and the $g^{raw}$ values used in the abundance-weighted mean growth (Eq. 5). The full per-replicate data are in results/tables/Table_S24_raw_growth_rates.csv of the code repository.
 
 | **Id** | **Control** | **pH** | **Sal** | **Temp** | **pHSal** | **pHTemp** | **SalTemp** | **pHSalTemp** |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -791,7 +791,7 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-**Table S25 | Winner-takes-all baseline.** Predictions obtained by assuming that, in every community, the member with the highest monoculture growth rate under the focal stress regime dominates completely (relative abundance 1; ties split evenly). Composition metrics are abundance-weighted R$^2$ and RMSE (as in Fig. 3a) plus per-sample means; "winner correct" is the fraction of communities in which the presumptive winner is indeed the observed dominant taxon. Abundance metrics use the same in-sample regression as the other baselines (OD ~ AWM $\times$ Stress + Diversity; Table S11), with the winner's growth rate as the AWM. The baseline fails for composition but approaches the full model for abundance, confirming that graded composition prediction is where the Bayesian model adds value, while abundance is carried largely by the dominant, fastest-growing members.
+**Table S25 | Winner-takes-all baseline.** Predictions obtained by assuming that, in every community, the member with the highest monoculture growth rate under the focal stress regime dominates completely (relative abundance 1; ties split evenly). Composition metrics are abundance-weighted R$^2$ and RMSE (as in Fig. 4a) plus per-sample means; "winner correct" is the fraction of communities in which the presumptive winner is indeed the observed dominant taxon. Abundance metrics use the same in-sample regression as the other baselines (OD ~ AWM $\times$ Stress + Diversity; Table S11), with the winner's growth rate as the AWM. The baseline fails for composition but approaches the full model for abundance, confirming that graded composition prediction is where the Bayesian model adds value, while abundance is carried largely by the dominant, fastest-growing members.
 
 | **Model** | **comp wR^2^** | **comp wRMSE** | **Winner correct** | **OD R^2^** | **OD RMSE** |
 | --- | --- | --- | --- | --- | --- |
@@ -853,7 +853,7 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
 
 {{< pagebreak >}}
 
-![**Per-stress composition fits.** Predicted versus observed relative abundances for each stress regime (panels); points are communities coloured by richness (2, 4, 8). The dashed line is 1:1. Predictions are posterior means (x-axis; 90% credible intervals were used in Fig. 3 and model summaries). Panel annotations report the mean RMSE and Jensen--Shannon divergence (JS) for that stress. Numerical summaries corresponding to these panels are provided in Table S12.](../results/figures/Fig_S4.png){fig-pos="H"}
+![**Per-stress composition fits.** Predicted versus observed relative abundances for each stress regime (panels); points are communities coloured by richness (2, 4, 8). The dashed line is 1:1. Predictions are posterior means (x-axis; 90% credible intervals were used in Fig. 4 and model summaries). Panel annotations report the mean RMSE and Jensen--Shannon divergence (JS) for that stress. Numerical summaries corresponding to these panels are provided in Table S12.](../results/figures/Fig_S4.png){fig-pos="H"}
 
 {{< pagebreak >}}
 
