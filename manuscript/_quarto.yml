@@ -14,4 +14,4 @@ format:
   docx: default
 
 bibliography: references.bib
-csl: ecology-letters.csl
+csl: nature.csl

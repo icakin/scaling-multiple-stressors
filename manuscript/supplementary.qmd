@@ -1,7 +1,7 @@
 ---
-title: "Monoculture growth rates predict community assembly and abundance under multiple environmental stressors --- Supplementary Material"
+title: "Monoculture growth rates predict community assembly under multiple environmental stressors: Supplementary Material"
 bibliography: references.bib
-csl: ecology-letters.csl
+csl: nature.csl
 format:
   pdf:
     documentclass: article
@@ -569,13 +569,13 @@ Summary of within-regime standardised growth for each taxon. Columns: stress (tr
   ----------------------------------- ---------- ----------
   **Model**                           **RMSE**   **R^2^**
 
-  **Bayes AWM (MI)**                  0.099      0.881
+  **Bayes AWM (MI)**                  0.099      0.882
 
   **Observed AWM (oracle ceiling)**   0.105      0.865
 
   **Equal-abundance × g**            0.139      0.766
 
-  **Random × g**                     0.2        0.516
+  **Random × g**                     0.2        0.514
   ----------------------------------- ---------- ----------
 
 {{< pagebreak >}}
