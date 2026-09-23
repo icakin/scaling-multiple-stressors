@@ -39,7 +39,7 @@ Here we test whether monoculture growth rates predict the composition and abunda
 We expected composition and abundance to transfer differently. Under substitutive inoculation into a shared batch environment, relative abundance at the endpoint should track relative growth differences among co-occurring taxa, because small differences in growth rate compound over successive generations and fitness differences determine which taxa come to dominate [@Chesson2000; @Kraft2015]. Composition is a relative quantity, so the mapping from within-regime growth differences to relative abundance need not change among regimes, and should transfer to regimes and taxa whose growth rates are known. Community abundance, by contrast, is an absolute quantity, set by how much of the shared resource is converted into cells. It depends on yield as well as on growth rate, and growth and yield are distinct axes of microbial strategy that need not covary [@Litchman2008; @Malik2020]. We therefore expected abundance to track abundance-weighted growth within a regime [@Enquist2015] but to depend additionally on regime-specific yield, so that abundance forecasts would require calibration against community data from the focal regime.
 
 <!--
-FIGURE 1 DRAWING SPECIFICATION (placeholder below; no data in this figure).
+FIGURE 1 DRAWING SPECIFICATION (drawn by scripts/16_fig1_schematic.R; no data in this figure).
 Four panels, left to right or 2 x 2, flat vector style, same stress colours as Figs 2 and 4.
 (a) Design. A 2 x 2 x 2 cube whose axes are temperature (20 vs 38 C), pH (7.2 vs 5.5)
     and salinity (0 vs 20 g NaCl/L); eight labelled corners (Control, pH, Sal, Temp,
@@ -62,9 +62,7 @@ Four panels, left to right or 2 x 2, flat vector style, same stress colours as F
 
 ::: {#fig-1 fig-pos="htbp"}
 
-```{=latex}
-\fbox{\parbox[c][7cm][c]{0.92\textwidth}{\centering\large\textbf{[FIGURE 1 PLACEHOLDER: design schematic to be drawn]}\\[6pt]\normalsize Drawing specification in the source comment above this figure in manuscript.qmd.}}
-```
+![](../results/figures/Fig_1_design.png){width=100%}
 
 **A two-step design links monoculture reaction norms to community prediction and maps what transfers.** Experimental design (**a**): twelve bacterial taxa were assembled into 22 community compositions at three richness levels (*n* = 6 two-taxon, 6 four-taxon and 10 eight-taxon compositions), and each composition was grown for 48 h under all eight regimes of a 2 × 2 × 2 factorial design of temperature (20 vs 38 °C), pH (7.2 vs 5.5) and salinity (0 vs 20 g NaCl L$^{-1}$) (**Table 1**); endpoint composition was measured by 16S rRNA gene amplicon sequencing and abundance as OD$_{600}$. Step 1 (**b**): monoculture reaction norms, characterised once, supply a stress-specific growth rate for each taxon and regime; rank order among taxa changes between control and stress levels. Step 2 (**c**): within-regime growth rates are mapped to predicted relative abundances by a softmax with taxon offsets, and predicted compositions are converted to abundance-weighted mean growth (AWM) and then to predicted OD$_{600}$ through a regime-specific regression. Transfer tests (**d**): prediction was evaluated on communities, taxa, stress regimes and stressor combinations withheld from fitting.
 :::
