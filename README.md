@@ -96,6 +96,8 @@ Run it from the repository root, not from `scripts/`; all paths are relative to 
 
 ### Step-by-step
 
+Figure file names keep the numbering of the original pipeline, so they differ from the main-text figure numbers: `Fig_1` is main-text Fig. 2, `Fig_2_DOTPLOT_z_by_stress_compact` is Fig. 3, `Fig_3` forms panels a-b of Fig. 4, and `Fig_4` and `Fig_5` are Figs 4 and 5. Main-text Fig. 1 is a design schematic with no script.
+
 Each script is self-contained: it loads its own dependencies via `source("scripts/utils_functions.R")` and reads inputs from `data/` or `results/rds/`. Scripts must be run in numerical order because later scripts depend on RDS objects produced by earlier ones.
 
 #### Script 01 -- Data preprocessing
@@ -106,7 +108,7 @@ Loads raw ASV counts, taxonomy, sample metadata, and the phylogenetic tree; cons
 
 **Outputs:** `results/rds/{phyloseq_filtered, ASV_matrix_clean, metadata_clean, taxa_table}.rds`
 
-#### Script 02 -- Diversity, db-RDA and PERMANOVA (Fig. 1a-c)
+#### Script 02 -- Diversity, db-RDA and PERMANOVA (Fig. 2a-c)
 
 **File:** `scripts/02_fig1_diversity_permanova.R`
 
@@ -117,7 +119,7 @@ Computes Shannon diversity across stress treatments (ANOVA + Tukey post-hoc with
 - Tables: `Table_S5_Tukey_posthoc_effectsizes.csv`, `Table_S6_PERMANOVA_pairwise.csv`, `Shannon_ANOVA_effectsizes.csv`
 - Cached plots: `results/rds/{fig1a_plot, fig1b_plot, fig1c_plot}.rds`
 
-#### Script 03 -- Indicator species analysis (Fig. 1d) and composite Fig. 1
+#### Script 03 -- Indicator species analysis (Fig. 2d) and composite Fig. 2
 
 **File:** `scripts/03_fig1_indicator_species.R`
 
@@ -127,7 +129,7 @@ Runs indicator value analysis (IndVal.g via `indicspecies::multipatt`) with one-
 - Figures: `Fig_1d_ISA_Top1_1vsRest_singlepanel`, `Fig_1` (composite)
 - Table: `Table_S7_ISA_stats_full.csv`
 
-#### Script 04 -- Growth-rate z-scores (Fig. 2)
+#### Script 04 -- Growth-rate z-scores (Fig. 3)
 
 **File:** `scripts/04_fig2_growth_zscores.R`
 
@@ -138,18 +140,18 @@ Loads monoculture growth-rate fits from three stressor gradients (temperature, p
 - Tables: `Table_S8a_Growth_all_sources_stressors_long.csv`, `Table_S8_Zscores_summary.csv`
 - RDS: `Growth_all_sources_stressors_long.rds`, `Zscores_objects.rds`
 
-#### Script 05 -- Bayesian composition model, OD prediction and cross-validation (Fig. 3)
+#### Script 05 -- Bayesian composition model, OD prediction and cross-validation (Fig. 4a-b)
 
 **File:** `scripts/05_fig3_bayes_od.R`
 
 This is the most complex script, split into two parts:
 
-**Part A -- Model fitting and prediction.** Fits a Dirichlet-softmax Bayesian model (`softmax_dirichlet.stan`) via RStan that maps stress-standardised growth rates to community composition. The model estimates stress-regime-specific scaling parameters (kappa), optional taxon biases (delta), and a concentration parameter (phi). Posterior predicted compositions are converted to abundance-weighted mean growth (AWM), which is then regressed against observed OD to predict community biomass. Predictions are compared against three baselines: equal-abundance, random-Dirichlet, and an oracle using observed compositions. Stan diagnostics (divergences, R-hat, ESS) are exported.
+**Part A -- Model fitting and prediction.** Fits a Dirichlet-softmax Bayesian model (`softmax_dirichlet.stan`) via RStan that maps stress-standardised growth rates to community composition. The model estimates stress-regime-specific scaling parameters (kappa), optional taxon biases (delta), and a concentration parameter (phi). Posterior predicted compositions are converted to abundance-weighted mean growth (AWM), which is then regressed against observed OD to predict community abundance. Predictions are compared against three baselines: equal-abundance, random-Dirichlet, and an oracle using observed compositions. Stan diagnostics (divergences, R-hat, ESS) are exported.
 
 **Part B -- Blocked cross-validation.** Performs five-fold CV blocked by community identity (Com_Id): in each fold the composition model and OD regression are fit on training communities only, and composition accuracy (RMSE, Jensen-Shannon divergence) and OD accuracy (RMSE, R-squared) are evaluated on held-out communities. Stress-specific standardisation parameters are computed from training data only to prevent information leakage.
 
 **Outputs:**
-- Figures: `Fig_3a`, `Fig_3b`, `Fig_3` (composite), `Fig_S4` through `Fig_S7`
+- Figures: `Fig_3a`, `Fig_3b`, `Fig_3` (composite; panels a-b of main-text Fig. 4), `Fig_S4` through `Fig_S7`
 - Tables: `Table_S9` through `Table_S18` (composition metrics, LOO, JS divergence, model comparison, Stan diagnostics, CV summaries)
 - RDS: `bayes_pred_comp.rds`, `bayes_awms.rds`, `bayes_fit_partA.rds`, `bayes_cv_fold[1-5].rds`
 
@@ -173,7 +175,7 @@ Reads per-taxon OD time-series from `data/Cut_OD_data/`, fits all candidate grow
 
 Added while revising the manuscript after peer review; called by `scripts/run_all.R` after script 05. All source `scripts/utils_bayes_prep.R`, a shared helper that mirrors the data preparation of script 05 so results are directly comparable.
 
-#### Script 08 -- Biomass-model decomposition
+#### Script 08 -- Abundance-model decomposition
 
 **File:** `scripts/08_biomass_decomposition.R`. Quantifies the marginal contribution of the growth trait to the abundance (OD) regression by comparing the fixed-effects-only null model, the additive trait model, and the full model as fitted, with 90% intervals propagated across posterior draws. Requires the cached fit from script 05 Part A; no Stan refits.
 
@@ -243,7 +245,7 @@ where `g_z[j]` is the z-scored growth rate of taxon j under the focal stress reg
 The manuscript is a [Quarto manuscript project](https://quarto.org/docs/manuscripts/) in `manuscript/`. It consists of two documents:
 
 - **`manuscript.qmd`** -- Main text (title, abstract, introduction, results, discussion, methods and end matter)
-- **`supplementary.qmd`** -- Supplementary material (additional figures, tables S1-S25, supplementary methods)
+- **`supplementary.qmd`** -- Supplementary material (additional figures, Tables S1-S28, supplementary methods)
 
 Both documents share `references.bib` (BibTeX bibliography) and a CSL citation style file (`nature.csl`, the numbered Nature style used for the Nature Communications submission; `ecology-letters.csl` is kept for reference). Custom LaTeX preambles (`header.tex`, `header-supp.tex`) handle author affiliations, figure caption formatting ("**Fig. N |** Title"), line numbering, and supplementary figure numbering (S-prefix).
 
