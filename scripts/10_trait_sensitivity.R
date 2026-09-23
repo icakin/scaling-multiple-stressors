@@ -264,7 +264,9 @@ ggsave(P_FIG("Fig_S9_loglinear_vs_gompertz.tiff"), p_s9, width = 170, height = 1
 # ======================================================================
 message("[4/5] Running composition -> biomass pipeline per trait ...")
 
-sm <- compile_softmax(P_STAN("softmax_dirichlet_refit.stan"))
+# Compiled lazily: sm is a memoising function that compiles the model on
+# first call; fit_softmax_cached() calls it only when a cached fit is missing.
+sm <- local({ m <- NULL; function() { if (is.null(m)) m <<- compile_softmax(P_STAN("softmax_dirichlet_refit.stan")); m } })
 comm_od <- load_comm_od()
 
 # For lag, failed 'without-lag' style fits are structurally lag = 0;

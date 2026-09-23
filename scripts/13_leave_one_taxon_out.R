@@ -34,8 +34,10 @@ trait_r <- growth_table_default()
 prep    <- prep_bayes_data(trait_r)
 design  <- design_communities()
 
-message("[2/3] Compiling Stan model ...")
-sm <- compile_softmax(P_STAN("softmax_dirichlet_refit.stan"))
+message("[2/3] Stan model will be compiled only if a cached fit is missing ...")
+# Compiled lazily: sm is a memoising function that compiles the model on
+# first call; fit_softmax_cached() calls it only when a cached fit is missing.
+sm <- local({ m <- NULL; function() { if (is.null(m)) m <<- compile_softmax(P_STAN("softmax_dirichlet_refit.stan")); m } })
 
 message("[3/3] Leave-one-taxon-out over ", length(prep$taxa_levels), " taxa ...")
 

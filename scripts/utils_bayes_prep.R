@@ -522,6 +522,9 @@ fit_softmax_cached <- function(sm, stan_data, cache_path,
     message("  Loading cached fit: ", cache_path)
     return(readRDS(cache_path))
   }
+  # sm may be a compiled stanmodel or a function returning one (lazy
+  # compilation): compile only now that a fit is actually needed.
+  if (is.function(sm)) sm <- sm()
   fit <- rstan::sampling(
     sm, data = stan_data,
     chains = chains, iter = iter, warmup = warmup,

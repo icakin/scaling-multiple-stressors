@@ -50,8 +50,10 @@ blocks   <- sample(unique(prep$SAMPLES$Com_Id))
 fold_map <- setNames(rep_len(seq_len(K_FOLDS), length(blocks)), blocks)
 prep$SAMPLES$fold <- as.integer(fold_map[prep$SAMPLES$Com_Id])
 
-message("[2/3] Compiling Stan model ...")
-sm <- compile_softmax(P_STAN("softmax_dirichlet_refit.stan"))
+message("[2/3] Stan model will be compiled only if a cached fit is missing ...")
+# Compiled lazily: sm is a memoising function that compiles the model on
+# first call; fit_softmax_cached() calls it only when a cached fit is missing.
+sm <- local({ m <- NULL; function() { if (is.null(m)) m <<- compile_softmax(P_STAN("softmax_dirichlet_refit.stan")); m } })
 
 # ---------------------- Helpers --------------------------------------
 dirichlet_lpdf <- function(x, alpha) {

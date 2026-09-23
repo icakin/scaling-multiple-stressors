@@ -61,8 +61,10 @@ SAMPLES_cv  <- prep$SAMPLES
 stress_lvls <- prep$stress_lvls
 K_eff       <- length(stress_lvls)
 
-message("[2/3] Compiling Stan model ...")
-sm_cv <- compile_softmax(P_STAN("softmax_dirichlet_refit.stan"))
+message("[2/3] Stan model will be compiled only if a cached fit is missing ...")
+# Compiled lazily: sm is a memoising function that compiles the model on
+# first call; fit_softmax_cached() calls it only when a cached fit is missing.
+sm_cv <- local({ m <- NULL; function() { if (is.null(m)) m <<- compile_softmax(P_STAN("softmax_dirichlet_refit.stan")); m } })
 
 # ---------------------- LOSO loop ------------------------------------
 message("[3/3] Running LOSO CV over ", K_eff, " stress regimes ...")

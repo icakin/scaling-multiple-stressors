@@ -1707,7 +1707,7 @@ model {
 '
 
 writeLines(paste0(stan_code_cv, "\n"), P_STAN("softmax_dirichlet_blockedcv.stan"))
-sm_cv <- rstan::stan_model(P_STAN("softmax_dirichlet_blockedcv.stan"))
+# The blocked-CV model is compiled only if a fold fit is missing (see below).
 
 # ======================================================================
 # OD DATA (for CV)
@@ -1917,6 +1917,9 @@ for (k in seq_len(K_eff)) {
     message("  Loading cached CV fold ", k, " from ", cv_fold_cache)
     fit_cv <- readRDS(cv_fold_cache)
   } else {
+    if (!exists("sm_cv", inherits = FALSE)) {
+      sm_cv <- rstan::stan_model(P_STAN("softmax_dirichlet_blockedcv.stan"))
+    }
     fit_cv <- rstan::sampling(
       sm_cv,
       data    = train_obj$stan_data,
