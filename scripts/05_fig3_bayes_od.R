@@ -419,7 +419,7 @@ generated quantities {
 '
 
 # Ensure Stan file ends with a trailing newline
-writeLines(paste0(stan_dirichlet, "\n"), "softmax_dirichlet.stan")
+writeLines(paste0(stan_dirichlet, "\n"), P_STAN("softmax_dirichlet.stan"))
 
 # --- RDS cache: skip refitting if cached fit exists ---
 fit_cache <- P_RDS("bayes_fit_partA.rds")
@@ -427,7 +427,7 @@ if (file.exists(fit_cache)) {
   message("[4a/6] Loading cached Stan fit from ", fit_cache)
   fit <- readRDS(fit_cache)
 } else {
-  sm <- rstan::stan_model("softmax_dirichlet.stan")
+  sm <- rstan::stan_model(P_STAN("softmax_dirichlet.stan"))
 
   stan_data <- list(
     N         = N,
@@ -1706,8 +1706,8 @@ model {
 }
 '
 
-writeLines(paste0(stan_code_cv, "\n"), "softmax_dirichlet_blockedcv.stan")
-sm_cv <- rstan::stan_model("softmax_dirichlet_blockedcv.stan")
+writeLines(paste0(stan_code_cv, "\n"), P_STAN("softmax_dirichlet_blockedcv.stan"))
+sm_cv <- rstan::stan_model(P_STAN("softmax_dirichlet_blockedcv.stan"))
 
 # ======================================================================
 # OD DATA (for CV)

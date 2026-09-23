@@ -508,7 +508,7 @@ model {
 }
 
 # Compile the CV/refit Stan model once per session
-compile_softmax <- function(stan_file = "softmax_dirichlet_refit.stan") {
+compile_softmax <- function(stan_file = P_STAN("softmax_dirichlet_refit.stan")) {
   writeLines(paste0(stan_softmax_code(), "\n"), stan_file)
   rstan::stan_model(stan_file)
 }

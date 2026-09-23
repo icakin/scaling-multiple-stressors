@@ -23,9 +23,10 @@ DIR_INPUT  <- "data"
 DIR_TABLES <- "results/tables"
 DIR_FIGS   <- "results/figures"
 DIR_RDS    <- "results/rds"
+DIR_STAN   <- "results/stan"
 
 invisible(lapply(
-  c(DIR_INPUT, DIR_TABLES, DIR_FIGS, DIR_RDS),
+  c(DIR_INPUT, DIR_TABLES, DIR_FIGS, DIR_RDS, DIR_STAN),
   function(p) if (!dir.exists(p)) dir.create(p, recursive = TRUE)
 ))
 
@@ -33,6 +34,7 @@ P_IN  <- function(...) file.path(DIR_INPUT,  ...)
 P_TAB <- function(...) file.path(DIR_TABLES, ...)
 P_FIG <- function(...) file.path(DIR_FIGS,   ...)
 P_RDS <- function(...) file.path(DIR_RDS,    ...)
+P_STAN <- function(...) file.path(DIR_STAN,  ...)
 
 # ---- Global settings ----
 set.seed(123)

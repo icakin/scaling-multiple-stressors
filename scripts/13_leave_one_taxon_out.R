@@ -35,7 +35,7 @@ prep    <- prep_bayes_data(trait_r)
 design  <- design_communities()
 
 message("[2/3] Compiling Stan model ...")
-sm <- compile_softmax("softmax_dirichlet_refit.stan")
+sm <- compile_softmax(P_STAN("softmax_dirichlet_refit.stan"))
 
 message("[3/3] Leave-one-taxon-out over ", length(prep$taxa_levels), " taxa ...")
 

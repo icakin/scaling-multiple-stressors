@@ -62,7 +62,7 @@ stress_lvls <- prep$stress_lvls
 K_eff       <- length(stress_lvls)
 
 message("[2/3] Compiling Stan model ...")
-sm_cv <- compile_softmax("softmax_dirichlet_refit.stan")
+sm_cv <- compile_softmax(P_STAN("softmax_dirichlet_refit.stan"))
 
 # ---------------------- LOSO loop ------------------------------------
 message("[3/3] Running LOSO CV over ", K_eff, " stress regimes ...")

@@ -1,6 +1,11 @@
 # ── Prompts (internal working notes, not for distribution) ──
 prompts/
 
+# ── Internal, not for distribution ──
+reviews/
+ele_submission/
+.claude/
+
 # ── macOS ──
 .DS_Store
 

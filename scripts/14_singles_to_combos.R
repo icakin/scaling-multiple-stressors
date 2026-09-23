@@ -44,7 +44,7 @@ message("Train (singles): ", length(train_ids), " samples | Test (combos): ",
         length(test_ids), " samples")
 
 message("[2/3] Compiling and fitting on single-stressor regimes ...")
-sm <- compile_softmax("softmax_dirichlet_refit.stan")
+sm <- compile_softmax(P_STAN("softmax_dirichlet_refit.stan"))
 
 train_obj <- build_ragged(prep$ord_full, train_ids, prep$taxa_levels,
                           prep$stress_lvls, prep$rich_lvls, FALSE, 1L)

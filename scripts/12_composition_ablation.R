@@ -51,7 +51,7 @@ fold_map <- setNames(rep_len(seq_len(K_FOLDS), length(blocks)), blocks)
 prep$SAMPLES$fold <- as.integer(fold_map[prep$SAMPLES$Com_Id])
 
 message("[2/3] Compiling Stan model ...")
-sm <- compile_softmax("softmax_dirichlet_refit.stan")
+sm <- compile_softmax(P_STAN("softmax_dirichlet_refit.stan"))
 
 # ---------------------- Helpers --------------------------------------
 dirichlet_lpdf <- function(x, alpha) {

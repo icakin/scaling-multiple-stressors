@@ -18,24 +18,25 @@ scaling-multiple-stressors/
 |
 |-- data/                          # Raw input data (CSV, TSV, Newick tree)
 |-- scripts/                       # R analysis scripts (numbered pipeline)
+|   |-- run_all.R                  # Entry point: runs the full pipeline (run from repo root)
+|   |-- 15_main_figures.R          # Builds main-text Figs 4 and 5 into results/figures/
 |-- results/
-|   |-- figures/                   # Output figures (PNG, TIFF)
+|   |-- figures/                   # Output figures (PNG, TIFF), including main-text Figs 4-5
 |   |-- tables/                    # Output tables (CSV)
-|   |-- rds/                       # Cached R objects (RDS)
+|   |-- rds/                       # Cached R objects (RDS), including cached Stan fits
+|   |-- stan/                      # Stan model files (.stan) and compiled model caches (.rds)
 |
 |-- manuscript/                    # Quarto manuscript project
 |   |-- manuscript.qmd             # Main text
 |   |-- supplementary.qmd          # Supplementary material
 |   |-- references.bib             # Bibliography
-|   |-- ecology-letters.csl        # Citation style
+|   |-- nature.csl                 # Citation style (Nature, numbered)
+|   |-- ecology-letters.csl        # Previous citation style (kept for reference)
 |   |-- header.tex                 # LaTeX preamble (main)
 |   |-- header-supp.tex            # LaTeX preamble (supplementary)
 |   |-- _quarto.yml                # Quarto project configuration
 |   |-- _output/                   # Rendered PDFs and DOCX (not tracked)
 |
-|-- softmax_dirichlet.stan         # Bayesian composition model (Stan)
-|-- softmax_dirichlet_blockedcv.stan  # Same model, cross-validation variant
-|-- run_all.R                      # Entry point: runs the full pipeline
 |-- Rproject.Rproj                 # RStudio project file
 |-- LICENSE                        # MIT License
 ```
@@ -88,10 +89,10 @@ See `data/README_DATA.txt` for further details on data provenance and column def
 From the project root in R (or RStudio with `Rproject.Rproj` open):
 
 ```r
-source("run_all.R")
+source("scripts/run_all.R")
 ```
 
-This executes scripts 01-05 in order and saves a `results/sessionInfo.txt` log. The full pipeline takes approximately 30-60 minutes depending on hardware, with the Bayesian model fitting in script 05 accounting for most of the runtime. Stan model fits are cached as RDS files; subsequent runs skip refitting if the cache exists.
+Run it from the repository root, not from `scripts/`; all paths are relative to the root. This executes scripts 01-05 and 08-15 in order and saves a `results/sessionInfo.txt` log. Scripts 01-05 alone take approximately 30-60 minutes depending on hardware, with the Bayesian model fitting in script 05 accounting for most of that; scripts 09, 10, 12, 13 and 14 add further Stan fits. Stan model fits are cached as RDS files; subsequent runs skip refitting if the cache exists.
 
 ### Step-by-step
 
@@ -168,9 +169,9 @@ Defines parametric growth-curve functions (Baranyi, Gompertz, Buchanan, logistic
 
 Reads per-taxon OD time-series from `data/Cut_OD_data/`, fits all candidate growth models via `nls.multstart`, selects the best model per curve by AICc, and exports fitted parameters and diagnostic plots (Figs. S1-S3). Results feed into the growth-rate CSV files in `data/` used by the main pipeline.
 
-### Reviewer-response analysis scripts (08-11)
+### Reviewer-response analysis scripts (08-14)
 
-Added while revising the manuscript after peer review; not called by `run_all.R`. All source `scripts/utils_bayes_prep.R`, a shared helper that mirrors the data preparation of script 05 so results are directly comparable.
+Added while revising the manuscript after peer review; called by `scripts/run_all.R` after script 05. All source `scripts/utils_bayes_prep.R`, a shared helper that mirrors the data preparation of script 05 so results are directly comparable.
 
 #### Script 08 -- Biomass-model decomposition
 
@@ -214,13 +215,19 @@ Added while revising the manuscript after peer review; not called by `run_all.R`
 
 **Outputs:** `Table_S28_singles_to_combos.csv`
 
+#### Script 15 -- Main-text Figures 4 and 5
+
+**File:** `scripts/15_main_figures.R`. Builds main-text Fig. 4 (composition and abundance prediction, with the decomposition ladder and winner-takes-all panels) and Fig. 5 (transfer tests) from existing tables in `results/tables/`; no model fitting.
+
+**Outputs:** `Fig_4.png`, `Fig_5.png` in `results/figures/`
+
 ## Stan models
 
-Three Stan files in the project root implement the Dirichlet-softmax composition model:
+Three Stan files in `results/stan/` implement the Dirichlet-softmax composition model:
 
 - **`softmax_dirichlet.stan`** -- Full model with `generated quantities` block that computes per-observation log-likelihoods for LOO-CV via the `loo` package.
 - **`softmax_dirichlet_blockedcv.stan`** -- Identical model structure but without `generated quantities`, used during blocked cross-validation (where LOO is not needed and omitting it speeds up sampling).
-- **`softmax_dirichlet_refit.stan`** -- The same model written in the current Stan array syntax (required by rstan >= 2.33 / Stan >= 2.33), generated and used by the reviewer-response scripts 09-10. Scripts 01-05 still embed the older syntax and need rstan < 2.33, or the same syntax update, to recompile from scratch; their cached fits are unaffected.
+- **`softmax_dirichlet_refit.stan`** -- The same model written in the current Stan array syntax (required by rstan >= 2.33 / Stan >= 2.33), generated by `compile_softmax()` in `scripts/utils_bayes_prep.R` and compiled by scripts 09, 10, 12, 13 and 14. Scripts 01-05 still embed the older syntax and need rstan < 2.33, or the same syntax update, to recompile from scratch; their cached fits are unaffected.
 
 Both models parameterise relative abundance as:
 
@@ -238,7 +245,7 @@ The manuscript is a [Quarto manuscript project](https://quarto.org/docs/manuscri
 - **`manuscript.qmd`** -- Main text (title, abstract, introduction, methods, results, discussion, conclusions)
 - **`supplementary.qmd`** -- Supplementary material (additional figures, tables S1-S25, supplementary methods)
 
-Both documents share `references.bib` (BibTeX bibliography) and a CSL citation style file (currently `ecology-letters.csl`; swap for the target journal's style at submission). Custom LaTeX preambles (`header.tex`, `header-supp.tex`) handle author affiliations, figure caption formatting ("**Fig. N |** Title"), line numbering, and supplementary figure numbering (S-prefix).
+Both documents share `references.bib` (BibTeX bibliography) and a CSL citation style file (`nature.csl`, the numbered Nature style used for the Nature Communications submission; `ecology-letters.csl` is kept for reference). Custom LaTeX preambles (`header.tex`, `header-supp.tex`) handle author affiliations, figure caption formatting ("**Fig. N |** Title"), line numbering, and supplementary figure numbering (S-prefix).
 
 ### Rendering the manuscript
 
@@ -256,7 +263,7 @@ The supplementary document must be rendered outside the Quarto manuscript projec
 PROJDIR=$(pwd)/..
 TMPDIR=$(mktemp -d)
 mkdir -p "$TMPDIR/manuscript"
-cp supplementary.qmd references.bib nature-microbiology.csl header-supp.tex "$TMPDIR/manuscript/"
+cp supplementary.qmd references.bib nature.csl header-supp.tex "$TMPDIR/manuscript/"
 ln -s "$PROJDIR/results" "$TMPDIR/results"
 cd "$TMPDIR/manuscript"
 quarto render supplementary.qmd --to pdf
@@ -271,7 +278,7 @@ Rendered outputs are written to `manuscript/_output/` (not tracked by git).
 `scripts/utils_functions.R` is sourced by every analysis script and provides:
 
 - **`ensure_packages()`** -- Installs missing CRAN and Bioconductor packages on first run.
-- **Path helpers** -- `P_IN()`, `P_TAB()`, `P_FIG()`, `P_RDS()` return paths into `data/`, `results/tables/`, `results/figures/`, and `results/rds/` respectively, creating directories if needed.
+- **Path helpers** -- `P_IN()`, `P_TAB()`, `P_FIG()`, `P_RDS()`, `P_STAN()` return paths into `data/`, `results/tables/`, `results/figures/`, `results/rds/` and `results/stan/` respectively, creating directories if needed.
 - **Stress labels and palettes** -- An eight-level factor (`Control`, `pH`, `Sal`, `Temp`, `pH x Sal`, `pH x Temp`, `Sal x Temp`, `pH x Sal x Temp`) with a consistent colour palette used across all figures.
 - **Global settings** -- Random seed (123), Stan parallel cores, `stringsAsFactors = FALSE`.
 
@@ -280,7 +287,7 @@ Rendered outputs are written to `manuscript/_output/` (not tracked by git).
 1. **Clone the repository** and open `Rproject.Rproj` in RStudio (or set the working directory to the project root).
 2. **Run the pipeline:**
    ```r
-   source("run_all.R")
+   source("scripts/run_all.R")   # from the repository root
    ```
    On first run this will install all required R packages, fit the Stan models (cached for subsequent runs), and produce all figures and tables in `results/`.
 3. **Render the manuscript** (requires Quarto and a LaTeX distribution):

@@ -1,9 +1,10 @@
 # ======================================================================
-# manuscript/figures/make_figures.R
+# 15_main_figures.R
 #
 # Builds the two main-text figures added for the Nature Communications
 # version of the manuscript. Reads only existing outputs in results/
-# (no refitting, no new statistics) and writes only to manuscript/figures/.
+# (no refitting, no new statistics) and writes Fig_4.png and Fig_5.png to
+# results/figures/.
 #
 #   Fig_4.png  current Fig. 3 (panels a, b) plus the abundance
 #              decomposition ladder (c; Tables S11, S19, S25) and the
@@ -13,16 +14,17 @@
 #              (Tables S15, S16, S20, S28), and leave-one-taxon-out
 #              rank agreement (c) and error (d) (Table S27)
 #
-# Run from the repository root:  Rscript manuscript/figures/make_figures.R
+# Run from the repository root:  Rscript scripts/15_main_figures.R
 # ======================================================================
 
+source("scripts/utils_functions.R")
 suppressPackageStartupMessages({
   library(ggplot2); library(dplyr); library(readr)
   library(patchwork); library(png); library(grid); library(ragg)
 })
 
-TAB <- function(f) file.path("results/tables", f)
-OUT <- function(f) file.path("manuscript/figures", f)
+TAB <- P_TAB
+OUT <- P_FIG
 
 COL_COMP <- "#2a78d6"   # composition (blue)
 COL_ABUN <- "#eb6834"   # abundance (orange)
@@ -102,7 +104,7 @@ p4d <- ggplot(wta, aes(x = value, y = y)) +
   theme_fig() + theme(legend.position = "top", legend.justification = "left",
                       legend.margin = margin(0, 0, 0, 0))
 
-top <- wrap_elements(full = rasterGrob(readPNG("results/figures/Fig_3.png"), interpolate = TRUE))
+top <- wrap_elements(full = rasterGrob(readPNG(P_FIG("Fig_3.png")), interpolate = TRUE))
 fig4 <- top / (p4c | p4d + plot_layout(widths = 1)) + plot_layout(heights = c(1.05, 0.75))
 ggsave(OUT("Fig_4.png"), fig4, width = 260, height = 175, units = "mm", dpi = 300, device = ragg::agg_png, bg = "white")
 
@@ -187,4 +189,4 @@ p5d <- ggplot(loto_long, aes(x = value, y = name)) +
 fig5 <- (p5a | p5b) / (p5c | p5d) + plot_layout(heights = c(1, 1.1))
 ggsave(OUT("Fig_5.png"), fig5, width = 200, height = 190, units = "mm", dpi = 300, device = ragg::agg_png, bg = "white")
 
-message("Wrote manuscript/figures/Fig_4.png and Fig_5.png")
+message("Wrote ", P_FIG("Fig_4.png"), " and ", P_FIG("Fig_5.png"))
