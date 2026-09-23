@@ -73,7 +73,7 @@ All raw data files live in `data/`:
 | `ASV.tax.tsv` | Taxonomic assignments for each ASV |
 | `Sequencing_metadata2.csv` | Sample metadata (stress treatment, richness, community identity) |
 | `ASV1-13_tree.txt` | Phylogenetic tree (Newick format) |
-| `ALl_Abundance_Data.csv` | Observed community relative abundances |
+| `All_Abundance_Data.csv` | Observed community relative abundances |
 | `CommunityOD_All_Jan23_edit_zeros.csv` | Community-level OD measurements |
 | `LogisticGrowth_AllOTUs_gompertz_pH_zeros_edited.csv` | Monoculture growth-curve fits (pH gradient) |
 | `LogisticGrowth_AllOTUs_gompertz_Temp_zeros.csv` | Monoculture growth-curve fits (temperature gradient) |

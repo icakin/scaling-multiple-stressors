@@ -72,9 +72,9 @@ recode_stress <- function(x) {
   )
 }
 
-# Resolve a data file case-insensitively (the abundance file is named
-# "ALl_Abundance_Data.csv" on disk; macOS filesystems are usually
-# case-insensitive but Linux is not).
+# Resolve a data file case-insensitively. Kept as a guard: macOS filesystems
+# ignore case, Linux does not, and a mis-cased filename fails only on the
+# latter.
 resolve_input <- function(fname) {
   p <- P_IN(fname)
   if (file.exists(p)) return(p)
@@ -233,6 +233,18 @@ load_comm_od <- function() {
 
 # ---------------------- ALIGN & STRUCTURE ----------------------------
 # trait_tbl: Id, Stress, g, g_z (from make_trait_table)
+# Fixed regime order for the Stan stress index.
+#
+# This order MUST NOT change: every cached fit in results/rds/ was trained
+# with kappa[s, ] indexed in this order, so a different order silently
+# assigns each regime another regime's slope. It was previously derived by
+# sort(unique(...)), whose result depends on the machine's collation locale
+# (macOS ICU: case-insensitive; Linux C locale: uppercase first), which made
+# the deposited tables irreproducible across platforms. The order below is
+# the one the fits were trained with.
+STRESS_LEVELS <- c("Control", "pH", "pHSal", "pHSalTemp", "pHTemp",
+                   "Sal", "SalTemp", "Temp")
+
 prep_bayes_data <- function(trait_tbl, design = design_communities()) {
 
   abund_complete <- load_abundance(design)
@@ -266,7 +278,7 @@ prep_bayes_data <- function(trait_tbl, design = design_communities()) {
     ord_full    = ord_full,
     SAMPLES     = SAMPLES,
     taxa_levels = taxa_levels,
-    stress_lvls = sort(unique(SAMPLES$Stress)),
+    stress_lvls = STRESS_LEVELS[STRESS_LEVELS %in% SAMPLES$Stress],
     rich_lvls   = sort(unique(SAMPLES$Diversity))
   )
 }

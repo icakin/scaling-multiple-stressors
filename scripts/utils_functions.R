@@ -9,13 +9,23 @@ ensure_packages <- function() {
     "broom","car","effectsize","emmeans","readr","permute","indicspecies","ragg",
     "rstan","loo","philentropy"
   )
+  # Install what is missing, but never abort the run over it: phyloseq and
+  # ggtree are Bioconductor packages and pairwiseAdonis is GitHub-only, none
+  # of which the Bayesian scripts (05 onward) need. A script that does need
+  # a missing package fails at its own library() call with a clear message.
   to_install <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
-  if (length(to_install)) install.packages(to_install)
-  if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")
-  if (!"pairwiseAdonis" %in% installed.packages()[,1]) {
-    devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
+  if (length(to_install)) {
+    try(utils::install.packages(to_install), silent = TRUE)
+    if (!requireNamespace("pairwiseAdonis", quietly = TRUE)) {
+      if (!requireNamespace("devtools", quietly = TRUE)) try(utils::install.packages("devtools"), silent = TRUE)
+      if (requireNamespace("devtools", quietly = TRUE))
+        try(devtools::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis"), silent = TRUE)
+    }
   }
-  invisible(lapply(pkgs, require, character.only = TRUE))
+  still_missing <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
+  if (length(still_missing))
+    message("Note: not installed (needed only by some scripts): ", paste(still_missing, collapse = ", "))
+  invisible(lapply(setdiff(pkgs, still_missing), require, character.only = TRUE))
 }
 
 # ---- Paths ----
