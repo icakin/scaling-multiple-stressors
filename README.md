@@ -1,15 +1,15 @@
-# Monoculture growth rates predict community assembly and abundance under multiple environmental stressors
+# Monoculture growth rates predict community assembly under multiple environmental stressors
 
 This repository contains all code, data, and manuscript source files for:
 
 **Carmichael H.\*, Cakin I.\*, Busi S.B., Read D. & Yvon-Durocher G.**
-*Monoculture growth rates predict community assembly and abundance under multiple environmental stressors.*
+*Monoculture growth rates predict community assembly under multiple environmental stressors.*
 
 \* These authors contributed equally.
 
 ## Overview
 
-We show that stress-specific monoculture growth rates predict how synthetic bacterial communities assemble and their total abundance under factorial combinations of temperature, pH and salinity. A Bayesian softmax model maps taxon-level growth rates to relative abundances across stress regimes, and an abundance-weighted mean growth metric links predicted composition to endpoint community abundance (optical density at 600 nm). Cross-validation shows that composition prediction generalises both to unseen communities and to entirely unmeasured stress regimes, whereas absolute abundance requires the focal regime in the calibration data. The analysis pipeline runs from raw amplicon-sequencing and growth-curve data through to publication-ready figures and a typeset manuscript, and includes a full set of reviewer-response analyses (scripts 08-11; Tables S19-S25).
+We show that stress-specific monoculture growth rates predict how defined bacterial communities assemble under factorial combinations of temperature, pH and salinity. A Bayesian softmax model maps taxon-level growth rates to relative abundances across stress regimes, and an abundance-weighted mean growth metric links predicted composition to endpoint community abundance (optical density at 600 nm). Composition prediction transfers to unseen communities, to the rank order of taxa absent from every fitted community, to stress regimes lacking community data and to stressor combinations calibrated only on single stressors, whereas absolute abundance is predicted accurately only within calibrated regimes, where it is carried by the dominant, fastest-growing members. The analysis pipeline runs from raw amplicon-sequencing and growth-curve data through to publication-ready figures and a typeset manuscript, and includes the reviewer-response and transfer analyses (scripts 08-15; Tables S19-S28).
 
 ## Repository structure
 
@@ -92,7 +92,7 @@ From the project root in R (or RStudio with `Rproject.Rproj` open):
 source("scripts/run_all.R")
 ```
 
-Run it from the repository root, not from `scripts/`; all paths are relative to the root. This executes scripts 01-05 and 08-15 in order and saves a `results/sessionInfo.txt` log. Scripts 01-05 alone take approximately 30-60 minutes depending on hardware, with the Bayesian model fitting in script 05 accounting for most of that; scripts 09, 10, 12, 13 and 14 add further Stan fits. Stan model fits are cached as RDS files; subsequent runs skip refitting if the cache exists.
+Run it from the repository root, not from `scripts/`; all paths are relative to the root. This executes scripts 01-15 in order and saves a `results/sessionInfo.txt` log. Scripts 01-05 alone take approximately 30-60 minutes depending on hardware, with the Bayesian model fitting in script 05 accounting for most of that; scripts 09, 10, 12, 13 and 14 add further Stan fits. Stan model fits are cached as RDS files; subsequent runs skip refitting if the cache exists.
 
 ### Step-by-step
 
@@ -155,7 +155,7 @@ This is the most complex script, split into two parts:
 
 ### Supplementary growth-curve scripts
 
-These two scripts support the monoculture growth-curve fitting that produced the input data for the main pipeline. They are not called by `run_all.R` but can be run independently.
+These two scripts support the monoculture growth-curve fitting that produced the input data for the main pipeline. They are called by `scripts/run_all.R` after script 05 and can also be run independently.
 
 #### Script 06 -- Growth model library
 
@@ -242,7 +242,7 @@ where `g_z[j]` is the z-scored growth rate of taxon j under the focal stress reg
 
 The manuscript is a [Quarto manuscript project](https://quarto.org/docs/manuscripts/) in `manuscript/`. It consists of two documents:
 
-- **`manuscript.qmd`** -- Main text (title, abstract, introduction, methods, results, discussion, conclusions)
+- **`manuscript.qmd`** -- Main text (title, abstract, introduction, results, discussion, methods and end matter)
 - **`supplementary.qmd`** -- Supplementary material (additional figures, tables S1-S25, supplementary methods)
 
 Both documents share `references.bib` (BibTeX bibliography) and a CSL citation style file (`nature.csl`, the numbered Nature style used for the Nature Communications submission; `ecology-letters.csl` is kept for reference). Custom LaTeX preambles (`header.tex`, `header-supp.tex`) handle author affiliations, figure caption formatting ("**Fig. N |** Title"), line numbering, and supplementary figure numbering (S-prefix).

@@ -29,6 +29,9 @@ manuscript/*_files/
 *.fdb_latexmk
 *.synctex.gz
 
+# ── Compiled Stan model caches (build artifacts, not results) ──
+results/stan/*.rds
+
 # ── Temp files ──
 *.tmp
 .mailmap
