@@ -1,12 +1,5 @@
 ---
 title: "Monoculture growth rates predict community assembly under multiple environmental stressors"
-# Title candidates for co-author choice; the first is the working title.
-# Constraint, whichever is chosen: the title must not claim out-of-regime
-# abundance prediction (abundance does not transfer beyond calibrated regimes).
-#   1. Monoculture growth rates predict community assembly under multiple environmental stressors
-#   2. Growth rate predicts microbial community composition across untested taxa and stressor combinations
-#   3. A single response trait predicts community composition, but not abundance, across environments
-#   4. Monoculture growth rates transfer across taxa and environments to predict community assembly
 format:
   pdf:
     include-in-header:
@@ -38,28 +31,6 @@ Here we test whether monoculture growth rates predict the composition and abunda
 
 We expected composition and abundance to transfer differently. Under substitutive inoculation into a shared batch environment, relative abundance at the endpoint should track relative growth differences among co-occurring taxa, because small differences in growth rate compound over successive generations and fitness differences determine which taxa come to dominate [@Chesson2000; @Kraft2015]. Composition is a relative quantity, so the mapping from within-regime growth differences to relative abundance need not change among regimes, and should transfer to regimes and taxa whose growth rates are known. Community abundance, by contrast, is an absolute quantity, set by how much of the shared resource is converted into cells. It depends on yield as well as on growth rate, and growth and yield are distinct axes of microbial strategy that need not covary [@Litchman2008; @Malik2020]. We therefore expected abundance to track abundance-weighted growth within a regime [@Enquist2015] but to depend additionally on regime-specific yield, so that abundance forecasts would require calibration against community data from the focal regime.
 
-<!--
-FIGURE 1 DRAWING SPECIFICATION (drawn by scripts/16_fig1_schematic.R; no data in this figure).
-Four panels, left to right or 2 x 2, flat vector style, same stress colours as Figs 2 and 4.
-(a) Design. A 2 x 2 x 2 cube whose axes are temperature (20 vs 38 C), pH (7.2 vs 5.5)
-    and salinity (0 vs 20 g NaCl/L); eight labelled corners (Control, pH, Sal, Temp,
-    pHSal, pHTemp, SalTemp, pHSalTemp). Beside it, a pool of twelve taxa (coloured dots)
-    drawn into communities of two, four and eight taxa (6, 6 and 10 compositions; 22 total),
-    each assembled in every regime; 48 h batch culture; endpoint 16S amplicon composition
-    and OD600.
-(b) Step 1, measured once. Monoculture reaction norms: growth rate against stressor level
-    for a few taxa, crossing curves, with vertical lines at the control and stress levels
-    showing that rank order changes between levels. Output: a taxon x regime table of
-    growth rates g.
-(c) Step 2, prediction. Growth rates g (z-scored within regime) -> softmax with taxon
-    offsets delta_j -> predicted relative abundances (stacked bar) -> abundance-weighted
-    mean growth (AWM) -> regime-specific regression -> predicted OD600.
-(d) Transfer map. Four held-out tests as tiles: unseen communities, taxa absent from every
-    fitted community, unseen stress regimes, combinations from single stressors. Each tile
-    shows a composition tick (transfers) and, for regimes and combinations, an abundance
-    cross (requires focal-regime calibration).
--->
-
 ::: {#fig-1 fig-pos="htbp"}
 
 ![](../results/figures/Fig_1_design.png){width=100%}
@@ -88,16 +59,6 @@ We next asked whether these shifts could be explained by a single taxon-level re
 We asked whether monoculture growth rates measured under the matched regime predict the relative abundances of taxa in mixed communities. For each community the model received only the set of inoculated taxa, the stress regime and the taxa's stress-specific growth rates, standardised within regime; a softmax link converted growth into relative abundances, and taxon-specific offsets absorbed systematic deviations from growth (@sec-bayes). Predicted relative abundances explained 44% of the abundance-weighted variance in observed composition across all regimes and richness levels (weighted R² = 0.44; weighted RMSE = 0.22; [@fig-4]a). This performance held for communities withheld from fitting. In blocked five-fold cross-validation that held out entire community identities, held-out composition error was low and stable (mean RMSE = 0.131 $\pm$ 0.040 SD; mean Jensen--Shannon divergence = 0.089 $\pm$ 0.011 SD across folds) and broadly similar across stress regimes (**Tables S15, S16, S18**; **Fig. S6**).
 
 Composition prediction depended on the model's graded structure. A crude rule that assigns each community wholly to its fastest-growing member failed for composition (weighted R² = −0.93, against 0.44 for the model; [@fig-4]d; **Table S25**), even though the presumptive winner was the observed dominant taxon in 67% of communities. Ablating the model under the same blocked cross-validation showed that neither of its two components predicts held-out communities alone (**Table S26**). Removing growth rates, so that prediction rested on fitted taxon offsets, collapsed out-of-fold accuracy (weighted R² = −0.29; dominant taxon correctly identified in 62% of communities); removing the offsets did likewise (weighted R² = −0.07; 67%); only the full model predicted (weighted R² = 0.39; 80%). The two components are not equivalent, however. Growth rate is the only measured input, whereas the offsets are fitted parameters, and taxa absent from every fitted community, whose offsets fall back to their prior, were still predicted in rank order (next section). Growth rate was also the most informative monoculture growth parameter: substituting lag time or carrying capacity in the same pipeline reduced composition accuracy to weighted R² = 0.08 and 0.11 respectively (**Table S22**).
-
-<!-- AUTHOR DECISION: the sentence below was rewritten to state only what the
-     Methods document. If the OD600 = 0.05 inoculum was in fact chosen to keep
-     early readings measurable and replicable, the stronger version is:
-     "Monocultures were inoculated at a deliberately high starting density
-     (OD600 = 0.05), chosen so that early optical density readings are
-     measurable and replicable, and as a consequence the time series offer only
-     a short, sparsely sampled exponential window for log-linear estimation,
-     whereas the Gompertz fit uses the whole trajectory."
-     Only restore this if that was the actual design rationale. -->
 
 Composition accuracy depended on how growth rate was estimated. The growth rates used throughout are Gompertz estimates fitted to the whole monoculture trajectory (@sec-trait). A model-free log-linear estimate, the steepest slope of log$_{10}$(OD$_{600}$) over rolling windows, correlated strongly with the Gompertz estimates (Pearson r = 0.95; Spearman ρ = 0.94 overall and 0.78--0.97 within regimes; **Table S23**; **Fig. S9**). Nevertheless, rerunning the pipeline with log-linear estimates reduced composition accuracy from weighted R² = 0.437 to 0.299, roughly a third of the composition signal, while leaving abundance prediction unchanged (R² = 0.882 versus 0.893; **Table S22**). We retain the Gompertz estimate because it is the better-identified estimator for these assays. Monocultures were inoculated at OD$_{600}$ = 0.05 and sampled every 2 h for the first 12 h and approximately every 4 h thereafter, with all taxa reaching stationary phase within approximately 24 h ([@sec-trait; @sec-microcosm]), so the exponential phase is covered by few time points and the log-linear window is correspondingly short and sparsely sampled, whereas the Gompertz fit uses the whole trajectory. The asymmetry between the two responses is itself informative. A composition prediction carried by taxon identity or by the stress and richness terms would be indifferent to how growth rate was estimated. That composition accuracy degrades when the trait is estimated more crudely, while abundance prediction does not, is what we expect if composition is driven by the trait and abundance is carried largely by the dominant members (see below).
 
@@ -269,38 +230,13 @@ All R analysis scripts and Stan model files are available at <https://github.com
 
 ## Acknowledgements {.unnumbered}
 
-<!-- OPEN QUESTIONS FOR THE AUTHORS (funding; do not submit until resolved):
-     1. Susheel Bhanu Busi and Daniel Read (UK Centre for Ecology and
-        Hydrology) are likely to have their own funding to acknowledge. Not
-        determinable from either source paper.
-     2. Any studentship supporting Hebe Carmichael. Carmichael, Warfield and
-        Yvon-Durocher (2025, Ecology Letters 28: e70065) has no
-        Acknowledgements section and no funding statement, so it provides
-        nothing on this. The authors must supply it.
-     The statement below is taken from Cakin et al. (2026, ISME
-     Communications 6: ycag024). -->
-
 We are grateful to the staff of the Living Systems Institute for their help and support. This work was supported by UK Research and Innovation (UKRI) under research grant NE/Y000889/1.
 
 ## Author contributions {.unnumbered}
 
-<!-- AUTHOR DECISION: Ruth Warfield's CRediT roles need confirming.
-     "Investigation" covers the monoculture growth assays underpinning the
-     trait measurements (Carmichael, Warfield and Yvon-Durocher 2025: "H.C.
-     and R.W. performed the experiments"). Whether she also contributed to
-     the community assembly experiment, which is new to this study, and
-     whether Methodology applies, is not determinable from the source paper. -->
-
 Hebe Carmichael (HC) and Ilgaz Cakin (IC) contributed equally. HC: Investigation, Methodology, Data curation, Writing -- original draft. IC: Formal analysis, Software, Visualization, Writing -- original draft. Ruth Warfield (RW): Investigation. Susheel Bhanu Busi (SBB): Investigation, Methodology, Resources. Daniel Read (DR): Resources, Supervision. Gabriel Yvon-Durocher (GYD): Conceptualization, Funding acquisition, Supervision, Writing -- review & editing.
 
 ## Competing interests {.unnumbered}
-
-<!-- Derived from the authors' statement of 23 March 2026 (Ecology Letters
-     submission: "All authors have approved the manuscript and declare no
-     competing interests"), and corroborated by the published competing
-     interests statements of Carmichael, Warfield and Yvon-Durocher (2025,
-     Ecology Letters) and Cakin et al. (2026, ISME Communications). Reconfirm
-     with all authors, including Ruth Warfield, before submission. -->
 
 The authors declare no competing interests.
 
