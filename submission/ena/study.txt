@@ -1,0 +1,11 @@
+STUDY (project) registration for ENA Webin
+
+Study title:
+Endpoint 16S rRNA amplicon sequencing of synthetic bacterial communities assembled under factorial temperature, pH and salinity stress
+
+Study description / abstract:
+Raw paired-end 16S rRNA gene (V4-V5, primers 515F/907R) amplicon reads from 172 endpoint samples of defined bacterial communities, plus 3 extraction blanks. Twenty-two community compositions were assembled from a pool of twelve heterotrophic bacterial isolates at three richness levels (2, 4 and 8 taxa) and grown for 48 h in R2A medium under all eight regimes of a 2 x 2 x 2 factorial design: temperature (20 vs 38 C), pH (7.2 vs 5.5) and salinity (0 vs 20 g NaCl/L). Community DNA was extracted with the DNeasy UltraClean Microbial Kit and libraries were prepared and sequenced by Novogene. These reads underlie the amplicon sequence variant tables used to test whether monoculture growth rates predict community composition and abundance under multiple stressors (Carmichael, Cakin et al.). Processed ASV tables, metadata, analysis code and model fits are archived on Zenodo and at https://github.com/GabYvonDurocher/scaling-multiple-stressors.
+
+Study type: Metagenomics (amplicon)   [Webin: "Other" is also acceptable for synthetic communities]
+Release date: on publication (set "hold until" ~ 12 months; can be released early from the Webin portal)
+Centre name: University of Exeter

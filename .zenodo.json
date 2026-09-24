@@ -1,0 +1,22 @@
+{
+  "title": "Monoculture growth rates predict community assembly under multiple environmental stressors: data, code and model fits",
+  "upload_type": "software",
+  "description": "<p>Analysis code, processed data and cached Bayesian model fits for <em>Monoculture growth rates predict community assembly under multiple environmental stressors</em> (Carmichael, Cakin, Warfield, Busi, Read and Yvon-Durocher).</p><p>Contents: R scripts and Stan models for the Dirichlet-softmax composition model, the abundance-weighted mean growth to OD600 regression, blocked cross-validation by community identity, leave-one-stress-out, leave-one-taxon-out and singles-to-combinations transfer tests; processed 16S rRNA amplicon sequence variant tables, sequencing metadata, community OD600 data and monoculture growth rates; all cached Stan fits, so that every published table and figure regenerates without refitting; and the Quarto sources of the manuscript and supplementary information.</p><p>Raw amplicon reads are deposited at the European Nucleotide Archive (see the Data availability statement). Monoculture growth rates were subset from the performance-curve dataset of Carmichael et al. (2025), archived separately on Zenodo.</p>",
+  "creators": [
+    {"name": "Carmichael, Hebe", "affiliation": "Environment and Sustainability Institute, University of Exeter"},
+    {"name": "Cakin, Ilgaz", "affiliation": "Living Systems Institute, University of Exeter"},
+    {"name": "Warfield, Ruth", "affiliation": "Environment and Sustainability Institute, University of Exeter"},
+    {"name": "Busi, Susheel Bhanu", "affiliation": "UK Centre for Ecology and Hydrology"},
+    {"name": "Read, Daniel", "affiliation": "UK Centre for Ecology and Hydrology"},
+    {"name": "Yvon-Durocher, Gabriel", "affiliation": "Living Systems Institute and Department of Geography, University of Exeter", "orcid": "0000-0002-1749-3417"}
+  ],
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": ["multiple stressors", "community assembly", "synthetic microbial communities", "trait-based prediction", "growth rate", "temperature", "pH", "salinity", "Bayesian model", "Stan", "16S rRNA amplicon"],
+  "grants": [{"id": "10.13039/100014013::NE/Y000889/1"}],
+  "related_identifiers": [
+    {"identifier": "https://github.com/GabYvonDurocher/scaling-multiple-stressors", "relation": "isSupplementTo", "scheme": "url"},
+    {"identifier": "10.5281/zenodo.14285702", "relation": "references", "scheme": "doi"}
+  ],
+  "language": "eng"
+}

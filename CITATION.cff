@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper and the archived release."
+title: "Monoculture growth rates predict community assembly under multiple environmental stressors: data, code and model fits"
+type: software
+authors:
+  - family-names: Carmichael
+    given-names: Hebe
+    affiliation: "Environment and Sustainability Institute, University of Exeter"
+  - family-names: Cakin
+    given-names: Ilgaz
+    affiliation: "Living Systems Institute, University of Exeter"
+  - family-names: Warfield
+    given-names: Ruth
+    affiliation: "Environment and Sustainability Institute, University of Exeter"
+  - family-names: Busi
+    given-names: Susheel Bhanu
+    affiliation: "UK Centre for Ecology and Hydrology"
+  - family-names: Read
+    given-names: Daniel
+    affiliation: "UK Centre for Ecology and Hydrology"
+  - family-names: Yvon-Durocher
+    given-names: Gabriel
+    affiliation: "Living Systems Institute and Department of Geography, University of Exeter"
+    orcid: "https://orcid.org/0000-0002-1749-3417"
+repository-code: "https://github.com/GabYvonDurocher/scaling-multiple-stressors"
+license: MIT
