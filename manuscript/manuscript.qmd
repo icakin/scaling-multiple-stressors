@@ -226,7 +226,7 @@ The 16S rRNA gene sequences of the twelve bacterial isolates are available in Ge
 
 ## Code availability {.unnumbered}
 
-All R analysis scripts and Stan model files are available at <https://github.com/GabYvonDurocher/scaling-multiple-stressors>. All published tables and figures can be regenerated from the committed model fits without refitting or recompiling the Stan models; this was verified on macOS and Linux, where the regenerated values agree to within floating-point rounding rather than bit for bit. Refitting from source requires a C++ toolchain and rstan 2.26 to 2.32 (tested with 2.32.7), as the repository contains models in both the pre-2.33 and post-2.26 Stan array syntaxes. **[PLACEHOLDER: DOI of an archived release of the repository (for example Zenodo) to be added before submission.]**
+All R analysis scripts and Stan model files are available at <https://github.com/GabYvonDurocher/scaling-multiple-stressors>. All published tables and figures can be regenerated from the committed model fits without refitting or recompiling the Stan models; this was verified on macOS and Linux, where the regenerated values agree to within floating-point rounding rather than bit for bit. Refitting from source requires a C++ toolchain and rstan 2.26 to 2.32 (tested with 2.32.7), as the repository contains models in both the pre-2.33 and post-2.26 Stan array syntaxes. The version of the code, processed data and model fits used for this article is archived on Zenodo (<https://doi.org/10.5281/zenodo.22941741>).
 
 ## Acknowledgements {.unnumbered}
 
