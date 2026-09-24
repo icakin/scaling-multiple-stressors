@@ -8,7 +8,8 @@
 #   b  step 1: monoculture reaction norms give a taxon x regime table of
 #      growth rates; rank order changes between control and stress level
 #   c  step 2: growth rates -> softmax -> composition -> AWM -> abundance
-#   d  transfer map: what was withheld, and what carried over
+#   d  transfer tests: what each held-out test withholds from fitting
+#      (results belong to Fig. 5, so no verdicts here)
 #
 # Colours follow the rest of the paper: stress regimes from pal_short
 # (utils_functions.R), composition in COL_COMP and abundance in COL_ABUN
@@ -172,9 +173,11 @@ pc <- ggplot() +
   # 1 growth rates
   box(0.00, 0.30, 0.62, 0.90, fill = PAPER) +
   txt(0.31, 0.79, "growth rates", size = 2.7, col = INK, fontface = "bold") +
-  txt(0.31, 0.65, "g, z-scored\nwithin regime", size = 2.4, col = INK2, lineheight = 0.9) +
-  txt(0.31, 0.43, "+ taxon offsets δ", size = 2.4, col = INK2) +
+  txt(0.31, 0.62, "g, z-scored\nwithin regime", size = 2.4, col = INK2, lineheight = 0.9) +
+  txt(0.31, 0.42, "measured", size = 2.2, col = INK2, fontface = "italic") +
   arr(0.65, 0.60, 0.93, 0.60, len = 4) + txt(0.79, 0.97, "softmax", size = 2.3, col = INK2) +
+  txt(0.79, 0.50, "+ offsets δ", size = 2.1, col = INK2) +
+  txt(0.79, 0.41, "fitted", size = 2.0, col = INK2, fontface = "italic") +
   # 2 composition
   box(0.96, 0.30, 1.58, 0.90, fill = "white") +
   txt(1.27, 0.79, "composition", size = 2.7, col = COL_COMP, fontface = "bold") +
@@ -209,39 +212,37 @@ pc <- ggplot() +
 tiles <- tibble(
   i = 1:4,
   title = c("Unseen\ncommunities", "Unseen\ntaxa", "Unseen\nstress regimes", "Combinations\nfrom single stressors"),
-  held = c("22 compositions,\nblocked 5-fold", "each taxon absent\nfrom every fitted\ncommunity", "each regime absent\nfrom fitting", "fitted on single\nstressors only"),
-  comp = c(TRUE, TRUE, TRUE, TRUE),
-  abun = c("yes", "na", "no", "no")) %>%
+  held  = c("whole community\ncompositions",
+            "one taxon, from\nevery fitted community",
+            "one stress regime,\nfrom all fitting",
+            "all four stressor\ncombinations"),
+  fit   = c("blocked 5-fold\ncross-validation",
+            "refit without it,\n12 times",
+            "refit without it,\n8 times",
+            "fit on single\nstressors only")) %>%
   mutate(x0 = (i - 1) * 0.9, x1 = x0 + 0.82)
 
 pd <- ggplot() + theme_blank()
 for (k in seq_len(nrow(tiles))) {
   t <- tiles[k, ]; xm <- (t$x0 + t$x1) / 2
   pd <- pd + box(t$x0, 0.0, t$x1, 1.0, fill = PAPER, col = COL_REF) +
-    txt(xm, 0.88, t$title, size = 2.7, col = INK, fontface = "bold", lineheight = 0.9) +
-    txt(xm, 0.66, t$held, size = 2.2, col = INK2, lineheight = 0.9) +
-    annotate("segment", x = t$x0 + 0.06, xend = t$x1 - 0.06, y = 0.47, yend = 0.47, colour = COL_REF, linewidth = 0.3) +
-    txt(t$x0 + 0.08, 0.36, "composition", size = 2.4, col = COL_COMP, hjust = 0) +
-    txt(t$x0 + 0.08, 0.16, "abundance", size = 2.4, col = COL_ABUN, hjust = 0) +
-    tick(t$x1 - 0.13, 0.36, col = COL_COMP)
-  pd <- pd + switch(t$abun,
-    yes = tick(t$x1 - 0.13, 0.16, col = COL_ABUN),
-    no  = cross(t$x1 - 0.13, 0.16, col = COL_ABUN),
-    na  = list(txt(t$x1 - 0.13, 0.16, "–", size = 3, col = COL_REF)))
+    txt(xm, 0.87, t$title, size = 2.7, col = INK, fontface = "bold", lineheight = 0.9) +
+    annotate("segment", x = t$x0 + 0.06, xend = t$x1 - 0.06, y = 0.70, yend = 0.70, colour = COL_REF, linewidth = 0.3) +
+    txt(xm, 0.62, "withheld", size = 2.1, col = INK2, fontface = "italic") +
+    txt(xm, 0.49, t$held, size = 2.2, col = INK, lineheight = 0.9) +
+    txt(xm, 0.30, "how", size = 2.1, col = INK2, fontface = "italic") +
+    txt(xm, 0.17, t$fit, size = 2.2, col = INK, lineheight = 0.9)
 }
 pd <- pd +
-  txt(1.76, 1.16, "Held-out test", size = 2.8, col = INK, fontface = "bold") +
-  tick(0.62, -0.12, col = COL_COMP, s = 0.035) + txt(0.70, -0.12, "transfers", size = 2.3, col = INK2, hjust = 0) +
-  cross(1.42, -0.12, col = COL_ABUN, s = 0.032) + txt(1.50, -0.12, "requires focal-regime calibration", size = 2.3, col = INK2, hjust = 0) +
-  txt(2.92, -0.12, "–", size = 3, col = COL_REF) + txt(3.00, -0.12, "not assessed", size = 2.3, col = INK2, hjust = 0) +
-  coord_equal(xlim = c(-0.05, 3.57), ylim = c(-0.2, 1.25), expand = FALSE, clip = "off")
+  txt(1.76, 1.16, "Held-out tests: composition and abundance each evaluated on what was withheld (Fig. 5)", size = 2.6, col = INK, fontface = "bold") +
+  coord_equal(xlim = c(-0.05, 3.57), ylim = c(-0.05, 1.25), expand = FALSE, clip = "off")
 
 # ======================================================================
 # assemble
 # ======================================================================
 fig <- (pa + labs(tag = "a")) / (pb + labs(tag = "b")) / (pc + labs(tag = "c")) / (pd + labs(tag = "d")) +
-  plot_layout(heights = c(1.52, 1.6, 1.04, 1.45))
+  plot_layout(heights = c(1.52, 1.6, 1.04, 1.30))
 
-ggsave(P_FIG("Fig_1_design.png"), fig, width = 180, height = 235, units = "mm", dpi = 300, bg = "white", device = ragg::agg_png)
-ggsave(P_FIG("Fig_1_design.pdf"), fig, width = 180, height = 235, units = "mm", bg = "white", device = cairo_pdf)
+ggsave(P_FIG("Fig_1_design.png"), fig, width = 180, height = 228, units = "mm", dpi = 300, bg = "white", device = ragg::agg_png)
+ggsave(P_FIG("Fig_1_design.pdf"), fig, width = 180, height = 228, units = "mm", bg = "white", device = cairo_pdf)
 message("Done: results/figures/Fig_1_design.png and .pdf")
