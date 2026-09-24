@@ -721,7 +721,7 @@ comm_od <- read.csv(P_IN("CommunityOD_All_Jan23_edit_zeros.csv")) %>%
     OD = as.numeric(OD)
   ) %>%
   dplyr::mutate(
-    Stress   = factor(Stress),
+    Stress   = factor(Stress, levels = STRESS_LEVELS),  # fixed order (figure colours)
     Diversity= factor(Diversity)
   ) %>%
   droplevels()

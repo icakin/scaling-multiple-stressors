@@ -261,25 +261,46 @@ Further information on research design is available in the Nature Portfolio Repo
 
 ## Data availability {.unnumbered}
 
-The 16S rRNA gene sequences of the twelve bacterial isolates are available in GenBank under accession numbers PX560147--PX560158 (**Table S1**). The processed amplicon sequence variant (ASV) count and taxonomy tables, sequencing metadata, community OD$_{600}$ data and monoculture growth data used in all analyses are available in the project repository (<https://github.com/GabYvonDurocher/scaling-multiple-stressors>). **[PLACEHOLDER: accession number and repository for the raw 16S rRNA gene amplicon reads (for example an NCBI SRA BioProject) to be added before submission.]**
+The 16S rRNA gene sequences of the twelve bacterial isolates are available in GenBank under accession numbers PX560147--PX560158 (**Table S1**). The processed amplicon sequence variant (ASV) count and taxonomy tables, sequencing metadata, community OD$_{600}$ data and monoculture growth data used in all analyses are available in the project repository (<https://github.com/GabYvonDurocher/scaling-multiple-stressors>). The monoculture growth rates were subset from the performance-curve dataset of Carmichael et al. [@Carmichael2025], which is archived on Zenodo with its analysis code and contains growth rates for the twelve taxa across the temperature, pH and salinity gradients [@Carmichael2024data]. **[PLACEHOLDER: accession number and repository for the raw 16S rRNA gene amplicon reads (for example an NCBI SRA BioProject) to be added before submission.]**
 
 ## Code availability {.unnumbered}
 
-All R analysis scripts and Stan model files are available at <https://github.com/GabYvonDurocher/scaling-multiple-stressors>. **[PLACEHOLDER: DOI of an archived release of the repository (for example Zenodo) to be added before submission.]**
+All R analysis scripts and Stan model files are available at <https://github.com/GabYvonDurocher/scaling-multiple-stressors>. All published tables and figures can be regenerated from the committed model fits without refitting or recompiling the Stan models. Refitting from source requires a C++ toolchain and rstan 2.26 to 2.32 (tested with 2.32.7), as the repository contains models in both the pre-2.33 and post-2.26 Stan array syntaxes. **[PLACEHOLDER: DOI of an archived release of the repository (for example Zenodo) to be added before submission.]**
 
 ## Acknowledgements {.unnumbered}
 
-**[PLACEHOLDER: acknowledgements and funding, including grant numbers, to be supplied by the authors.]**
+<!-- OPEN QUESTIONS FOR THE AUTHORS (funding; do not submit until resolved):
+     1. Susheel Bhanu Busi and Daniel Read (UK Centre for Ecology and
+        Hydrology) are likely to have their own funding to acknowledge. Not
+        determinable from either source paper.
+     2. Any studentship supporting Hebe Carmichael. Carmichael, Warfield and
+        Yvon-Durocher (2025, Ecology Letters 28: e70065) has no
+        Acknowledgements section and no funding statement, so it provides
+        nothing on this. The authors must supply it.
+     The statement below is taken from Cakin et al. (2026, ISME
+     Communications 6: ycag024). -->
+
+We are grateful to the staff of the Living Systems Institute for their help and support. This work was supported by UK Research and Innovation (UKRI) under research grant NE/Y000889/1.
 
 ## Author contributions {.unnumbered}
 
-Hebe Carmichael (HC) and Ilgaz Cakin (IC) contributed equally. HC: Investigation, Methodology, Data curation, Writing -- original draft. IC: Formal analysis, Software, Visualization, Writing -- original draft. Susheel Bhanu Busi (SBB): Investigation, Methodology, Resources. Daniel Read (DR): Resources, Supervision. Gabriel Yvon-Durocher (GYD): Conceptualization, Funding acquisition, Supervision, Writing -- review & editing.
+<!-- AUTHOR DECISION: Ruth Warfield's CRediT roles need confirming.
+     "Investigation" covers the monoculture growth assays underpinning the
+     trait measurements (Carmichael, Warfield and Yvon-Durocher 2025: "H.C.
+     and R.W. performed the experiments"). Whether she also contributed to
+     the community assembly experiment, which is new to this study, and
+     whether Methodology applies, is not determinable from the source paper. -->
+
+Hebe Carmichael (HC) and Ilgaz Cakin (IC) contributed equally. HC: Investigation, Methodology, Data curation, Writing -- original draft. IC: Formal analysis, Software, Visualization, Writing -- original draft. Ruth Warfield (RW): Investigation. Susheel Bhanu Busi (SBB): Investigation, Methodology, Resources. Daniel Read (DR): Resources, Supervision. Gabriel Yvon-Durocher (GYD): Conceptualization, Funding acquisition, Supervision, Writing -- review & editing.
 
 ## Competing interests {.unnumbered}
 
 <!-- Derived from the authors' statement of 23 March 2026 (Ecology Letters
      submission: "All authors have approved the manuscript and declare no
-     competing interests"). Reconfirm with all authors before submission. -->
+     competing interests"), and corroborated by the published competing
+     interests statements of Carmichael, Warfield and Yvon-Durocher (2025,
+     Ecology Letters) and Cakin et al. (2026, ISME Communications). Reconfirm
+     with all authors, including Ruth Warfield, before submission. -->
 
 The authors declare no competing interests.
 

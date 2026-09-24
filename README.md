@@ -2,7 +2,7 @@
 
 This repository contains all code, data, and manuscript source files for:
 
-**Carmichael H.\*, Cakin I.\*, Busi S.B., Read D. & Yvon-Durocher G.**
+**Carmichael H.\*, Cakin I.\*, Warfield R., Busi S.B., Read D. & Yvon-Durocher G.**
 *Monoculture growth rates predict community assembly under multiple environmental stressors.*
 
 \* These authors contributed equally.
@@ -42,6 +42,14 @@ scaling-multiple-stressors/
 ```
 
 ## Prerequisites
+
+### Reproducing the published results
+
+All published tables and figures can be regenerated from the committed model fits (`results/rds/`) without refitting or recompiling the Stan models: every script loads its cached fits and compiles a Stan model only if a fit is missing. Running the pipeline from cached fits therefore needs R and the packages below, but no C++ toolchain.
+
+Refitting from source is different. It requires a C++ toolchain and **rstan 2.26 to 2.32** (tested with 2.32.7). The window is narrow because the repository contains models in both Stan array syntaxes: scripts 01 to 05 embed the older syntax, which rstan 2.33 and later reject, while the refit model used by scripts 09 to 14 (`results/stan/softmax_dirichlet_refit.stan`) uses the newer `array[]` syntax, which requires Stan 2.26 or later.
+
+Regeneration from the committed fits has been verified on macOS; confirmation on Linux is pending.
 
 ### Software
 
