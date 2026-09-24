@@ -38,3 +38,6 @@ results/stan/*.rds
 
 # ── Raw sequencing delivery (7.7 GB; archived at 10.5281/zenodo.8289513) ──
 submission/ena/raw/
+
+# ── Claude desktop app scratch ──
+Claude outputs/

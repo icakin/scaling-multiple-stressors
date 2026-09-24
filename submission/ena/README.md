@@ -17,7 +17,7 @@ sequencing run are NOT included (different study; confirm with Gab).
    pair of FASTQ files by SampleID or by the numeric tube label, pulls the
    MD5s from Novogene's MD5 file, and lists the files to upload:
 
-       Rscript submission/ena/fill_runs_from_delivery.R submission/ena/raw
+       python3 submission/ena/fill_runs_from_delivery.py submission/ena/raw/00.RawData
 
    It prints any sample it could not match. Fix those by hand in
    runs_paired_fastq.tsv before going on. Samples with "E" in the name are the
@@ -44,7 +44,7 @@ sequencing run are NOT included (different study; confirm with Gab).
    runs_paired_fastq.tsv, after re-running step 1 with the study accession
    and instrument model:
 
-       Rscript submission/ena/fill_runs_from_delivery.R /path/to/raw_data PRJEBxxxxx "Illumina NovaSeq 6000"
+       python3 submission/ena/fill_runs_from_delivery.py submission/ena/raw/00.RawData PRJEBxxxxx "Illumina NovaSeq 6000"
 
    The instrument model is in Novogene's delivery report. Webin checks every
    MD5 against the uploaded file, so a mismatch means a bad upload, not a bad
