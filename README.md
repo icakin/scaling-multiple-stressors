@@ -49,7 +49,7 @@ All published tables and figures can be regenerated from the committed model fit
 
 Refitting from source is different. It requires a C++ toolchain and **rstan 2.26 to 2.32** (tested with 2.32.7). The window is narrow because the repository contains models in both Stan array syntaxes: scripts 01 to 05 embed the older syntax, which rstan 2.33 and later reject, while the refit model used by scripts 09 to 14 (`results/stan/softmax_dirichlet_refit.stan`) uses the newer `array[]` syntax, which requires Stan 2.26 or later.
 
-Regeneration from the committed fits has been verified on macOS; confirmation on Linux is pending.
+Regeneration from the committed fits has been verified on macOS and Linux. Results agree across the two platforms to within floating-point rounding (differences in the last significant figure of some values), not bit for bit.
 
 ### Software
 
