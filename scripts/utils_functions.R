@@ -35,6 +35,18 @@ DIR_FIGS   <- "results/figures"
 DIR_RDS    <- "results/rds"
 DIR_STAN   <- "results/stan"
 
+# Fixed regime order for the Stan stress index.
+#
+# This order MUST NOT change: every cached fit in results/rds/ was trained
+# with kappa[s, ] indexed in this order, so a different order silently
+# assigns each regime another regime's slope. It was previously derived by
+# sort(unique(...)), whose result depends on the machine's collation locale
+# (macOS ICU: case-insensitive; Linux C locale: uppercase first), which made
+# the deposited tables irreproducible across platforms. The order below is
+# the one the fits were trained with.
+STRESS_LEVELS <- c("Control", "pH", "pHSal", "pHSalTemp", "pHTemp",
+                   "Sal", "SalTemp", "Temp")
+
 invisible(lapply(
   c(DIR_INPUT, DIR_TABLES, DIR_FIGS, DIR_RDS, DIR_STAN),
   function(p) if (!dir.exists(p)) dir.create(p, recursive = TRUE)

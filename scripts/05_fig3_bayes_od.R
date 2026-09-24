@@ -294,7 +294,7 @@ taxa_levels <- ord %>%
 map_tax <- setNames(seq_along(taxa_levels), taxa_levels)
 
 tax_of      <- as.integer(map_tax[ord$Id])
-stress_lvls <- sort(unique(ord$Stress))
+stress_lvls <- STRESS_LEVELS[STRESS_LEVELS %in% ord$Stress]  # fixed order; see utils_functions.R
 S           <- length(stress_lvls)
 map_stress  <- setNames(seq_along(stress_lvls), stress_lvls)
 stress_id   <- as.integer(map_stress[SAMPLES$Stress])
@@ -1619,7 +1619,7 @@ taxa_levels_cv <- ord_full %>%
   dplyr::arrange(Id) %>%
   dplyr::pull(Id)
 
-stress_lvls_cv <- sort(unique(SAMPLES_cv$Stress))
+stress_lvls_cv <- STRESS_LEVELS[STRESS_LEVELS %in% SAMPLES_cv$Stress]  # fixed order; see utils_functions.R
 rich_lvls_cv   <- sort(unique(SAMPLES_cv$Diversity))
 
 # ======================================================================

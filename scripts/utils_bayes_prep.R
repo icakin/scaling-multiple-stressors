@@ -233,18 +233,6 @@ load_comm_od <- function() {
 
 # ---------------------- ALIGN & STRUCTURE ----------------------------
 # trait_tbl: Id, Stress, g, g_z (from make_trait_table)
-# Fixed regime order for the Stan stress index.
-#
-# This order MUST NOT change: every cached fit in results/rds/ was trained
-# with kappa[s, ] indexed in this order, so a different order silently
-# assigns each regime another regime's slope. It was previously derived by
-# sort(unique(...)), whose result depends on the machine's collation locale
-# (macOS ICU: case-insensitive; Linux C locale: uppercase first), which made
-# the deposited tables irreproducible across platforms. The order below is
-# the one the fits were trained with.
-STRESS_LEVELS <- c("Control", "pH", "pHSal", "pHSalTemp", "pHTemp",
-                   "Sal", "SalTemp", "Temp")
-
 prep_bayes_data <- function(trait_tbl, design = design_communities()) {
 
   abund_complete <- load_abundance(design)
